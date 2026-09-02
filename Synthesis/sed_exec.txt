@@ -1,0 +1,16 @@
+cd /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/
+
+# Update ROM files
+sed -i 's/reg \[23:0\]/reg signed [23:0]/g' ROM_*.v
+sed -i 's/output \[23:0\]/output signed [23:0]/g' ROM_*.v
+
+# Update Shift files
+sed -i 's/input \[23:0\]/input signed [23:0]/g' shift_*.v
+sed -i 's/output \[23:0\]/output signed [23:0]/g' shift_*.v
+sed -i 's/reg \[23:0\]/reg signed [23:0]/g' shift_*.v
+
+# Update Radix and FFT files (Be careful to only change the datapath ports/wires)
+sed -i 's/input \[23:0\]/input signed [23:0]/g' radix2.v FFT.v
+sed -i 's/output \[23:0\]/output signed [23:0]/g' radix2.v FFT.v
+sed -i 's/wire \[23:0\]/wire signed [23:0]/g' radix2.v FFT.v
+sed -i 's/reg \[23:0\]/reg signed [23:0]/g' radix2.v FFT.v
