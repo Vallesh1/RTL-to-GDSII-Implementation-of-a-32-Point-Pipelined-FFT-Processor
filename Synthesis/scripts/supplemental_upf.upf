@@ -1,0 +1,40 @@
+# ============================================================================
+# SUPPLEMENTAL UPF - VOLTAGE ANNOTATION FOR SYNTHESIS & STA
+# ============================================================================
+# Author     : Design Engineer
+# Purpose    : Apply precise voltage values to supply nets.
+# Load Order : Loaded AFTER the Golden UPF (or via '-supplemental' flag).
+# ============================================================================
+
+# 1. VOLTAGE DEFINITION
+# ----------------------------------------------------------------------------
+# For the worst-case (SS) corner, the standard cell library is characterized 
+# at 0.6V. This command applies that voltage to the VDD net.
+# The voltage range [0.54, 0.66] is added to define the tolerance window
+# for variation-aware analysis.
+set_voltage 0.6 -object_list {VDD} \
+    -min 0.54 \
+    -max 0.66
+
+# Ground reference must be explicitly tied to 0.0V for formal checks.
+set_voltage 0.0 -object_list {VSS}
+
+# 2. SIMULATION ANNOTATION (OPTIONAL BUT HIGHLY PROFESSIONAL)
+# ----------------------------------------------------------------------------
+# Some simulations (e.g., gate-level with VCS) need to know the ramp-up
+# timing and logic high threshold. This sets VDD to '1' logically for
+# digital simulation.
+set_simulation -on \
+    -power VDD \
+    -logic_level_high 0.6 \
+    -logic_level_low 0.0
+
+# 3. POWER SWITCHING BEHAVIOR
+# ----------------------------------------------------------------------------
+# Since this is an "always-on" domain (no power gating), we define the 
+# default switching state to prevent UPF-based simulation from 
+# accidentally treating VDD as undefined during initial power-up.
+set_supply_net VDD -always_on true
+set_supply_net VSS -always_on true
+
+# End of Supplemental UPF
