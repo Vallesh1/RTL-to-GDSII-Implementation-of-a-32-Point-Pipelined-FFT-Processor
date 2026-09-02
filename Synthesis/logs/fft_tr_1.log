@@ -1,0 +1,300 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version T-2022.03-SP4 for linux64 - Aug 24, 2022 
+
+                    Copyright (c) 1988 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Initializing gui preferences from file  /home1/IITR_PD3/MulukuriVNath/.synopsys_dc_gui/preferences.tcl
+Warning: Cannot use command line editor for terminal type 'xterm-256color'.  (UI-74)
+dc_shell> 4.1.1
+set_host_options -max_cores 8
+1
+dc_shell> set DESIGN_NAME "FFT"
+FFT
+dc_shell> set OUTPUTS_DIR "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs
+dc_shell> set SCRIPTS "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts
+dc_shell> set DESIGN_STYLE hier                    # Flat synthesis for standalone module
+Error: wrong # args: should be "set varName ?newValue?"
+	Use error_info for more info. (CMD-013)
+dc_shell> set PHYSICAL_HIERARCHY_LEVEL "top"
+top
+dc_shell> set UPF_MODE golden
+golden
+dc_shell> set UPF_FILE ${SCRIPTS}/${DESIGN_NAME}.upf
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+set DCRM_NDM_LIBRARY_NAME ${DESIGN_NAME}.ndmFFT.ndm
+dc_shell> set UPF_FILE ${SCRIPTS}/${DESIGN_NAME}.upf/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+dc_shell> set DCRM_NDM_LIBRARY_NAME ${DESIGN_NAME}.ndmFFT.ndm
+dc_shell> set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
+dc_shell> set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
+/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm
+dc_shell> set RTL_SOURCE_PATH "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL
+dc_shell> set_app_var search_path "$search_path $RTL_SOURCE_PATH"
+. /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/dw/syn_ver /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/dw/sim_ver /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL
+dc_shell> if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
+dc_shell> if {$UPF_MODE == "golden"} {
+  set_app_var enable_golden_upf true
+}
+true
+dc_shell> set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+dc_shell> set_app_var target_library ${TARGET_LIBRARY_FILES}
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+dc_shell> set_app_var synthetic_library dw_foundation.sldb
+dw_foundation.sldb
+dc_shell> set_app_var link_library "* $target_library $synthetic_library"
+* /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db dw_foundation.sldb
+dc_shell> if {[shell_is_in_topographical_mode]} {
+  if {[info exists view_target] && [file exists $DCRM_NDM_LIBRARY_NAME]} {
+    puts "RM-info: Opening existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+    open_lib $DCRM_NDM_LIBRARY_NAME
+  } else {
+    if {[file exists $DCRM_NDM_LIBRARY_NAME]} {
+      puts "RM-info: Deleting existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+      file delete -force $DCRM_NDM_LIBRARY_NAME
+    }
+    set create_lib_cmd "create_lib -technology $TECH_FILE $DCRM_NDM_LIBRARY_NAME"
+    if {${REFERENCE_LIBRARY} != ""} { append create_lib_cmd " -ref_libs \"${REFERENCE_LIBRARY}\""}
+    puts "RM-info: Running $create_lib_cmd"
+    eval ${create_lib_cmd}
+  }
+}
+dc_shell> set set_check_library_cmd "set_check_library_options -mcmm"
+set_check_library_options -mcmm
+dc_shell> if {$UPF_MODE != "none"} {lappend set_check_library_cmd -upf}
+set_check_library_options -mcmm -upf
+dc_shell> eval ${set_check_library_cmd}
+1
+dc_shell> redirect -file ${OUTPUTS_DIR}/${DESIGN_NAME}.check_library.rpt {check_library}
+dc_shell> set_app_var sh_new_variable_message false
+false
+dc_shell> set_app_var auto_insert_level_shifters_on_clocks all
+all
+dc_shell> set_app_var spg_enable_via_resistance_support true
+true
+dc_shell> set_fix_multiple_port_nets -all -buffer_constants
+Error: Current design is not defined. (UID-4)
+0
+dc_shell> set_app_var simplified_verification_mode true
+true
+dc_shell> set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
+1
+dc_shell> Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Running PRESTO HDLC
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Error:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:449: Syntax error at or near token '#'. (VER-294)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:1: Overwriting existing design element 'ROM_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:1: Overwriting existing design element 'ROM_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:1: Overwriting existing design element 'ROM_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:1: Overwriting existing design element 'radix2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:1: Overwriting existing design element 'shift_1' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:1: Overwriting existing design element 'shift_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:1: Overwriting existing design element 'shift_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:1: Overwriting existing design element 'shift_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:1: Overwriting existing design element 'shift_8' with newer version. (VER-64)
+*** Presto compilation terminated with 1 errors. ***
+Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb'
+0
+dc_shell> analyze -f verilog [list \
+    ${RTL_SOURCE_PATH}/FFT.v \
+    ${RTL_SOURCE_PATH}/radix2.v \
+    ${RTL_SOURCE_PATH}/ROM_16.v \
+    ${RTL_SOURCE_PATH}/ROM_8.v \
+    ${RTL_SOURCE_PATH}/ROM_4.v \
+    ${RTL_SOURCE_PATH}/ROM_2.v \
+    ${RTL_SOURCE_PATH}/shift_16.v \
+    ${RTL_SOURCE_PATH}/shift_8.v \
+    ${RTL_SOURCE_PATH}/shift_4.v \
+    ${RTL_SOURCE_PATH}/shift_2.v \
+    ${RTL_SOURCE_PATH}/shift_1.v ]Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Running PRESTO HDLC
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Error:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:449: Syntax error at or near token '#'. (VER-294)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:1: Overwriting existing design element 'ROM_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:1: Overwriting existing design element 'ROM_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:1: Overwriting existing design element 'ROM_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:1: Overwriting existing design element 'ROM_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:1: Overwriting existing design element 'shift_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:1: Overwriting existing design element 'shift_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:1: Overwriting existing design element 'shift_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:1: Overwriting existing design element 'shift_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:1: Overwriting existing design element 'shift_1' with newer version. (VER-64)
+*** Presto compilation terminated with 1 errors. ***
+0
+dc_shell> Error: extra positional option 'tee' (CMD-012)
+Error: extra positional option 'analyze.log' (CMD-012)
+dc_shell> Error: extra positional option '|' (CMD-012)
+Error: extra positional option 'tee' (CMD-012)
+Error: unknown option '-i' (CMD-010)
+Error: extra positional option 'analyze.log' (CMD-012)
+dc_shell> Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Running PRESTO HDLC
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Error:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:449: Syntax error at or near token '#'. (VER-294)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:1: Overwriting existing design element 'ROM_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:1: Overwriting existing design element 'ROM_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:1: Overwriting existing design element 'ROM_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:1: Overwriting existing design element 'radix2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:1: Overwriting existing design element 'shift_1' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:1: Overwriting existing design element 'shift_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:1: Overwriting existing design element 'shift_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:1: Overwriting existing design element 'shift_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:1: Overwriting existing design element 'shift_8' with newer version. (VER-64)
+*** Presto compilation terminated with 1 errors. ***
+0
+dc_shell> Removing library 'saed14rvt_ss0p6v125c'
+Removing library 'saed14lvt_ss0p6v125c'
+Removing library 'dw_foundation.sldb'
+1
+dc_shell> analyze -f verilog [list \
+    ${RTL_SOURCE_PATH}/FFT.v \
+    ${RTL_SOURCE_PATH}/radix2.v \
+    ${RTL_SOURCE_PATH}/ROM_16.v \
+    ${RTL_SOURCE_PATH}/ROM_8.v \
+    ${RTL_SOURCE_PATH}/ROM_4.v \
+    ${RTL_SOURCE_PATH}/ROM_2.v \
+    ${RTL_SOURCE_PATH}/shift_16.v \
+    ${RTL_SOURCE_PATH}/shift_8.v \
+    ${RTL_SOURCE_PATH}/shift_4.v \
+    ${RTL_SOURCE_PATH}/shift_2.v \
+    ${RTL_SOURCE_PATH}/shift_1.v ]Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Running PRESTO HDLC
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Error:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:449: Syntax error at or near token '#'. (VER-294)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:1: Overwriting existing design element 'ROM_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:1: Overwriting existing design element 'ROM_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:1: Overwriting existing design element 'ROM_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:1: Overwriting existing design element 'ROM_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:1: Overwriting existing design element 'shift_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:1: Overwriting existing design element 'shift_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:1: Overwriting existing design element 'shift_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:1: Overwriting existing design element 'shift_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:1: Overwriting existing design element 'shift_1' with newer version. (VER-64)
+*** Presto compilation terminated with 1 errors. ***
+Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
+Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb'
+0
+dc_shell> 
+Memory usage for this session 1607 Mbytes.
+Memory usage for this session including child processes 1607 Mbytes.
+CPU usage for this session 45 seconds ( 0.01 hours ).
+Elapsed time for this session 873 seconds ( 0.24 hours ).
+
+Thank you...

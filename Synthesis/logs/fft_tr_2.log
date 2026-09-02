@@ -1,0 +1,613 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version T-2022.03-SP4 for linux64 - Aug 24, 2022 
+
+                    Copyright (c) 1988 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Initializing gui preferences from file  /home1/IITR_PD3/MulukuriVNath/.synopsys_dc_gui/preferences.tcl
+Warning: Cannot use command line editor for terminal type 'xterm-256color'.  (UI-74)
+dc_shell> 4.1.1
+source -echo -verbose "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/run.tcl"
+# ============================================================================
+# File    : run_fft_synth.tcl
+# Purpose : High-Performance, Constraint-Driven Synthesis for 32-point FFT
+# Design  : FFT (Top) with radix2, ROM_*, shift_* submodules
+# Tool    : Synopsys Design Compiler (dc_shell) - Topographical Mode Ready
+# Usage   : dc_shell -f scripts/run_fft_synth.tcl | tee logs/synth_fft.log
+# ============================================================================
+# --- Host Options (Multi-core) ---
+set_host_options -max_cores 8
+1
+# ============================================================================
+# 1. GLOBAL VARIABLES & PROJECT PATHS
+# ============================================================================
+set DESIGN_NAME "FFT"
+FFT
+set OUTPUTS_DIR "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs
+set SCRIPTS "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts
+# --- Design Flow Settings ---
+set DESIGN_STYLE flat                    # Flat synthesis for standalone module
+Error: wrong # args: should be "set varName ?newValue?"
+	Use error_info for more info. (CMD-013)
+set PHYSICAL_HIERARCHY_LEVEL "top"
+top
+set DC_BLOCK_ABSTRACTION_DESIGNS ""
+set DDC_HIER_DESIGNS ""
+set UPF_MODE golden
+golden
+set UPF_FILE ${SCRIPTS}/${DESIGN_NAME}.upf
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+set DCRM_NDM_LIBRARY_NAME ${DESIGN_NAME}.ndm
+FFT.ndm
+# ============================================================================
+# 2. TECHNOLOGY & LIBRARY PATHS [USER: UPDATE THESE]
+# ============================================================================
+set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
+set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
+/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm
+# ============================================================================
+# 3. RTL SOURCE PATHS [USER: UPDATE THIS]
+# ============================================================================
+set RTL_SOURCE_PATH "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL
+# Append to search path
+set_app_var search_path "$search_path $RTL_SOURCE_PATH"
+. /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/dw/syn_ver /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/dw/sim_ver /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL
+# Create output directory
+if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
+# ============================================================================
+# 4. ENABLE GOLDEN UPF MODE
+# ============================================================================
+if {$UPF_MODE == "golden"} {
+  set_app_var enable_golden_upf true
+}
+true
+# ============================================================================
+# 5. LIBRARY SETUP
+# ============================================================================
+# [USER: Update target library paths to your SS corner .db files]
+set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+set_app_var target_library ${TARGET_LIBRARY_FILES}
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+set_app_var synthetic_library dw_foundation.sldb
+dw_foundation.sldb
+set_app_var link_library "* $target_library $synthetic_library"
+* /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db dw_foundation.sldb
+# --- Topographical Mode NDM Library Creation ---
+if {[shell_is_in_topographical_mode]} {
+  if {[info exists view_target] && [file exists $DCRM_NDM_LIBRARY_NAME]} {
+    puts "RM-info: Opening existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+    open_lib $DCRM_NDM_LIBRARY_NAME
+  } else {
+    if {[file exists $DCRM_NDM_LIBRARY_NAME]} {
+      puts "RM-info: Deleting existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+      file delete -force $DCRM_NDM_LIBRARY_NAME
+    }
+    set create_lib_cmd "create_lib -technology $TECH_FILE $DCRM_NDM_LIBRARY_NAME"
+    if {${REFERENCE_LIBRARY} != ""} { append create_lib_cmd " -ref_libs \"${REFERENCE_LIBRARY}\""}
+    puts "RM-info: Running $create_lib_cmd"
+    eval ${create_lib_cmd}
+  }
+}
+# --- Library Quality Checks ---
+set set_check_library_cmd "set_check_library_options -mcmm"
+set_check_library_options -mcmm
+if {$UPF_MODE != "none"} {lappend set_check_library_cmd -upf}
+set_check_library_options -mcmm -upf
+eval ${set_check_library_cmd}
+1
+redirect -file ${OUTPUTS_DIR}/${DESIGN_NAME}.check_library.rpt {check_library}
+# ============================================================================
+# 6. LIBRARY MODIFICATIONS (DONT_USE / OPTIMIZATION PREFS)
+# ============================================================================
+# [USER: Optional: source ${SCRIPTS}/dont_use.tcl if you have one]
+# ============================================================================
+# 7. TOOL SETTINGS & MESSAGE HANDLING
+# ============================================================================
+set_app_var sh_new_variable_message false
+false
+set_app_var auto_insert_level_shifters_on_clocks all
+all
+set_app_var spg_enable_via_resistance_support true
+true
+# --- Fix for Multiple Port Nets (Crucial for FFT to avoid netlist corruption) ---
+set_fix_multiple_port_nets -all -buffer_constants
+Error: Current design is not defined. (UID-4)
+0
+# --- Formality / LEC Setup ---
+set_app_var simplified_verification_mode true
+true
+set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
+1
+# ============================================================================
+# 8. READ RTL DESIGN (ANALYZE & ELABORATE)
+# ============================================================================
+# Note: Order doesn't strictly matter for analyze, but top-level FFT.v is listed first for clarity.
+#analyze -f verilog [glob $opensparc/lib/m1/*]
+analyze -f verilog [list \
+    ${RTL_SOURCE_PATH}/FFT.v \
+    ${RTL_SOURCE_PATH}/radix2.v \
+    ${RTL_SOURCE_PATH}/ROM_16.v \
+    ${RTL_SOURCE_PATH}/ROM_8.v \
+    ${RTL_SOURCE_PATH}/ROM_4.v \
+    ${RTL_SOURCE_PATH}/ROM_2.v \
+    ${RTL_SOURCE_PATH}/shift_16.v \
+    ${RTL_SOURCE_PATH}/shift_8.v \
+    ${RTL_SOURCE_PATH}/shift_4.v \
+    ${RTL_SOURCE_PATH}/shift_2.v \
+    ${RTL_SOURCE_PATH}/shift_1.v ]
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Running PRESTO HDLC
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Error:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:449: Syntax error at or near token '#'. (VER-294)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:1: Overwriting existing design element 'ROM_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:1: Overwriting existing design element 'ROM_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:1: Overwriting existing design element 'ROM_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:1: Overwriting existing design element 'ROM_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:1: Overwriting existing design element 'shift_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:1: Overwriting existing design element 'shift_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:1: Overwriting existing design element 'shift_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:1: Overwriting existing design element 'shift_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:1: Overwriting existing design element 'shift_1' with newer version. (VER-64)
+*** Presto compilation terminated with 1 errors. ***
+Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb'
+0
+elaborate ${DESIGN_NAME}
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/gtech.db'
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/standard.sldb'
+  Loading link library 'saed14rvt_ss0p6v125c'
+  Loading link library 'saed14lvt_ss0p6v125c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:48: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:49: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:260: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:261: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:313: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:314: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:318: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:319: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:322: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:323: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:326: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:327: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:330: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:331: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:334: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:335: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:338: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:339: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:342: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:343: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:346: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:347: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:350: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:351: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:354: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:355: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:358: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:359: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:362: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:363: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:366: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:367: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:370: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:371: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:374: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:375: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:378: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:379: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:382: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:383: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:386: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:387: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:390: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:391: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:394: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:395: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:398: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:399: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:402: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:403: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:406: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:407: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:410: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:411: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:414: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:415: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:418: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:419: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:422: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:423: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:426: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:427: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:430: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:431: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:434: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:435: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:438: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:439: unsigned to signed assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 300 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           311            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine FFT line 241 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     dout_i_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    result_i_reg     | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    y_1_delay_reg    | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    result_r_reg     | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    din_r_reg_reg    | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    din_i_reg_reg    | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  in_valid_reg_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    s5_count_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    r4_valid_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     count_y_reg     | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   assign_out_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      over_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     dout_r_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|     FFT/291      |   32   |   32    |      5       |
+======================================================
+Presto compilation completed successfully. (FFT)
+Elaborated 1 design.
+Current design is now 'FFT'.
+Information: Building the design 'radix2'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:56: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:57: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:24: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 19 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            24            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (radix2)
+Information: Building the design 'shift_16'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_16-verilog.pvl not found, or does not contain a usable description of shift_16. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_16'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_16-verilog.pvl not found, or does not contain a usable description of ROM_16. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_8'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_8-verilog.pvl not found, or does not contain a usable description of shift_8. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_8'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_8-verilog.pvl not found, or does not contain a usable description of ROM_8. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_4'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_4-verilog.pvl not found, or does not contain a usable description of shift_4. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_4'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_4-verilog.pvl not found, or does not contain a usable description of ROM_4. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_2'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_2-verilog.pvl not found, or does not contain a usable description of shift_2. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_2'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_2-verilog.pvl not found, or does not contain a usable description of ROM_2. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_1'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_1-verilog.pvl not found, or does not contain a usable description of shift_1. (ELAB-320)
+Presto compilation completed successfully.
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+current_design ${DESIGN_NAME}
+Current design is 'FFT'.
+{FFT}
+link
+
+  Linking design 'FFT'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (2 designs)               /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/FFT.db, etc
+  saed14rvt_ss0p6v125c (library) /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db
+  saed14lvt_ss0p6v125c (library) /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+  dw_foundation.sldb (library) /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb
+
+Information: Building the design 'shift_16'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_16-verilog.pvl not found, or does not contain a usable description of shift_16. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_16'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_16-verilog.pvl not found, or does not contain a usable description of ROM_16. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_8'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_8-verilog.pvl not found, or does not contain a usable description of shift_8. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_8'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_8-verilog.pvl not found, or does not contain a usable description of ROM_8. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_4'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_4-verilog.pvl not found, or does not contain a usable description of shift_4. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_4'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_4-verilog.pvl not found, or does not contain a usable description of ROM_4. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_2'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_2-verilog.pvl not found, or does not contain a usable description of shift_2. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_2'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_2-verilog.pvl not found, or does not contain a usable description of ROM_2. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_1'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_1-verilog.pvl not found, or does not contain a usable description of shift_1. (ELAB-320)
+Presto compilation completed successfully.
+Warning: Unable to resolve reference 'shift_16' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_16' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_8' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_8' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_4' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_4' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_2' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_2' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_1' in 'FFT'. (LINK-5)
+0
+# ============================================================================
+# 9. LOAD LOW-POWER INTENT (GOLDEN UPF)
+# ============================================================================
+set upf_create_implicit_supply_sets false
+false
+if {$UPF_MODE != "none"} {
+  if {$UPF_FILE != ""} {
+    set load_upf_cmd "load_upf ${UPF_FILE}"
+    if {$UPF_MODE == "golden"} {lappend load_upf_cmd -strict_check true}
+    puts "RM-info: Running $load_upf_cmd"
+    eval ${load_upf_cmd}
+  }
+}
+RM-info: Running load_upf /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf -strict_check true
+
+
+Loading Golden UPF file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf ...
+# ============================================================================
+# GOLDEN UPF - DESIGN: 32-POINT PIPELINED FFT
+# ============================================================================
+# Author     : Design Engineer
+# Tool       : Synopsys DC / Cadence Genus (IEEE 1801-2013 Compliant)
+# Function   : Single-Power-Domain (Always-On) Top-Level Power Intent
+# Dependency : Loaded before physical implementation (elaboration phase)
+# ============================================================================
+# 1. SCOPE AND DOMAIN DEFINITION
+# ----------------------------------------------------------------------------
+# Define the top-level power domain.
+# -include_scope ensures this domain encompasses the entire FFT module hierarchy.
+create_power_domain TOP -include_scope
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+# 2. SUPPLY PORTS (CHIP-LEVEL INTERFACE)
+# ----------------------------------------------------------------------------
+# Declare the top-level physical power ports.
+create_supply_port VDD
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+create_supply_port VSS
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+# 3. SUPPLY NETS (INTERNAL LOGICAL NETWORK)
+# ----------------------------------------------------------------------------
+# Create internal supply rails. '-reuse' allows connection to multiple ports.
+# '-domain' binds these nets explicitly to the TOP domain.
+create_supply_net VDD -domain TOP -reuse
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Error: Supply net VDD does not exist. (UPF-010)
+create_supply_net VSS -domain TOP -reuse
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Error: Supply net VSS does not exist. (UPF-010)
+# 4. SUPPLY NET TO PORT CONNECTION
+# ----------------------------------------------------------------------------
+# Physically connect the internal nets to the top-level ports.
+connect_supply_net VDD -ports VDD
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't find supply_net 'VDD' in design 'FFT'. (UID-95)
+Error: Value for list 'supply_net_name' must have 1 elements. (CMD-036)
+connect_supply_net VSS -ports VSS
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't find supply_net 'VSS' in design 'FFT'. (UID-95)
+Error: Value for list 'supply_net_name' must have 1 elements. (CMD-036)
+# 5. SUPPLY SET DEFINITION (PRIMARY POWER AND GROUND)
+# ----------------------------------------------------------------------------
+# Create a named supply set "DEFAULT_SS" which bundles the primary rails.
+# This is the standard way to associate voltages with a domain.
+create_supply_set DEFAULT_SS \
+    -power VDD \
+    -ground VSS
+Error: unknown option '-power' (CMD-010)
+Error: extra positional option 'VDD' (CMD-012)
+Error: unknown option '-ground' (CMD-010)
+Error: extra positional option 'VSS' (CMD-012)
+# Assign the supply set to the primary power/ground of the TOP domain.
+set_domain_supply_net TOP \
+    -primary_power_net VDD \
+    -primary_ground_net VSS
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't find supply_net 'VDD' in design 'FFT'. (UID-95)
+Error: Value for list '-primary_power_net' must have 1 elements. (CMD-036)
+# 6. POWER MANAGEMENT STRATEGY (EXPLICIT OVERRIDE)
+# ----------------------------------------------------------------------------
+# Although this is a single-domain design, we must explicitly tell the tool
+# to NOT insert isolation cells or level shifters.
+# If omitted, the tool may incorrectly try to map these cells from the library,
+# leading to 'unmapped cells' errors during compile_ultra.
+set_isolation TOP \
+    -domain TOP \
+    -applies_to outputs \
+    -no_isolation
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+set_level_shifter TOP \
+    -domain TOP \
+    -applies_to outputs \
+    -no_shifters
+Error: unknown option '-no_shifters' (CMD-010)
+# 7. POWER STATE TABLE (PST) FOR VERIFICATION
+# ----------------------------------------------------------------------------
+# Defines the valid operating states of the supply net.
+# This is critical for formal verification (MV-SIM / VCLP) to understand
+# that VDD is always 0.6V and never shut off (always-on).
+add_power_state VDD \
+    -state ALWAYS_ON \
+    -logic_expr {1'b1} \
+    -voltage {0.6}
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Error: extra positional option '1'b1' (CMD-012)
+Error: unknown option '-voltage' (CMD-010)
+Error: extra positional option '0.6' (CMD-012)
+# End of Golden UPF
+End loading UPF file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+1
+# ============================================================================
+# 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
+# ============================================================================
+set_voltage 0.6 -object_list {VDD}
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't find supply nets or internal power pins matching 'VDD' in design 'FFT'. (UID-95)
+Error: Cannot set_voltage on an empty list of supply net(s). (UPF-087)
+0
+set_voltage 0.0 -object_list {VSS}
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't find supply nets or internal power pins matching 'VSS' in design 'FFT'. (UID-95)
+Error: Cannot set_voltage on an empty list of supply net(s). (UPF-087)
+0
+# --- Multi-Voltage Integrity Check ---
+set check_mv_design_failed false
+false
+if {[shell_is_in_topographical_mode]} {
+  set current_scenario_saved [current_scenario]
+  foreach scenario [all_active_scenarios] {
+    current_scenario ${scenario}
+    if {![check_mv_design -power_nets]} { set check_mv_design_failed true; break }
+  }
+  current_scenario ${current_scenario_saved}
+} else {
+  if {![check_mv_design -power_nets]} { set check_mv_design_failed true }
+}
+Warning: Design 'FFT' has '9' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Building the design 'shift_16'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_16-verilog.pvl not found, or does not contain a usable description of shift_16. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_16'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_16-verilog.pvl not found, or does not contain a usable description of ROM_16. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_8'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_8-verilog.pvl not found, or does not contain a usable description of shift_8. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_8'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_8-verilog.pvl not found, or does not contain a usable description of ROM_8. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_4'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_4-verilog.pvl not found, or does not contain a usable description of shift_4. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_4'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_4-verilog.pvl not found, or does not contain a usable description of ROM_4. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_2'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_2-verilog.pvl not found, or does not contain a usable description of shift_2. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'ROM_2'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/ROM_2-verilog.pvl not found, or does not contain a usable description of ROM_2. (ELAB-320)
+Presto compilation completed successfully.
+Information: Building the design 'shift_1'. (HDL-193)
+Warning:  File /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/shift_1-verilog.pvl not found, or does not contain a usable description of shift_1. (ELAB-320)
+Presto compilation completed successfully.
+Warning: Unable to resolve reference 'shift_16' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_16' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_8' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_8' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_4' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_4' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_2' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'ROM_2' in 'FFT'. (LINK-5)
+Warning: Unable to resolve reference 'shift_1' in 'FFT'. (LINK-5)
+--------------------------------------------------------------------------------
+                      Power/Ground Pin Connection Checks
+--------------------------------------------------------------------------------
+Error: No primary supply nets (power and ground) have been defined for power domain TOP. (UPF-056)
+Error: Power net hookup for power domains is not specified properly.   (MV-503)
+
+--------------------------------------------------------------------------------
+                         Supply Operating Voltage Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+Please review report above for warnings and errors.
+true
+if {$check_mv_design_failed} {
+  puts "RM-error: Supply nets missing voltage definitions. Exiting."
+  exit 1
+}
+RM-error: Supply nets missing voltage definitions. Exiting.
+
+Memory usage for this session 1591 Mbytes.
+Memory usage for this session including child processes 1591 Mbytes.
+CPU usage for this session 22 seconds ( 0.01 hours ).
+Elapsed time for this session 47 seconds ( 0.01 hours ).
+
+Thank you...

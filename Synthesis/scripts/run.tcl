@@ -17,7 +17,7 @@ set OUTPUTS_DIR "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementa
 set SCRIPTS "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts"
 
 # --- Design Flow Settings ---
-set DESIGN_STYLE hier                    # Flat synthesis for standalone module
+set DESIGN_STYLE flat                    # Flat synthesis for standalone module
 set PHYSICAL_HIERARCHY_LEVEL "top"
 set DC_BLOCK_ABSTRACTION_DESIGNS ""
 set DDC_HIER_DESIGNS ""
