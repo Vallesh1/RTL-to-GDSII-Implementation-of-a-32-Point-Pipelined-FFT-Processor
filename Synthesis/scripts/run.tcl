@@ -13,12 +13,12 @@ set_host_options -max_cores 8
 # 1. GLOBAL VARIABLES & PROJECT PATHS
 # ============================================================================
 set DESIGN_NAME "FFT"
-set OUTPUTS_DIR "[USER: /path/to/your/FFT_Syn/outputs]"
-set SCRIPTS "[USER: /path/to/your/FFT_Syn/scripts]"
+set OUTPUTS_DIR "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs"
+set SCRIPTS "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts"
 
 # --- Design Flow Settings ---
-set DESIGN_STYLE flat                    # Flat synthesis for standalone module
-set PHYSICAL_HIERARCHY_LEVEL "bottom"
+set DESIGN_STYLE hier                    # Flat synthesis for standalone module
+set PHYSICAL_HIERARCHY_LEVEL "top"
 set DC_BLOCK_ABSTRACTION_DESIGNS ""
 set DDC_HIER_DESIGNS ""
 set UPF_MODE golden
@@ -28,14 +28,16 @@ set DCRM_NDM_LIBRARY_NAME ${DESIGN_NAME}.ndm
 # ============================================================================
 # 2. TECHNOLOGY & LIBRARY PATHS [USER: UPDATE THESE]
 # ============================================================================
-set TECH_FILE "[USER: /path/to/tech/milkyway/your_tech.tf]"
-set REFERENCE_LIBRARY "[USER: /path/to/stdcell_hvt/ndm/your_hvt.ndm] \
-                       [USER: /path/to/stdcell_rvt/ndm/your_rvt.ndm]"
+set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
 
 # ============================================================================
 # 3. RTL SOURCE PATHS [USER: UPDATE THIS]
 # ============================================================================
-set RTL_SOURCE_PATH "[USER: /path/to/your/verilog/source/files]"
+set RTL_SOURCE_PATH "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL"
 
 # Append to search path
 set_app_var search_path "$search_path $RTL_SOURCE_PATH"
@@ -54,8 +56,8 @@ if {$UPF_MODE == "golden"} {
 # 5. LIBRARY SETUP
 # ============================================================================
 # [USER: Update target library paths to your SS corner .db files]
-set TARGET_LIBRARY_FILES  "[USER: /path/to/your/stdcell_rvt/db_ccs/your_rvt_ss0p6v125c.db] \
-                           [USER: /path/to/your/stdcell_lvt/db_ccs/your_lvt_ss0p6v125c.db]"
+set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
 
 set_app_var target_library ${TARGET_LIBRARY_FILES}
 set_app_var synthetic_library dw_foundation.sldb
@@ -107,6 +109,7 @@ set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
 # 8. READ RTL DESIGN (ANALYZE & ELABORATE)
 # ============================================================================
 # Note: Order doesn't strictly matter for analyze, but top-level FFT.v is listed first for clarity.
+#analyze -f verilog [glob $opensparc/lib/m1/*]
 analyze -f verilog [list \
     ${RTL_SOURCE_PATH}/FFT.v \
     ${RTL_SOURCE_PATH}/radix2.v \
