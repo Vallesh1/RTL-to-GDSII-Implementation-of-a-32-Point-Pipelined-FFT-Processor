@@ -1,0 +1,75 @@
+# ============================================================================
+# GOLDEN UPF - DESIGN: 32-POINT PIPELINED FFT
+# ============================================================================
+# Author     : Design Engineer
+# Tool       : Synopsys DC / Cadence Genus (IEEE 1801-2013 Compliant)
+# Function   : Single-Power-Domain (Always-On) Top-Level Power Intent
+# Dependency : Loaded before physical implementation (elaboration phase)
+# ============================================================================
+
+# 1. SCOPE AND DOMAIN DEFINITION
+# ----------------------------------------------------------------------------
+# Define the top-level power domain.
+# -include_scope ensures this domain encompasses the entire FFT module hierarchy.
+create_power_domain TOP -include_scope
+
+# 2. SUPPLY PORTS (CHIP-LEVEL INTERFACE)
+# ----------------------------------------------------------------------------
+# Declare the top-level physical power ports.
+create_supply_port VDD
+create_supply_port VSS
+
+# 3. SUPPLY NETS (INTERNAL LOGICAL NETWORK)
+# ----------------------------------------------------------------------------
+# Create internal supply rails. '-reuse' allows connection to multiple ports.
+# '-domain' binds these nets explicitly to the TOP domain.
+create_supply_net VDD -domain TOP -reuse
+create_supply_net VSS -domain TOP -reuse
+
+# 4. SUPPLY NET TO PORT CONNECTION
+# ----------------------------------------------------------------------------
+# Physically connect the internal nets to the top-level ports.
+connect_supply_net VDD -ports VDD
+connect_supply_net VSS -ports VSS
+
+# 5. SUPPLY SET DEFINITION (PRIMARY POWER AND GROUND)
+# ----------------------------------------------------------------------------
+# Create a named supply set "DEFAULT_SS" which bundles the primary rails.
+# This is the standard way to associate voltages with a domain.
+create_supply_set DEFAULT_SS \
+    -power VDD \
+    -ground VSS
+
+# Assign the supply set to the primary power/ground of the TOP domain.
+set_domain_supply_net TOP \
+    -primary_power_net VDD \
+    -primary_ground_net VSS
+
+# 6. POWER MANAGEMENT STRATEGY (EXPLICIT OVERRIDE)
+# ----------------------------------------------------------------------------
+# Although this is a single-domain design, we must explicitly tell the tool
+# to NOT insert isolation cells or level shifters.
+# If omitted, the tool may incorrectly try to map these cells from the library,
+# leading to 'unmapped cells' errors during compile_ultra.
+
+set_isolation TOP \
+    -domain TOP \
+    -applies_to outputs \
+    -no_isolation
+
+set_level_shifter TOP \
+    -domain TOP \
+    -applies_to outputs \
+    -no_shifters
+
+# 7. POWER STATE TABLE (PST) FOR VERIFICATION
+# ----------------------------------------------------------------------------
+# Defines the valid operating states of the supply net.
+# This is critical for formal verification (MV-SIM / VCLP) to understand
+# that VDD is always 0.6V and never shut off (always-on).
+add_power_state VDD \
+    -state ALWAYS_ON \
+    -logic_expr {1'b1} \
+    -voltage {0.6}
+
+# End of Golden UPF
