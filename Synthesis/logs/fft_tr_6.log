@@ -563,8 +563,7 @@ if {$UPF_MODE != "none"} {
     puts "RM-info: Running $load_upf_cmd"
     eval ${load_upf_cmd}
   }
-}
-RM-info: Running load_upf /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf -strict_check true
+}RM-info: Running load_upf /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf -strict_check true
 
 
 Loading Golden UPF file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf ...
@@ -592,10 +591,8 @@ add_power_state SS_DEFAULT -state ON {-supply_expr {power == {FULL_ON 0.6} && gr
 set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation
 End loading UPF file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
 1
-# ============================================================================
-# 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
-# ============================================================================
-set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+Current design is 'FFT'.
+dc_shell> set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
 1
 set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
 1
@@ -627,7 +624,6 @@ if {$check_mv_design_failed} {
   puts "RM-error: Supply nets missing voltage definitions. Exiting."
   exit 1
 }
-Current design is 'FFT'.
 dc_shell> source ${SCRIPTS}/${DESIGN_NAME}.sdc
 Current design is 'FFT'.
 Current design is 'FFT'.
@@ -648,16 +644,13 @@ dc_shell> analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feas
 Error: unknown command 'analyze_mv_feasibility' (CMD-005)
 dc_shell> set compile_ultra_cmd "compile_ultra -gate_clock -scan"
 compile_ultra -gate_clock -scan
-dc_shell> if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
+if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
 puts "RM-info: Running $compile_ultra_cmd (Note: -retime is disabled to preserve pipeline structure)"
 RM-info: Running compile_ultra -gate_clock -scan (Note: -retime is disabled to preserve pipeline structure)
 eval ${compile_ultra_cmd}
 Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
 Information: Performing power optimization. (PWR-850)
-Analyzing: "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db"
-Analyzing: "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
-Analyzing: "/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db"
-Library analysis succeeded.
+Alib files are up-to-date.
 Information: Running optimization using a maximum of 8 cores. (OPT-1500)
 Information: Choosing a test methodology will restrict the optimization of sequential cells. (UIO-12)
 Information: Evaluating DesignWare library utilization. (UISN-27)
@@ -1270,8 +1263,8 @@ Information: In design 'FFT', the register 'din_r_reg_reg[23]' is removed becaus
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:01:22    9215.5      0.00      -0.0 14930903.0                           19057744.0000
-    0:01:22    9205.8      0.00       0.0 14930769.7                           19031454.0000
+    0:01:23    9215.5      0.00      -0.0 14930903.0                           19057744.0000
+    0:01:23    9205.8      0.00       0.0 14930769.7                           19031454.0000
 
   Beginning Constant Register Removal
   -----------------------------------
@@ -1317,12 +1310,12 @@ Information: In design 'FFT', the register 'din_r_reg_reg[23]' is removed becaus
 
   Beginning Delay Optimization
   ----------------------------
-    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
-    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
-    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
-    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:31    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:31    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:31    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:31    8491.5      0.00       0.0 9382413.7                           13509022.0000
     0:01:32    8428.1      0.00       0.0 9381293.7                           13422578.0000
-    0:01:32    8353.6      0.00       0.0 9380371.9                           13331901.0000
+    0:01:33    8353.6      0.00       0.0 9380371.9                           13331901.0000
 
   Beginning WLM Backend Optimization
   --------------------------------------
@@ -1332,39 +1325,39 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
 
   Beginning Delay Optimization HSVT Pass
   --------------------------------------
-    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:10    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:10    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:10    8096.4      0.00       0.0 9377588.9                           12926649.0000
-    0:02:12    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:01:54    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:01:54    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:01:54    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:01:54    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:02    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:02    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:02    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:02    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:11    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:11    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:11    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
 
   Beginning Delay Optimization
   ----------------------------
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
 
 
   Beginning Design Rule Fixing  (min_capacitance)  (max_transition)  (max_fanout)  (max_capacitance)
@@ -1374,18 +1367,18 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:14    8057.3      0.00       0.0 9525916.8                           11902581.0000
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
   Global Optimization (Phase 34)
-    0:02:56    8861.7      0.00       0.0   74288.1 net81728                  18846686.0000
+    0:02:57    8861.7      0.00       0.0   74288.1 net81728                  18846686.0000
     0:02:59    8876.8      0.00       0.0   73774.0 shift_8/net81058          19526552.0000
-    0:03:02    8885.2      0.00       0.0   73739.5 net81824                  19551460.0000
-    0:03:05    8911.9      0.00       0.0   73445.7 net81822                  19612048.0000
-    0:03:07    8913.9      0.00       0.0   73340.9 net81864                  19698086.0000
+    0:03:03    8885.2      0.00       0.0   73739.5 net81824                  19551460.0000
+    0:03:06    8911.9      0.00       0.0   73445.7 net81822                  19612048.0000
+    0:03:08    8913.9      0.00       0.0   73340.9 net81864                  19698086.0000
     0:03:10    8914.2      0.00       0.0   73317.0 net82066                  19696492.0000
-    0:03:10    8914.2      0.00       0.0   73317.0                           19696492.0000
-    0:03:10    8914.2      0.00       0.0   73317.0                           19696492.0000
+    0:03:11    8914.2      0.00       0.0   73317.0                           19696492.0000
+    0:03:11    8914.2      0.00       0.0   73317.0                           19696492.0000
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -1395,7 +1388,7 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:03:10    8914.2      0.00       0.0   73317.0                           19696492.0000
+    0:03:11    8914.2      0.00       0.0   73317.0                           19696492.0000
   Global Optimization (Phase 35)
   Global Optimization (Phase 36)
   Global Optimization (Phase 37)
@@ -1412,9 +1405,9 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
   Global Optimization (Phase 48)
   Global Optimization (Phase 49)
   Global Optimization (Phase 50)
-    0:03:21    8408.2      0.00       0.0   71693.9                           18635340.0000
-    0:03:21    8408.2      0.00       0.0   71693.9                           18635340.0000
-    0:03:21    8408.2      0.00       0.0   71693.9                           18635340.0000
+    0:03:22    8408.2      0.00       0.0   71693.9                           18635340.0000
+    0:03:22    8408.2      0.00       0.0   71693.9                           18635340.0000
+    0:03:22    8408.2      0.00       0.0   71693.9                           18635340.0000
     0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
     0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
     0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
@@ -1443,7 +1436,7 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
     0:03:28    8358.2      0.00       0.0   71314.2                           13190704.0000
     0:03:28    8358.2      0.00       0.0   71314.2                           13190704.0000
     0:03:28    8358.2      0.00       0.0   71314.2                           13190704.0000
-    0:03:29    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:30    8357.9      0.00       0.0   71311.9                           13135492.0000
 
   Beginning Delay Optimization HSVT Pass
   --------------------------------------
@@ -1457,7 +1450,7 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
     0:03:45    8357.9      0.00       0.0   71311.9                           13135492.0000
     0:03:56    8357.8      0.00       0.0   71307.5                           13133966.0000
     0:03:58    8489.2      0.00       0.0   71416.1 net83034                  13895526.0000
-    0:04:01    8503.1      0.00       0.0   71409.5 shift_8/net81345          13940204.0000
+    0:04:00    8503.1      0.00       0.0   71409.5 shift_8/net81345          13940204.0000
     0:04:03    8512.3      0.00       0.0   71335.6 shift_16/net81410         14065085.0000
     0:04:06    8516.5      0.00       0.0   71333.1 shift_16/net81395         14105642.0000
     0:04:08    8518.6      0.00       0.0   71331.6 shift_16/net81162         14124485.0000
@@ -1467,7 +1460,7 @@ Information: Total 0 level shifters are inserted incrementally. (MV-239)
     0:04:17    8518.9      0.00       0.0   71331.5                           14127571.0000
     0:04:17    8523.1      0.00       0.0   71331.5                           14138457.0000
     0:04:17    8523.1      0.00       0.0   71331.5                           14138457.0000
-    0:04:19    8520.2      0.00       0.0   71338.7                           14132234.0000
+    0:04:18    8520.2      0.00       0.0   71338.7                           14132234.0000
 Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
 Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'
 Loading db file '/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db'
@@ -1526,16 +1519,22 @@ Information: Writing parasitics to file '/home1/IITR_PD3/MulukuriVNath/Documents
 1
 write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
 1
-dc_shell> report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
-dc_shell> report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
+# --- Comprehensive Timing Reports (per path group) ---
+report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
+report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
 report_timing -group in2out -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2out.rpt
 report_timing -group reg2out -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2out.rpt
-dc_shell> report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
-dc_shell> report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
-dc_shell> report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
+# --- Area, Power, and QoR Reports ---
+report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
+report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
+report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
 dc_shell> report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
-dc_shell> Information: script '/tmp/dc_shell.GMebQi'
-	stopped at line 1 due to EOF. (CMD-081)
+dc_shell> set verilogout_no_tri true
+true
+set verilogout_equation false
+false
+dc_shell> set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+1
 dc_shell> if {$UPF_MODE == "golden"} {
   write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
 }
@@ -1546,13 +1545,244 @@ dc_shell> write_file -format verilog -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_
 Writing verilog file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v'.
 Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 1
-dc_shell> write_file -format ddc -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.ddc
-Writing ddc file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.ddc'.
+dc_shell> set verilogout_no_tri true
+true
+set verilogout_equation false
+false
+dc_shell> set verilogout_no_tri true
+true
+set verilogout_equation false
+false
+set verilogout_show_unconnected_pins true
+true
+dc_shell> set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
 1
-dc_shell> 
-Memory usage for this session 1712 Mbytes.
-Memory usage for this session including child processes 2313 Mbytes.
-CPU usage for this session 661 seconds ( 0.18 hours ).
-Elapsed time for this session 1171 seconds ( 0.33 hours ).
+dc_shell> compile -incremental
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Information: Performing power optimization. (PWR-850)
+Information: Choosing a test methodology will restrict the optimization of sequential cells. (UIO-12)
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+| Comand Line  | compile_ultra -scan -gate_clock                                                   |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 13888                                  |
+| Number of User Hierarchies                              | 55                                     |
+| Sequential Cell Count                                   | 2381                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 1                                      |
+| Number of Path Groups                                   | 7                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 0                                      |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 73                                     |
+| Design with UPF Data                                    | true                                   |
+----------------------------------------------------------------------------------------------------
+| Variables                                               | Value                                  |
+----------------------------------------------------------------------------------------------------
+| set_fix_multiple_port_nets                              | -all -buffer_constants                 |
+====================================================================================================
+Error: UPF commands are supported only with the compile_ultra command. (UPF-093)
+0
+dc_shell> Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 8 cores. (OPT-1500)
+Information: Choosing a test methodology will restrict the optimization of sequential cells. (UIO-12)
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+| Comand Line  | compile_ultra -incremental                                                        |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 13888                                  |
+| Number of User Hierarchies                              | 55                                     |
+| Sequential Cell Count                                   | 2381                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 1                                      |
+| Number of Path Groups                                   | 7                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 0                                      |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 73                                     |
+| Design with UPF Data                                    | true                                   |
+----------------------------------------------------------------------------------------------------
+| Variables                                               | Value                                  |
+----------------------------------------------------------------------------------------------------
+| set_fix_multiple_port_nets                              | -all -buffer_constants                 |
+====================================================================================================
 
-Thank you...
+Information: There are 1048 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+Warning: No operating condition has been set explicitly on the current design. A default operating condition ss0p6v125c from library saed14rvt_ss0p6v125c will be assumed. (MV-028)
+Information: Related supplies are not explicitly specified on 60 port(s) and primary supplies (VDD, VSS) of top power domain will be assumed as the related supply. (UPF-405)
+Information: Total 0 repeater cells are inserted. (UPF-464)
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'SAEDRVT14_TIE1_PV1ECO_1' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE0_PV1ECO_1' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE1_V1ECO_1' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE1_V1_2' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE1_4' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE0_V1_2' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE0_4' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_PV1ECO_1' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE0_PV1ECO_1' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_V1ECO_1' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_V1_2' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_4' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE0_V1_2' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE0_4' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_PV1ECO_1' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE0_PV1ECO_1' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_V1ECO_1' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_V1_2' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_4' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE0_V1_2' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE0_4' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: A total of 0 isolation cells are inserted. (UPF-214)
+Information: Total 0 level shifters are removed incrementally. (MV-238)
+Information: Total 0 level shifters are inserted incrementally. (MV-239)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:15    8520.2      0.00       0.0   71338.7                           14132234.0000
+    0:00:15    8520.2      0.00       0.0   71338.7                           14132234.0000
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+Information: Added key list 'DesignWare' to design 'radix2_4'. (DDB-72)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN4_V2_4'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN4_V2_2'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN4_V2_1'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN4_V2_0P5'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN2_V2_4'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN2_V2_2'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN2_V2_1'. (OPT-914)
+Warning: No single bit degenerate for multibit library cell 'SAEDHVT14_FSDN2_V2_0P5'. (OPT-914)
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:20    8328.6      0.00       0.0   77792.5                           14514778.0000
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:20    8328.6      0.00       0.0   77792.5                           14514778.0000
+
+  Beginning Delay Optimization HSVT Pass
+  --------------------------------------
+    0:00:38    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:38    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:38    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:38    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:47    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:47    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:47    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:47    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:57    8437.2      0.00       0.0   78788.4                           15170066.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:00:59    8237.2      0.00       0.0   68305.8                           13379079.0000
+    0:01:00    8225.1      0.00       0.0   68365.9                           13251007.0000
+
+
+  Beginning Design Rule Fixing  (min_capacitance)  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:00    8225.1      0.00       0.0   68365.9                           13251007.0000
+    0:01:04    8381.0      0.00       0.0   68379.1 shift_8/n29               13650847.0000
+    0:01:13    8397.2      0.00       0.0   68334.0 shift_2/dout_i[1]         13765746.0000
+    0:01:17    8397.9      0.00       0.0   68309.8                           13769337.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:19    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8397.2      0.00       0.0   68368.6                           13756569.0000
+    0:01:21    8398.2      0.00       0.0   68368.6                           13778190.0000
+Information: Total 0 level shifters are removed incrementally. (MV-238)
+Information: Total 0 level shifters are inserted incrementally. (MV-239)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:22   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:23   20254.8      0.00       0.0   68368.6                           13778190.0000
+
+  Beginning Delay Optimization HSVT Pass
+  --------------------------------------
+    0:01:30   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:30   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:30   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:30   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:38   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:38   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:38   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:38   20254.8      0.00       0.0   68368.6                           13778190.0000
+    0:01:53   20154.1      0.00       0.0   68215.1                           13695256.0000
+    0:01:55   20140.0      0.00       0.0   68172.5 radix_no3/DP_OP_172_183_740/n4749 13720794.0000
+    0:01:59   20148.0      0.00       0.0   68296.4 n4409                     13938605.0000
+    0:02:03   20151.0      0.00       0.0   68282.2 shift_4/n36               14027599.0000
+    0:02:07   20158.4      0.00       0.0   68253.1 n4049                     14067651.0000
+    0:02:11   20157.2      0.00       0.0   68226.0 shift_4/net93435          14068968.0000
+    0:02:14   20156.9      0.00       0.0   68184.6 n4187                     14071625.0000
+    0:02:20   20154.7      0.00       0.0   68173.5 n4398                     14073748.0000
+    0:02:23   20133.5      0.00       0.0   68239.0                           13974129.0000
+    0:02:23   20133.5      0.00       0.0   68239.0                           13974129.0000
+    0:02:24   20122.7      0.00       0.0   68231.3                           13961823.0000
+    0:02:24   20122.7      0.00       0.0   68231.3                           13961823.0000
+    0:02:25   20119.2      0.00       0.0   68124.9                           13927409.0000
+Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
+Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'

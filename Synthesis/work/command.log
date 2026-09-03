@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version T-2022.03-SP4 for linux64 -- Aug 24, 2022
-#@ # Date:   Thu Sep  3 21:40:34 2026
+#@ # Date:   Thu Sep  3 22:02:49 2026
 #@ # Run by: MulukuriVNath@mavenserver-RH3
 #@ 
 
@@ -8823,7 +8823,7 @@ start_gui
 #@ # -- End source /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/auxx/tcllib/lib/iwidgets4.1/iwidgets.tcl
 
 gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {LeafCells}
-#@ # -- Starting source /tmp/dc_shell.HkcfVj
+#@ # -- Starting source /tmp/dc_shell.OPApui
 
 #@ set_host_options -max_cores 8
 #@ 
@@ -8959,30 +8959,7 @@ gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {Lea
 #@     eval ${load_upf_cmd}
 #@   }
 #@ }
-#@ 
-#@ # ============================================================================
-#@ # 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
-#@ # ============================================================================
-#@ set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
-#@ set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
-#@ 
-#@ # --- Multi-Voltage Integrity Check ---
-#@ set check_mv_design_failed false
-#@ if {[shell_is_in_topographical_mode]} {
-#@   set current_scenario_saved [current_scenario]
-#@   foreach scenario [all_active_scenarios] {
-#@     current_scenario ${scenario}
-#@     if {![check_mv_design -power_nets]} { set check_mv_design_failed true; break }
-#@   }
-#@   current_scenario ${current_scenario_saved}
-#@ } else {
-#@   if {![check_mv_design -power_nets]} { set check_mv_design_failed true }
-#@ }
-#@ if {$check_mv_design_failed} {
-#@   puts "RM-error: Supply nets missing voltage definitions. Exiting."
-#@   exit 1
-#@ }
-#@ # -- End source /tmp/dc_shell.HkcfVj
+#@ # -- End source /tmp/dc_shell.OPApui
 
 set_host_options -max_cores 8
 
@@ -9118,10 +9095,29 @@ if {$UPF_MODE != "none"} {
     eval ${load_upf_cmd}
   }
 }
+#@ # -- Starting source /tmp/dc_shell.Cnntyj
 
-# ============================================================================
-# 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
-# ============================================================================
+#@ set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+#@ set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
+#@ 
+#@ # --- Multi-Voltage Integrity Check ---
+#@ set check_mv_design_failed false
+#@ if {[shell_is_in_topographical_mode]} {
+#@   set current_scenario_saved [current_scenario]
+#@   foreach scenario [all_active_scenarios] {
+#@     current_scenario ${scenario}
+#@     if {![check_mv_design -power_nets]} { set check_mv_design_failed true; break }
+#@   }
+#@   current_scenario ${current_scenario_saved}
+#@ } else {
+#@   if {![check_mv_design -power_nets]} { set check_mv_design_failed true }
+#@ }
+#@ if {$check_mv_design_failed} {
+#@   puts "RM-error: Supply nets missing voltage definitions. Exiting."
+#@   exit 1
+#@ }
+#@ # -- End source /tmp/dc_shell.Cnntyj
+
 set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
 set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
 
@@ -9141,7 +9137,7 @@ if {$check_mv_design_failed} {
   puts "RM-error: Supply nets missing voltage definitions. Exiting."
   exit 1
 }
-#@ # -- Starting source /tmp/dc_shell.MfUIgn
+#@ # -- Starting source /tmp/dc_shell.BzrjUL
 
 #@ source ${SCRIPTS}/${DESIGN_NAME}.sdc
 #@ # -- Starting source /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
@@ -9184,145 +9180,169 @@ if {$check_mv_design_failed} {
 #@ set_clock_gating_check -setup 0.15 -hold 0.05 [get_clocks ${CLK_NAME}]
 #@ # -- End source /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
 
-#@ # -- End source /tmp/dc_shell.MfUIgn
+#@ # -- End source /tmp/dc_shell.BzrjUL
 
 source ${SCRIPTS}/${DESIGN_NAME}.sdc
-#@ # -- Starting source /tmp/dc_shell.VaUwvq
+#@ # -- Starting source /tmp/dc_shell.IaueEz
 
 #@ check_design > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_design.rpt
 #@ check_timing > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_timing.rpt
-#@ # -- End source /tmp/dc_shell.VaUwvq
+#@ # -- End source /tmp/dc_shell.IaueEz
 
 check_design > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_design.rpt
 check_timing > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_timing.rpt
-#@ # -- Starting source /tmp/dc_shell.aLAVXO
+#@ # -- Starting source /tmp/dc_shell.rcpIPC
 
 #@ group_path -from [all_registers] -to [all_registers] -name reg2reg
 #@ group_path -from [all_registers] -to [all_outputs] -name reg2out
 #@ group_path -from [all_inputs] -to [all_registers] -name in2reg
 #@ group_path -from [all_inputs] -to [all_outputs] -name in2out
-#@ 
-#@ # -- End source /tmp/dc_shell.aLAVXO
+#@ # -- End source /tmp/dc_shell.rcpIPC
 
 group_path -from [all_registers] -to [all_registers] -name reg2reg
 group_path -from [all_registers] -to [all_outputs] -name reg2out
 group_path -from [all_inputs] -to [all_registers] -name in2reg
 group_path -from [all_inputs] -to [all_outputs] -name in2out
-
-#@ # -- Starting source /tmp/dc_shell.RXHPSV
+#@ # -- Starting source /tmp/dc_shell.lNVOrF
 
 #@ analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
-#@ # -- End source /tmp/dc_shell.RXHPSV
+#@ 
+#@ # -- End source /tmp/dc_shell.lNVOrF
 
 analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
-#@ # -- Starting source /tmp/dc_shell.fhFBWa
+
+#@ # -- Starting source /tmp/dc_shell.uMbsau
 
 #@ set compile_ultra_cmd "compile_ultra -gate_clock -scan"
-#@ # -- End source /tmp/dc_shell.fhFBWa
-
-set compile_ultra_cmd "compile_ultra -gate_clock -scan"
-#@ # -- Starting source /tmp/dc_shell.QWMRHo
-
 #@ if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
 #@ puts "RM-info: Running $compile_ultra_cmd (Note: -retime is disabled to preserve pipeline structure)"
 #@ eval ${compile_ultra_cmd}
-#@ # -- End source /tmp/dc_shell.QWMRHo
+#@ 
+#@ # -- End source /tmp/dc_shell.uMbsau
 
+set compile_ultra_cmd "compile_ultra -gate_clock -scan"
 if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
 puts "RM-info: Running $compile_ultra_cmd (Note: -retime is disabled to preserve pipeline structure)"
 eval ${compile_ultra_cmd}
-#@ # -- Starting source /tmp/dc_shell.HynElP
+
+change_selection [get_cells clk_gate_count_y_reg]
+change_selection [get_cells FFT]
+#@ # -- Starting source /tmp/dc_shell.AkAXef
 
 #@ if {$DESIGN_STYLE == "hier" && $PHYSICAL_HIERARCHY_LEVEL == "bottom"} {
 #@   set_app_var uniquify_naming_style "${DESIGN_NAME}_%s_%d"
 #@   uniquify -force
 #@ }
-#@ # -- End source /tmp/dc_shell.HynElP
+#@ # -- End source /tmp/dc_shell.AkAXef
 
 if {$DESIGN_STYLE == "hier" && $PHYSICAL_HIERARCHY_LEVEL == "bottom"} {
   set_app_var uniquify_naming_style "${DESIGN_NAME}_%s_%d"
   uniquify -force
 }
-#@ # -- Starting source /tmp/dc_shell.uboWxE
+#@ # -- Starting source /tmp/dc_shell.mbGjES
 
 #@ change_names -rules verilog -hierarchy
-#@ # -- End source /tmp/dc_shell.uboWxE
+#@ # -- End source /tmp/dc_shell.mbGjES
 
 change_names -rules verilog -hierarchy
-#@ # -- Starting source /tmp/dc_shell.FqLCPz
+#@ # -- Starting source /tmp/dc_shell.BIFupF
 
 #@ write_parasitics -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.spef
 #@ write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
-#@ # -- End source /tmp/dc_shell.FqLCPz
-
-write_parasitics -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.spef
-write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
-#@ # -- Starting source /tmp/dc_shell.oJARDV
-
+#@ 
+#@ # --- Comprehensive Timing Reports (per path group) ---
 #@ report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
-#@ # -- End source /tmp/dc_shell.oJARDV
-
-report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
-#@ # -- Starting source /tmp/dc_shell.SYeRMq
-
 #@ report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
 #@ report_timing -group in2out -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2out.rpt
 #@ report_timing -group reg2out -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2out.rpt
-#@ # -- End source /tmp/dc_shell.SYeRMq
+#@ 
+#@ # --- Area, Power, and QoR Reports ---
+#@ report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
+#@ report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
+#@ report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
+#@ # -- End source /tmp/dc_shell.BIFupF
 
+write_parasitics -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.spef
+write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
+
+# --- Comprehensive Timing Reports (per path group) ---
+report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
 report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
 report_timing -group in2out -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2out.rpt
 report_timing -group reg2out -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2out.rpt
-#@ # -- Starting source /tmp/dc_shell.auCoyq
 
-#@ report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
-#@ # -- End source /tmp/dc_shell.auCoyq
-
+# --- Area, Power, and QoR Reports ---
 report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
-#@ # -- Starting source /tmp/dc_shell.yRpDkv
-
-#@ report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
-#@ # -- End source /tmp/dc_shell.yRpDkv
-
 report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
-#@ # -- Starting source /tmp/dc_shell.yDBsvj
-
-#@ report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
-#@ # -- End source /tmp/dc_shell.yDBsvj
-
 report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
-#@ # -- Starting source /tmp/dc_shell.jMckNm
+#@ # -- Starting source /tmp/dc_shell.OXKDfI
 
 #@ report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
-#@ # -- End source /tmp/dc_shell.jMckNm
+#@ # -- End source /tmp/dc_shell.OXKDfI
 
 report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
-#@ # -- Starting source /tmp/dc_shell.GMebQi
+#@ # -- Starting source /tmp/dc_shell.SRPWWd
 
-#@ # -- End source /tmp/dc_shell.GMebQi
+#@ set verilogout_no_tri true
+#@ set verilogout_equation false
+#@ # -- End source /tmp/dc_shell.SRPWWd
 
-if {$UPF_MODE == "golden"} {
-  write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
-#@ # -- Starting source /tmp/dc_shell.IsbBPv
+set verilogout_no_tri true
+set verilogout_equation false
+#@ # -- Starting source /tmp/dc_shell.IgQBhP
+
+#@ set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+#@ # -- End source /tmp/dc_shell.IgQBhP
+
+set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+#@ # -- Starting source /tmp/dc_shell.YTNYiq
 
 #@ if {$UPF_MODE == "golden"} {
 #@   write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
 #@ }
-#@ # -- End source /tmp/dc_shell.IsbBPv
+#@ # -- End source /tmp/dc_shell.YTNYiq
 
 if {$UPF_MODE == "golden"} {
   write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
 }
-#@ # -- Starting source /tmp/dc_shell.ULpHCs
+#@ # -- Starting source /tmp/dc_shell.UHtRGd
 
 #@ write_file -format verilog -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.v
-#@ # -- End source /tmp/dc_shell.ULpHCs
+#@ # -- End source /tmp/dc_shell.UHtRGd
 
 write_file -format verilog -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.v
-#@ # -- Starting source /tmp/dc_shell.IdFihx
-
-#@ write_file -format ddc -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.ddc
-#@ # -- End source /tmp/dc_shell.IdFihx
-
-write_file -format ddc -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.ddc
 change_selection [get_cells FFT]
+gui_set_setting -window [gui_get_current_window -types Schematic -mru] -setting schematic:background_color -value black
+gui_set_setting -window [gui_get_current_window -types Schematic -mru] -setting zoomFitFactor -value 0.0
+change_selection [get_cells FFT]
+#@ # -- Starting source /tmp/dc_shell.FGvnHO
+
+#@ set verilogout_no_tri true
+#@ set verilogout_equation false
+#@ # -- End source /tmp/dc_shell.FGvnHO
+
+set verilogout_no_tri true
+set verilogout_equation false
+#@ # -- Starting source /tmp/dc_shell.rjxVax
+
+#@ set verilogout_no_tri true
+#@ set verilogout_equation false
+#@ set verilogout_show_unconnected_pins true
+#@ # -- End source /tmp/dc_shell.rjxVax
+
+set verilogout_no_tri true
+set verilogout_equation false
+set verilogout_show_unconnected_pins true
+#@ # -- Starting source /tmp/dc_shell.uTKsoj
+
+#@ set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+#@ # -- End source /tmp/dc_shell.uTKsoj
+
+set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+#@ # -- Starting source /tmp/dc_shell.WgSBWu
+
+#@ compile -incremental
+#@ # -- End source /tmp/dc_shell.WgSBWu
+
+compile -incremental
+compile_ultra -incremental

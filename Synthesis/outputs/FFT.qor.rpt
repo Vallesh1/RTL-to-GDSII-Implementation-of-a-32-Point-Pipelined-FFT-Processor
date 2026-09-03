@@ -3,7 +3,7 @@
 Report : qor
 Design : FFT
 Version: T-2022.03-SP4
-Date   : Thu Sep  3 21:52:39 2026
+Date   : Thu Sep  3 22:10:10 2026
 ****************************************
 
 
@@ -102,12 +102,12 @@ Date   : Thu Sep  3 21:52:39 2026
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    7.51
-  Logic Optimization:                 67.55
-  Mapping Optimization:              166.47
+  Resource Sharing:                    7.52
+  Logic Optimization:                 67.44
+  Mapping Optimization:              166.58
   -----------------------------------------
-  Overall Compile Time:              393.01
-  Overall Compile Wall Clock Time:   284.83
+  Overall Compile Time:              391.63
+  Overall Compile Wall Clock Time:   283.14
 
   --------------------------------------------------------------------
 

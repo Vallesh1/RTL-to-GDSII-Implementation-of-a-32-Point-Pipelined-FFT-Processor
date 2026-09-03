@@ -7,7 +7,7 @@ Report : timing
         -max_paths 100
 Design : FFT
 Version: T-2022.03-SP4
-Date   : Thu Sep  3 21:52:28 2026
+Date   : Thu Sep  3 22:10:09 2026
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.

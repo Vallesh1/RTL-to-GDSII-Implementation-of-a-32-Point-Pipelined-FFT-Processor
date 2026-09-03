@@ -1,0 +1,30 @@
+GNU gdb (GDB) Red Hat Enterprise Linux 8.2-20.el8
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Attaching to process 717833
+[New LWP 718491]
+[New LWP 718520]
+[New LWP 727293]
+[New LWP 727294]
+[New LWP 727295]
+[New LWP 727296]
+[New LWP 727297]
+[New LWP 727298]
+[New LWP 727299]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+0x000015554e22cd12 in waitpid () from /lib64/libc.so.6
+Missing separate debuginfos, use: yum debuginfo-install bzip2-libs-1.0.6-28.el8_10.x86_64 dbus-glib-0.110-2.el8.x86_64 dbus-libs-1.12.8-28.el8_10.x86_64 expat-2.5.0-2.el8_10.x86_64 flac-libs-1.3.2-9.el8_8.1.x86_64 glib2-2.56.4-170.el8_10.x86_64 glibc-2.28-251.el8_10.40.x86_64 gmp-6.1.2-11.el8.x86_64 gnutls-3.6.16-8.el8_10.6.x86_64 graphite2-1.3.10-10.el8.x86_64 gsm-1.0.17-5.el8.x86_64 jbigkit-libs-2.1-14.el8.x86_64 keyutils-libs-1.5.10-9.el8.x86_64 krb5-libs-1.18.2-34.el8_10.x86_64 libICE-1.0.9-15.el8.x86_64 libSM-1.2.3-1.el8.x86_64 libX11-1.6.8-9.el8_10.x86_64 libX11-xcb-1.6.8-9.el8_10.x86_64 libXScrnSaver-1.2.3-1.el8.x86_64 libXcomposite-0.4.4-14.el8.x86_64 libXcursor-1.1.15-3.el8.x86_64 libXext-1.3.4-1.el8.x86_64 libXfixes-5.0.3-7.el8.x86_64 libXft-2.3.3-1.el8.x86_64 libXrandr-1.5.2-1.el8.x86_64 libXrender-0.9.10-7.el8.x86_64 libXtst-1.2.3-7.el8.x86_64 libasyncns-0.8-14.el8.x86_64 libblkid-2.32.1-48.el8_10.x86_64 libcom_err-1.45.6-7.el8_10.x86_64 libffi-3.1-24.el8.x86_64 libgcrypt-1.8.5-7.el8_6.x86_64 libglvnd-glx-1.3.4-2.el8.x86_64 libgpg-error-1.31-1.el8.x86_64 libmount-2.32.1-48.el8_10.x86_64 libogg-1.3.2-10.el8.x86_64 libpng12-1.2.57-7.el8_10.x86_64 libselinux-2.9-11.el8_10.x86_64 libsndfile-1.0.28-17.el8_10.x86_64 libtasn1-4.13-6.el8_10.x86_64 libtiff-4.0.9-37.el8_10.x86_64 libuuid-2.32.1-48.el8_10.x86_64 libxcb-1.13.1-1.el8.x86_64 lz4-libs-1.8.3-5.el8_10.x86_64 nettle-3.4.1-7.el8.x86_64 pcre-8.42-6.el8.x86_64 pulseaudio-libs-14.0-4.el8.x86_64 pulseaudio-libs-glib2-14.0-4.el8.x86_64 sqlite-libs-3.26.0-20.el8_10.x86_64 systemd-libs-239-82.el8_10.17.x86_64 xcb-util-0.4.0-10.el8.x86_64
+(gdb) [Inferior 1 (process 717833) detached]
