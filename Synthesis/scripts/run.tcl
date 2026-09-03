@@ -144,8 +144,8 @@ if {$UPF_MODE != "none"} {
 # ============================================================================
 # 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
 # ============================================================================
-set_voltage 0.6 -object_list {VDD}
-set_voltage 0.0 -object_list {VSS}
+set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
 
 # --- Multi-Voltage Integrity Check ---
 set check_mv_design_failed false
