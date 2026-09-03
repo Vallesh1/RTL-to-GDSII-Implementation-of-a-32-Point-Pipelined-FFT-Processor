@@ -1,24 +1,36 @@
-# Golden UPF - 32-Point FFT (Single Power Domain)
+# ============================================================================
+# Golden UPF - 32-Point FFT (Single Power Domain, Always-On)
+# IEEE 1801 Compliance: UPF 2.0 / 2.1
+# ============================================================================
+
+# 1. Create Top-Level Power Domain
 create_power_domain TOP -include_scope
 
+# 2. Create Supply Ports
 create_supply_port VDD
 create_supply_port VSS
 
-create_supply_net VDD
-create_supply_net VSS
+# 3. Create Supply Nets
+create_supply_net VDD -domain TOP
+create_supply_net VSS -domain TOP
 
+# 4. Connect Ports to Nets
 connect_supply_net VDD -ports VDD
 connect_supply_net VSS -ports VSS
 
+# 5. Create and Update Supply Set (Resolves UPF-057 missing voltage propagation)
+create_supply_set SS_DEFAULT
+update_supply_set SS_DEFAULT -power VDD -ground VSS
+
+# 6. Bind Supply Nets to Domain
 set_domain_supply_net TOP -primary_power_net VDD -primary_ground_net VSS
 
-create_supply_set SS_DEFAULT
-set_supply_set -power VDD -ground VSS SS_DEFAULT
+# 7. Define Unified Power State on the Supply Set
+add_power_state SS_DEFAULT -state ON {-supply_expr {power == {FULL_ON 0.6} && ground == {FULL_ON 0.0}}}
 
-add_power_state VDD -state ALWAYS_ON -logic_expr 1 -voltage 0.6
-add_power_state VSS -state ALWAYS_ON -logic_expr 0 -voltage 0.0
-
+# 8. Disable Isolation (Explicitly prevents unmapped isolation cell errors)
 set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation
 
-set_voltage 0.6 -object_list [list VDD [get_supply_sets SS_DEFAULT]]
-set_voltage 0.0 -object_list [list VSS]
+# 9. Apply Operating Voltages (Targets physical nets AND logical handles)
+set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
