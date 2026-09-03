@@ -7,15 +7,15 @@ create_power_domain TOP -include_scope
 create_supply_port VDD
 create_supply_port VSS
 
-# 3. Create Supply Nets
-create_supply_net VDD -domain TOP
-create_supply_net VSS -domain TOP
+# 3. Create Supply Nets (REMOVED '-domain TOP' to make them domain-independent)
+create_supply_net VDD
+create_supply_net VSS
 
 # 4. Connect Ports to Nets
 connect_supply_net VDD -ports VDD
 connect_supply_net VSS -ports VSS
 
-# 5. Create Supply Set (CORRECT SYNTAX: -function {type net})
+# 5. Create Supply Set (Will now succeed without UPF-180)
 create_supply_set SS_DEFAULT \
     -function {power VDD} \
     -function {ground VSS}
