@@ -29,7 +29,8 @@ group_path -name IO_REG2OUT -from [all_registers] -to [all_outputs] -weight 1.0
 
 set_false_path -from [get_ports reset] -to [all_registers]
 
-set_multicycle_path -setup 2 -from [get_pins {*/*count_y_reg[*]/Q}] -to [get_pins {*/*result_*_reg[*]/D}]
-set_multicycle_path -hold 1 -from [get_pins {*/*count_y_reg[*]/Q}] -to [get_pins {*/*result_*_reg[*]/D}]
+# Removed the submodule wildcard (*/*) and switched to get_cells for robust targeting
+set_multicycle_path -setup 2 -from [get_cells *count_y_reg*] -to [get_cells *result_*_reg*]
+set_multicycle_path -hold 1 -from [get_cells *count_y_reg*] -to [get_cells *result_*_reg*]
 
 set_clock_gating_check -setup 0.15 -hold 0.05 [get_clocks ${CLK_NAME}]
