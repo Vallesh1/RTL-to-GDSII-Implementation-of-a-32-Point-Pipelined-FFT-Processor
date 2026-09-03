@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version T-2022.03-SP4 for linux64 -- Aug 24, 2022
-#@ # Date:   Wed Sep  2 18:51:19 2026
+#@ # Date:   Thu Sep  3 21:40:34 2026
 #@ # Run by: MulukuriVNath@mavenserver-RH3
 #@ 
 
@@ -8823,7 +8823,7 @@ start_gui
 #@ # -- End source /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/auxx/tcllib/lib/iwidgets4.1/iwidgets.tcl
 
 gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {LeafCells}
-#@ # -- Starting source /tmp/dc_shell.lNWTtW
+#@ # -- Starting source /tmp/dc_shell.HkcfVj
 
 #@ set_host_options -max_cores 8
 #@ 
@@ -8870,7 +8870,119 @@ gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {Lea
 #@   set_app_var enable_golden_upf true
 #@ }
 #@ 
-#@ # -- End source /tmp/dc_shell.lNWTtW
+#@ # ============================================================================
+#@ # 5. LIBRARY SETUP
+#@ # ============================================================================
+#@ # [USER: Update target library paths to your SS corner .db files]
+#@ set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+#@ /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db \
+#@ /home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db"
+#@ 
+#@ set_app_var target_library ${TARGET_LIBRARY_FILES}
+#@ set_app_var synthetic_library dw_foundation.sldb
+#@ set_app_var link_library "* $target_library $synthetic_library"
+#@ 
+#@ # --- Topographical Mode NDM Library Creation ---
+#@ if {[shell_is_in_topographical_mode]} {
+#@   if {[info exists view_target] && [file exists $DCRM_NDM_LIBRARY_NAME]} {
+#@     puts "RM-info: Opening existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+#@     open_lib $DCRM_NDM_LIBRARY_NAME
+#@   } else {
+#@     if {[file exists $DCRM_NDM_LIBRARY_NAME]} {
+#@       puts "RM-info: Deleting existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+#@       file delete -force $DCRM_NDM_LIBRARY_NAME
+#@     }
+#@     set create_lib_cmd "create_lib -technology $TECH_FILE $DCRM_NDM_LIBRARY_NAME"
+#@     if {${REFERENCE_LIBRARY} != ""} { append create_lib_cmd " -ref_libs \"${REFERENCE_LIBRARY}\""}
+#@     puts "RM-info: Running $create_lib_cmd"
+#@     eval ${create_lib_cmd}
+#@   }
+#@ }
+#@ 
+#@ # --- Library Quality Checks ---
+#@ set set_check_library_cmd "set_check_library_options -mcmm"
+#@ if {$UPF_MODE != "none"} {lappend set_check_library_cmd -upf}
+#@ eval ${set_check_library_cmd}
+#@ redirect -file ${OUTPUTS_DIR}/${DESIGN_NAME}.check_library.rpt {check_library}
+#@ 
+#@ # ============================================================================
+#@ # 6. LIBRARY MODIFICATIONS (DONT_USE / OPTIMIZATION PREFS)
+#@ # ============================================================================
+#@ # [USER: Optional: source ${SCRIPTS}/dont_use.tcl if you have one]
+#@ 
+#@ # ============================================================================
+#@ # 7. TOOL SETTINGS & MESSAGE HANDLING
+#@ # ============================================================================
+#@ set_app_var sh_new_variable_message false
+#@ set_app_var auto_insert_level_shifters_on_clocks all
+#@ set_app_var spg_enable_via_resistance_support true
+#@ 
+#@ # --- Fix for Multiple Port Nets (Crucial for FFT to avoid netlist corruption) ---
+#@ set_fix_multiple_port_nets -all -buffer_constants
+#@ 
+#@ # --- Formality / LEC Setup ---
+#@ set_app_var simplified_verification_mode true
+#@ set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
+#@ 
+#@ # ============================================================================
+#@ # 8. READ RTL DESIGN (ANALYZE & ELABORATE)
+#@ # ============================================================================
+#@ # Note: Order doesn't strictly matter for analyze, but top-level FFT.v is listed first for clarity.
+#@ #analyze -f verilog [glob $opensparc/lib/m1/*]
+#@ analyze -f verilog [list \
+#@     ${RTL_SOURCE_PATH}/FFT.v \
+#@     ${RTL_SOURCE_PATH}/radix2.v \
+#@     ${RTL_SOURCE_PATH}/ROM_16.v \
+#@     ${RTL_SOURCE_PATH}/ROM_8.v \
+#@     ${RTL_SOURCE_PATH}/ROM_4.v \
+#@     ${RTL_SOURCE_PATH}/ROM_2.v \
+#@     ${RTL_SOURCE_PATH}/shift_16.v \
+#@     ${RTL_SOURCE_PATH}/shift_8.v \
+#@     ${RTL_SOURCE_PATH}/shift_4.v \
+#@     ${RTL_SOURCE_PATH}/shift_2.v \
+#@     ${RTL_SOURCE_PATH}/shift_1.v ]
+#@ 
+#@ elaborate ${DESIGN_NAME}
+#@ current_design ${DESIGN_NAME}
+#@ link
+#@ 
+#@ # ============================================================================
+#@ # 9. LOAD LOW-POWER INTENT (GOLDEN UPF)
+#@ # ============================================================================
+#@ set upf_create_implicit_supply_sets false
+#@ 
+#@ if {$UPF_MODE != "none"} {
+#@   if {$UPF_FILE != ""} {
+#@     set load_upf_cmd "load_upf ${UPF_FILE}"
+#@     if {$UPF_MODE == "golden"} {lappend load_upf_cmd -strict_check true}
+#@     puts "RM-info: Running $load_upf_cmd"
+#@     eval ${load_upf_cmd}
+#@   }
+#@ }
+#@ 
+#@ # ============================================================================
+#@ # 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
+#@ # ============================================================================
+#@ set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+#@ set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
+#@ 
+#@ # --- Multi-Voltage Integrity Check ---
+#@ set check_mv_design_failed false
+#@ if {[shell_is_in_topographical_mode]} {
+#@   set current_scenario_saved [current_scenario]
+#@   foreach scenario [all_active_scenarios] {
+#@     current_scenario ${scenario}
+#@     if {![check_mv_design -power_nets]} { set check_mv_design_failed true; break }
+#@   }
+#@   current_scenario ${current_scenario_saved}
+#@ } else {
+#@   if {![check_mv_design -power_nets]} { set check_mv_design_failed true }
+#@ }
+#@ if {$check_mv_design_failed} {
+#@   puts "RM-error: Supply nets missing voltage definitions. Exiting."
+#@   exit 1
+#@ }
+#@ # -- End source /tmp/dc_shell.HkcfVj
 
 set_host_options -max_cores 8
 
@@ -8917,35 +9029,13 @@ if {$UPF_MODE == "golden"} {
   set_app_var enable_golden_upf true
 }
 
-#@ # -- Starting source /tmp/dc_shell.tyngxD
-
-#@ set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
-#@ /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
-#@ 
-#@ set_app_var target_library ${TARGET_LIBRARY_FILES}
-#@ set_app_var synthetic_library dw_foundation.sldb
-#@ set_app_var link_library "* $target_library $synthetic_library"
-#@ 
-#@ # --- Topographical Mode NDM Library Creation ---
-#@ if {[shell_is_in_topographical_mode]} {
-#@   if {[info exists view_target] && [file exists $DCRM_NDM_LIBRARY_NAME]} {
-#@     puts "RM-info: Opening existing NDM lib $DCRM_NDM_LIBRARY_NAME"
-#@     open_lib $DCRM_NDM_LIBRARY_NAME
-#@   } else {
-#@     if {[file exists $DCRM_NDM_LIBRARY_NAME]} {
-#@       puts "RM-info: Deleting existing NDM lib $DCRM_NDM_LIBRARY_NAME"
-#@       file delete -force $DCRM_NDM_LIBRARY_NAME
-#@     }
-#@     set create_lib_cmd "create_lib -technology $TECH_FILE $DCRM_NDM_LIBRARY_NAME"
-#@     if {${REFERENCE_LIBRARY} != ""} { append create_lib_cmd " -ref_libs \"${REFERENCE_LIBRARY}\""}
-#@     puts "RM-info: Running $create_lib_cmd"
-#@     eval ${create_lib_cmd}
-#@   }
-#@ }
-#@ # -- End source /tmp/dc_shell.tyngxD
-
+# ============================================================================
+# 5. LIBRARY SETUP
+# ============================================================================
+# [USER: Update target library paths to your SS corner .db files]
 set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
-/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db"
 
 set_app_var target_library ${TARGET_LIBRARY_FILES}
 set_app_var synthetic_library dw_foundation.sldb
@@ -8967,58 +9057,37 @@ if {[shell_is_in_topographical_mode]} {
     eval ${create_lib_cmd}
   }
 }
-#@ # -- Starting source /tmp/dc_shell.vAfvph
 
-#@ set set_check_library_cmd "set_check_library_options -mcmm"
-#@ if {$UPF_MODE != "none"} {lappend set_check_library_cmd -upf}
-#@ eval ${set_check_library_cmd}
-#@ redirect -file ${OUTPUTS_DIR}/${DESIGN_NAME}.check_library.rpt {check_library}
-#@ # -- End source /tmp/dc_shell.vAfvph
-
+# --- Library Quality Checks ---
 set set_check_library_cmd "set_check_library_options -mcmm"
 if {$UPF_MODE != "none"} {lappend set_check_library_cmd -upf}
 eval ${set_check_library_cmd}
 redirect -file ${OUTPUTS_DIR}/${DESIGN_NAME}.check_library.rpt {check_library}
-#@ # -- Starting source /tmp/dc_shell.xgVKyc
 
-#@ set_app_var sh_new_variable_message false
-#@ set_app_var auto_insert_level_shifters_on_clocks all
-#@ set_app_var spg_enable_via_resistance_support true
-#@ # -- End source /tmp/dc_shell.xgVKyc
+# ============================================================================
+# 6. LIBRARY MODIFICATIONS (DONT_USE / OPTIMIZATION PREFS)
+# ============================================================================
+# [USER: Optional: source ${SCRIPTS}/dont_use.tcl if you have one]
 
+# ============================================================================
+# 7. TOOL SETTINGS & MESSAGE HANDLING
+# ============================================================================
 set_app_var sh_new_variable_message false
 set_app_var auto_insert_level_shifters_on_clocks all
 set_app_var spg_enable_via_resistance_support true
-#@ # -- Starting source /tmp/dc_shell.nwCpYR
 
-#@ set_fix_multiple_port_nets -all -buffer_constants
-#@ # -- End source /tmp/dc_shell.nwCpYR
-
+# --- Fix for Multiple Port Nets (Crucial for FFT to avoid netlist corruption) ---
 set_fix_multiple_port_nets -all -buffer_constants
-#@ # -- Starting source /tmp/dc_shell.PxgndU
 
-#@ set_app_var simplified_verification_mode true
-#@ set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
-#@ # -- End source /tmp/dc_shell.PxgndU
-
+# --- Formality / LEC Setup ---
 set_app_var simplified_verification_mode true
 set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
-#@ # -- Starting source /tmp/dc_shell.GVgwUu
 
-#@ analyze -f verilog [list \
-#@     ${RTL_SOURCE_PATH}/FFT.v \
-#@     ${RTL_SOURCE_PATH}/radix2.v \
-#@     ${RTL_SOURCE_PATH}/ROM_16.v \
-#@     ${RTL_SOURCE_PATH}/ROM_8.v \
-#@     ${RTL_SOURCE_PATH}/ROM_4.v \
-#@     ${RTL_SOURCE_PATH}/ROM_2.v \
-#@     ${RTL_SOURCE_PATH}/shift_16.v \
-#@     ${RTL_SOURCE_PATH}/shift_8.v \
-#@     ${RTL_SOURCE_PATH}/shift_4.v \
-#@     ${RTL_SOURCE_PATH}/shift_2.v \
-#@     ${RTL_SOURCE_PATH}/shift_1.v ]
-#@ # -- End source /tmp/dc_shell.GVgwUu
-
+# ============================================================================
+# 8. READ RTL DESIGN (ANALYZE & ELABORATE)
+# ============================================================================
+# Note: Order doesn't strictly matter for analyze, but top-level FFT.v is listed first for clarity.
+#analyze -f verilog [glob $opensparc/lib/m1/*]
 analyze -f verilog [list \
     ${RTL_SOURCE_PATH}/FFT.v \
     ${RTL_SOURCE_PATH}/radix2.v \
@@ -9031,6 +9100,229 @@ analyze -f verilog [list \
     ${RTL_SOURCE_PATH}/shift_4.v \
     ${RTL_SOURCE_PATH}/shift_2.v \
     ${RTL_SOURCE_PATH}/shift_1.v ]
-elaborate FFT
-current_design
-man VER-318
+
+elaborate ${DESIGN_NAME}
+current_design ${DESIGN_NAME}
+link
+
+# ============================================================================
+# 9. LOAD LOW-POWER INTENT (GOLDEN UPF)
+# ============================================================================
+set upf_create_implicit_supply_sets false
+
+if {$UPF_MODE != "none"} {
+  if {$UPF_FILE != ""} {
+    set load_upf_cmd "load_upf ${UPF_FILE}"
+    if {$UPF_MODE == "golden"} {lappend load_upf_cmd -strict_check true}
+    puts "RM-info: Running $load_upf_cmd"
+    eval ${load_upf_cmd}
+  }
+}
+
+# ============================================================================
+# 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
+# ============================================================================
+set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
+
+# --- Multi-Voltage Integrity Check ---
+set check_mv_design_failed false
+if {[shell_is_in_topographical_mode]} {
+  set current_scenario_saved [current_scenario]
+  foreach scenario [all_active_scenarios] {
+    current_scenario ${scenario}
+    if {![check_mv_design -power_nets]} { set check_mv_design_failed true; break }
+  }
+  current_scenario ${current_scenario_saved}
+} else {
+  if {![check_mv_design -power_nets]} { set check_mv_design_failed true }
+}
+if {$check_mv_design_failed} {
+  puts "RM-error: Supply nets missing voltage definitions. Exiting."
+  exit 1
+}
+#@ # -- Starting source /tmp/dc_shell.MfUIgn
+
+#@ source ${SCRIPTS}/${DESIGN_NAME}.sdc
+#@ # -- Starting source /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
+
+#@ set CLK_PERIOD 5.0
+#@ set CLK_NAME   clk
+#@ 
+#@ create_clock -name ${CLK_NAME} -period ${CLK_PERIOD} [get_ports clk]
+#@ 
+#@ set_clock_latency -source 0.1 [get_clocks ${CLK_NAME}]
+#@ set_clock_latency 0.2 [get_clocks ${CLK_NAME}]
+#@ 
+#@ set_clock_uncertainty -setup 0.4 [get_clocks ${CLK_NAME}]
+#@ set_clock_uncertainty -hold 0.15 [get_clocks ${CLK_NAME}]
+#@ 
+#@ set_input_delay -clock ${CLK_NAME} -max 0.7 [get_ports {din_r[*] din_i[*] in_valid}]
+#@ set_input_delay -clock ${CLK_NAME} -min 0.2 [get_ports {din_r[*] din_i[*] in_valid}]
+#@ 
+#@ set_output_delay -clock ${CLK_NAME} -max 0.8 [get_ports {dout_r[*] dout_i[*] out_valid}]
+#@ set_output_delay -clock ${CLK_NAME} -min 0.2 [get_ports {dout_r[*] dout_i[*] out_valid}]
+#@ 
+#@ set_input_transition 0.2 [all_inputs]
+#@ set_load 0.05 [all_outputs]
+#@ 
+#@ set_max_transition 0.3 [current_design]
+#@ set_max_capacitance 0.1 [current_design]
+#@ set_max_fanout 30 [current_design]
+#@ 
+#@ group_path -name CRITICAL_R2R -from [all_registers] -to [all_registers] -weight 2.0
+#@ group_path -name IO_IN2OUT -from [all_inputs] -to [all_outputs] -weight 1.0
+#@ group_path -name IO_IN2REG -from [all_inputs] -to [all_registers] -weight 1.0
+#@ group_path -name IO_REG2OUT -from [all_registers] -to [all_outputs] -weight 1.0
+#@ 
+#@ set_false_path -from [get_ports reset] -to [all_registers]
+#@ 
+#@ # Removed the submodule wildcard (*/*) and switched to get_cells for robust targeting
+#@ set_multicycle_path -setup 2 -from [get_cells *count_y_reg*] -to [get_cells *result_*_reg*]
+#@ set_multicycle_path -hold 1 -from [get_cells *count_y_reg*] -to [get_cells *result_*_reg*]
+#@ 
+#@ set_clock_gating_check -setup 0.15 -hold 0.05 [get_clocks ${CLK_NAME}]
+#@ # -- End source /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
+
+#@ # -- End source /tmp/dc_shell.MfUIgn
+
+source ${SCRIPTS}/${DESIGN_NAME}.sdc
+#@ # -- Starting source /tmp/dc_shell.VaUwvq
+
+#@ check_design > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_design.rpt
+#@ check_timing > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_timing.rpt
+#@ # -- End source /tmp/dc_shell.VaUwvq
+
+check_design > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_design.rpt
+check_timing > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_timing.rpt
+#@ # -- Starting source /tmp/dc_shell.aLAVXO
+
+#@ group_path -from [all_registers] -to [all_registers] -name reg2reg
+#@ group_path -from [all_registers] -to [all_outputs] -name reg2out
+#@ group_path -from [all_inputs] -to [all_registers] -name in2reg
+#@ group_path -from [all_inputs] -to [all_outputs] -name in2out
+#@ 
+#@ # -- End source /tmp/dc_shell.aLAVXO
+
+group_path -from [all_registers] -to [all_registers] -name reg2reg
+group_path -from [all_registers] -to [all_outputs] -name reg2out
+group_path -from [all_inputs] -to [all_registers] -name in2reg
+group_path -from [all_inputs] -to [all_outputs] -name in2out
+
+#@ # -- Starting source /tmp/dc_shell.RXHPSV
+
+#@ analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
+#@ # -- End source /tmp/dc_shell.RXHPSV
+
+analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
+#@ # -- Starting source /tmp/dc_shell.fhFBWa
+
+#@ set compile_ultra_cmd "compile_ultra -gate_clock -scan"
+#@ # -- End source /tmp/dc_shell.fhFBWa
+
+set compile_ultra_cmd "compile_ultra -gate_clock -scan"
+#@ # -- Starting source /tmp/dc_shell.QWMRHo
+
+#@ if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
+#@ puts "RM-info: Running $compile_ultra_cmd (Note: -retime is disabled to preserve pipeline structure)"
+#@ eval ${compile_ultra_cmd}
+#@ # -- End source /tmp/dc_shell.QWMRHo
+
+if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
+puts "RM-info: Running $compile_ultra_cmd (Note: -retime is disabled to preserve pipeline structure)"
+eval ${compile_ultra_cmd}
+#@ # -- Starting source /tmp/dc_shell.HynElP
+
+#@ if {$DESIGN_STYLE == "hier" && $PHYSICAL_HIERARCHY_LEVEL == "bottom"} {
+#@   set_app_var uniquify_naming_style "${DESIGN_NAME}_%s_%d"
+#@   uniquify -force
+#@ }
+#@ # -- End source /tmp/dc_shell.HynElP
+
+if {$DESIGN_STYLE == "hier" && $PHYSICAL_HIERARCHY_LEVEL == "bottom"} {
+  set_app_var uniquify_naming_style "${DESIGN_NAME}_%s_%d"
+  uniquify -force
+}
+#@ # -- Starting source /tmp/dc_shell.uboWxE
+
+#@ change_names -rules verilog -hierarchy
+#@ # -- End source /tmp/dc_shell.uboWxE
+
+change_names -rules verilog -hierarchy
+#@ # -- Starting source /tmp/dc_shell.FqLCPz
+
+#@ write_parasitics -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.spef
+#@ write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
+#@ # -- End source /tmp/dc_shell.FqLCPz
+
+write_parasitics -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.spef
+write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
+#@ # -- Starting source /tmp/dc_shell.oJARDV
+
+#@ report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
+#@ # -- End source /tmp/dc_shell.oJARDV
+
+report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
+#@ # -- Starting source /tmp/dc_shell.SYeRMq
+
+#@ report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
+#@ report_timing -group in2out -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2out.rpt
+#@ report_timing -group reg2out -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2out.rpt
+#@ # -- End source /tmp/dc_shell.SYeRMq
+
+report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
+report_timing -group in2out -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2out.rpt
+report_timing -group reg2out -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2out.rpt
+#@ # -- Starting source /tmp/dc_shell.auCoyq
+
+#@ report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
+#@ # -- End source /tmp/dc_shell.auCoyq
+
+report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
+#@ # -- Starting source /tmp/dc_shell.yRpDkv
+
+#@ report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
+#@ # -- End source /tmp/dc_shell.yRpDkv
+
+report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
+#@ # -- Starting source /tmp/dc_shell.yDBsvj
+
+#@ report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
+#@ # -- End source /tmp/dc_shell.yDBsvj
+
+report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
+#@ # -- Starting source /tmp/dc_shell.jMckNm
+
+#@ report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
+#@ # -- End source /tmp/dc_shell.jMckNm
+
+report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
+#@ # -- Starting source /tmp/dc_shell.GMebQi
+
+#@ # -- End source /tmp/dc_shell.GMebQi
+
+if {$UPF_MODE == "golden"} {
+  write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
+#@ # -- Starting source /tmp/dc_shell.IsbBPv
+
+#@ if {$UPF_MODE == "golden"} {
+#@   write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
+#@ }
+#@ # -- End source /tmp/dc_shell.IsbBPv
+
+if {$UPF_MODE == "golden"} {
+  write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
+}
+#@ # -- Starting source /tmp/dc_shell.ULpHCs
+
+#@ write_file -format verilog -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.v
+#@ # -- End source /tmp/dc_shell.ULpHCs
+
+write_file -format verilog -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.v
+#@ # -- Starting source /tmp/dc_shell.IdFihx
+
+#@ write_file -format ddc -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.ddc
+#@ # -- End source /tmp/dc_shell.IdFihx
+
+write_file -format ddc -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.ddc
+change_selection [get_cells FFT]

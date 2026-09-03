@@ -1,0 +1,1552 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version T-2022.03-SP4 for linux64 - Aug 24, 2022 
+
+                    Copyright (c) 1988 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Initializing gui preferences from file  /home1/IITR_PD3/MulukuriVNath/.synopsys_dc_gui/preferences.tcl
+Warning: Cannot use command line editor for terminal type 'xterm-256color'.  (UI-74)
+dc_shell> 4.1.1
+set_host_options -max_cores 8
+1
+# ============================================================================
+# 1. GLOBAL VARIABLES & PROJECT PATHS
+# ============================================================================
+set DESIGN_NAME "FFT"
+FFT
+set OUTPUTS_DIR "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs
+set SCRIPTS "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts
+# --- Design Flow Settings ---
+set DESIGN_STYLE flat                    # Flat synthesis for standalone module
+Error: wrong # args: should be "set varName ?newValue?"
+	Use error_info for more info. (CMD-013)
+set PHYSICAL_HIERARCHY_LEVEL "top"
+top
+set DC_BLOCK_ABSTRACTION_DESIGNS ""
+set DDC_HIER_DESIGNS ""
+set UPF_MODE golden
+golden
+set UPF_FILE ${SCRIPTS}/${DESIGN_NAME}.upf
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+set DCRM_NDM_LIBRARY_NAME ${DESIGN_NAME}.ndm
+FFT.ndm
+# ============================================================================
+# 2. TECHNOLOGY & LIBRARY PATHS [USER: UPDATE THESE]
+# ============================================================================
+set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
+set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
+/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm
+# ============================================================================
+# 3. RTL SOURCE PATHS [USER: UPDATE THIS]
+# ============================================================================
+set RTL_SOURCE_PATH "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL
+# Append to search path
+set_app_var search_path "$search_path $RTL_SOURCE_PATH"
+. /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/dw/syn_ver /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/dw/sim_ver /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL
+# Create output directory
+if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
+# ============================================================================
+# 4. ENABLE GOLDEN UPF MODE
+# ============================================================================
+if {$UPF_MODE == "golden"} {
+  set_app_var enable_golden_upf true
+}
+true
+# ============================================================================
+# 5. LIBRARY SETUP
+# ============================================================================
+# [USER: Update target library paths to your SS corner .db files]
+set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db"
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db
+set_app_var target_library ${TARGET_LIBRARY_FILES}
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db
+set_app_var synthetic_library dw_foundation.sldb
+dw_foundation.sldb
+set_app_var link_library "* $target_library $synthetic_library"
+* /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db dw_foundation.sldb
+# --- Topographical Mode NDM Library Creation ---
+if {[shell_is_in_topographical_mode]} {
+  if {[info exists view_target] && [file exists $DCRM_NDM_LIBRARY_NAME]} {
+    puts "RM-info: Opening existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+    open_lib $DCRM_NDM_LIBRARY_NAME
+  } else {
+    if {[file exists $DCRM_NDM_LIBRARY_NAME]} {
+      puts "RM-info: Deleting existing NDM lib $DCRM_NDM_LIBRARY_NAME"
+      file delete -force $DCRM_NDM_LIBRARY_NAME
+    }
+    set create_lib_cmd "create_lib -technology $TECH_FILE $DCRM_NDM_LIBRARY_NAME"
+    if {${REFERENCE_LIBRARY} != ""} { append create_lib_cmd " -ref_libs \"${REFERENCE_LIBRARY}\""}
+    puts "RM-info: Running $create_lib_cmd"
+    eval ${create_lib_cmd}
+  }
+}
+# --- Library Quality Checks ---
+set set_check_library_cmd "set_check_library_options -mcmm"
+set_check_library_options -mcmm
+if {$UPF_MODE != "none"} {lappend set_check_library_cmd -upf}
+set_check_library_options -mcmm -upf
+eval ${set_check_library_cmd}
+1
+redirect -file ${OUTPUTS_DIR}/${DESIGN_NAME}.check_library.rpt {check_library}
+# ============================================================================
+# 6. LIBRARY MODIFICATIONS (DONT_USE / OPTIMIZATION PREFS)
+# ============================================================================
+# [USER: Optional: source ${SCRIPTS}/dont_use.tcl if you have one]
+# ============================================================================
+# 7. TOOL SETTINGS & MESSAGE HANDLING
+# ============================================================================
+set_app_var sh_new_variable_message false
+false
+set_app_var auto_insert_level_shifters_on_clocks all
+all
+set_app_var spg_enable_via_resistance_support true
+true
+# --- Fix for Multiple Port Nets (Crucial for FFT to avoid netlist corruption) ---
+set_fix_multiple_port_nets -all -buffer_constants
+Error: Current design is not defined. (UID-4)
+0
+# --- Formality / LEC Setup ---
+set_app_var simplified_verification_mode true
+true
+set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
+1
+# ============================================================================
+# 8. READ RTL DESIGN (ANALYZE & ELABORATE)
+# ============================================================================
+# Note: Order doesn't strictly matter for analyze, but top-level FFT.v is listed first for clarity.
+#analyze -f verilog [glob $opensparc/lib/m1/*]
+analyze -f verilog [list \
+    ${RTL_SOURCE_PATH}/FFT.v \
+    ${RTL_SOURCE_PATH}/radix2.v \
+    ${RTL_SOURCE_PATH}/ROM_16.v \
+    ${RTL_SOURCE_PATH}/ROM_8.v \
+    ${RTL_SOURCE_PATH}/ROM_4.v \
+    ${RTL_SOURCE_PATH}/ROM_2.v \
+    ${RTL_SOURCE_PATH}/shift_16.v \
+    ${RTL_SOURCE_PATH}/shift_8.v \
+    ${RTL_SOURCE_PATH}/shift_4.v \
+    ${RTL_SOURCE_PATH}/shift_2.v \
+    ${RTL_SOURCE_PATH}/shift_1.v ]
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Running PRESTO HDLC
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Opening include file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:1: Overwriting existing design element 'radix2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:1: Overwriting existing design element 'ROM_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:1: Overwriting existing design element 'ROM_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:1: Overwriting existing design element 'ROM_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:1: Overwriting existing design element 'ROM_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:1: Overwriting existing design element 'shift_16' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:1: Overwriting existing design element 'shift_8' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:1: Overwriting existing design element 'shift_4' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:1: Overwriting existing design element 'shift_2' with newer version. (VER-64)
+Compiling source file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:1: Overwriting existing design element 'shift_1' with newer version. (VER-64)
+Presto compilation completed successfully.
+Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'
+Loading db file '/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db'
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb'
+1
+elaborate ${DESIGN_NAME}
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/gtech.db'
+Loading db file '/home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/standard.sldb'
+  Loading link library 'saed14rvt_ss0p6v125c'
+  Loading link library 'saed14lvt_ss0p6v125c'
+  Loading link library 'saed14hvt_ss0p6v125c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:260: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:261: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:313: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:314: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:318: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:319: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:322: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:323: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:326: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:327: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:330: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:331: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:334: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:335: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:338: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:339: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:342: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:343: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:346: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:347: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:350: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:351: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:354: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:355: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:358: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:359: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:362: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:363: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:366: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:367: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:370: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:371: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:374: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:375: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:378: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:379: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:382: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:383: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:386: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:387: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:390: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:391: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:394: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:395: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:398: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:399: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:402: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:403: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:406: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:407: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:410: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:411: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:414: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:415: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:418: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:419: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:422: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:423: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:426: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:427: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:430: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:431: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:434: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:435: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:438: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v:439: signed to unsigned part selection occurs. (VER-318)
+
+Statistics for case statements in always block at line 300 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           311            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine FFT line 241 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/FFT.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     dout_i_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    result_i_reg     | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    y_1_delay_reg    | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    result_r_reg     | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    din_r_reg_reg    | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    din_i_reg_reg    | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  in_valid_reg_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    s5_count_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    r4_valid_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     count_y_reg     | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   assign_out_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      over_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     dout_r_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|     FFT/291      |   32   |   32    |      5       |
+======================================================
+Presto compilation completed successfully. (FFT)
+Elaborated 1 design.
+Current design is now 'FFT'.
+Information: Building the design 'radix2'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:56: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:57: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v:24: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 19 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/radix2.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            24            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (radix2)
+Information: Building the design 'shift_16'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:18: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:19: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:31: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:32: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:37: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v:38: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine shift_16 line 21 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_16.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   shift_reg_i_reg   | Flip-flop |  384  |  Y  | N  | Y  | N  | N  | N  | N  |
+|      valid_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   shift_reg_r_reg   | Flip-flop |  384  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (shift_16)
+Information: Building the design 'ROM_16'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:49: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:54: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:59: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:64: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:69: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:74: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:79: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:84: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:88: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:89: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:93: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:94: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:98: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:99: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:103: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:104: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:108: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:109: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:113: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:114: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:118: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v:119: unsigned to signed assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 30 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            41            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine ROM_16 line 13 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_16.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      count_reg      | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      valid_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (ROM_16)
+Information: Building the design 'shift_8'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:18: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:19: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:31: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:32: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:36: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v:37: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine shift_8 line 21 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_8.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   shift_reg_i_reg   | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+|      valid_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   shift_reg_r_reg   | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (shift_8)
+Information: Building the design 'ROM_8'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:53: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:57: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:61: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:65: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:68: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:69: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:72: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:73: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:76: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v:77: unsigned to signed assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 25 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            46            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine ROM_8 line 14 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_8.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      count_reg      | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     s_count_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (ROM_8)
+Information: Building the design 'shift_4'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:18: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:19: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:31: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:32: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:36: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v:37: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine shift_4 line 21 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_4.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   shift_reg_i_reg   | Flip-flop |  96   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      valid_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   shift_reg_r_reg   | Flip-flop |  96   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (shift_4)
+Information: Building the design 'ROM_4'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:53: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:57: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:60: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v:61: unsigned to signed assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 25 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            46            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine ROM_4 line 14 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_4.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      count_reg      | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     s_count_reg     | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (ROM_4)
+Information: Building the design 'shift_2'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:18: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:19: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:31: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:32: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:36: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v:37: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine shift_2 line 21 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_2.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   shift_reg_i_reg   | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      valid_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   shift_reg_r_reg   | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (shift_2)
+Information: Building the design 'ROM_2'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v:53: unsigned to signed assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 25 in file
+	'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            46            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine ROM_2 line 14 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/ROM_2.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      count_reg      | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     s_count_reg     | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (ROM_2)
+Information: Building the design 'shift_1'. (HDL-193)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:18: signed to unsigned part selection occurs. (VER-318)
+Warning:  /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v:19: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine shift_1 line 21 in file
+		'/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/RTL/shift_1.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   shift_reg_i_reg   | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      valid_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   shift_reg_r_reg   | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (shift_1)
+1
+current_design ${DESIGN_NAME}
+Current design is 'FFT'.
+{FFT}
+link
+
+  Linking design 'FFT'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (11 designs)              /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/work/FFT.db, etc
+  saed14rvt_ss0p6v125c (library) /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db
+  saed14lvt_ss0p6v125c (library) /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+  saed14hvt_ss0p6v125c (library) /home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db
+  dw_foundation.sldb (library) /home/cad/eda/SYNOPSYS/Design_Compiler_2022.03/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb
+
+1
+# ============================================================================
+# 9. LOAD LOW-POWER INTENT (GOLDEN UPF)
+# ============================================================================
+set upf_create_implicit_supply_sets false
+false
+if {$UPF_MODE != "none"} {
+  if {$UPF_FILE != ""} {
+    set load_upf_cmd "load_upf ${UPF_FILE}"
+    if {$UPF_MODE == "golden"} {lappend load_upf_cmd -strict_check true}
+    puts "RM-info: Running $load_upf_cmd"
+    eval ${load_upf_cmd}
+  }
+}
+RM-info: Running load_upf /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf -strict_check true
+
+
+Loading Golden UPF file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf ...
+upf_version 2.0
+# 1. Create Top-Level Power Domain
+create_power_domain TOP -include_scope
+# 2. Create Supply Ports
+create_supply_port VDD
+create_supply_port VSS
+# 3. Create Supply Nets (REMOVED '-domain TOP' to make them domain-independent)
+create_supply_net VDD
+create_supply_net VSS
+# 4. Connect Ports to Nets
+connect_supply_net VDD -ports VDD
+connect_supply_net VSS -ports VSS
+# 5. Create Supply Set (Will now succeed without UPF-180)
+create_supply_set SS_DEFAULT \
+    -function {power VDD} \
+    -function {ground VSS}
+# 6. Bind Supply Nets to Domain
+set_domain_supply_net TOP -primary_power_net VDD -primary_ground_net VSS
+# 7. Define Unified Power State
+add_power_state SS_DEFAULT -state ON {-supply_expr {power == {FULL_ON 0.6} && ground == {FULL_ON 0.0}}}
+# 8. Disable Isolation
+set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation
+End loading UPF file /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+1
+# ============================================================================
+# 10. APPLY VOLTAGES (SUPPLEMENTAL UPF EQUIVALENT)
+# ============================================================================
+set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
+1
+set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
+1
+# --- Multi-Voltage Integrity Check ---
+set check_mv_design_failed false
+false
+if {[shell_is_in_topographical_mode]} {
+  set current_scenario_saved [current_scenario]
+  foreach scenario [all_active_scenarios] {
+    current_scenario ${scenario}
+    if {![check_mv_design -power_nets]} { set check_mv_design_failed true; break }
+  }
+  current_scenario ${current_scenario_saved}
+} else {
+  if {![check_mv_design -power_nets]} { set check_mv_design_failed true }
+}
+--------------------------------------------------------------------------------
+                      Power/Ground Pin Connection Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+--------------------------------------------------------------------------------
+                         Supply Operating Voltage Checks
+--------------------------------------------------------------------------------
+No Errors/Warnings Found.
+
+Please review report above for warnings and errors.
+if {$check_mv_design_failed} {
+  puts "RM-error: Supply nets missing voltage definitions. Exiting."
+  exit 1
+}
+Current design is 'FFT'.
+dc_shell> source ${SCRIPTS}/${DESIGN_NAME}.sdc
+Current design is 'FFT'.
+Current design is 'FFT'.
+Current design is 'FFT'.
+1
+dc_shell> check_design > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_design.rpt
+check_timing > ${OUTPUTS_DIR}/${DESIGN_NAME}.check_timing.rpt
+Current design is 'FFT'.
+dc_shell> group_path -from [all_registers] -to [all_registers] -name reg2reg
+1
+group_path -from [all_registers] -to [all_outputs] -name reg2out
+1
+group_path -from [all_inputs] -to [all_registers] -name in2reg
+1
+group_path -from [all_inputs] -to [all_outputs] -name in2out
+1
+dc_shell> analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
+Error: unknown command 'analyze_mv_feasibility' (CMD-005)
+dc_shell> set compile_ultra_cmd "compile_ultra -gate_clock -scan"
+compile_ultra -gate_clock -scan
+dc_shell> if {[shell_is_in_topographical_mode]} {lappend compile_ultra_cmd -spg}
+puts "RM-info: Running $compile_ultra_cmd (Note: -retime is disabled to preserve pipeline structure)"
+RM-info: Running compile_ultra -gate_clock -scan (Note: -retime is disabled to preserve pipeline structure)
+eval ${compile_ultra_cmd}
+Information: Optimization is being performed with the 'simplified_verification_mode' variable enabled.  (INFO-114)
+Information: Performing power optimization. (PWR-850)
+Analyzing: "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db"
+Analyzing: "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+Analyzing: "/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db"
+Library analysis succeeded.
+Information: Running optimization using a maximum of 8 cores. (OPT-1500)
+Information: Choosing a test methodology will restrict the optimization of sequential cells. (UIO-12)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | T-2022.03-DWBB_202203.4 |     *     |
+| Licensed DW Building Blocks        | T-2022.03-DWBB_202203.4 |     *     |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler WLM                                                               |
+| Comand Line  | compile_ultra -scan -gate_clock                                                   |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 5939                                   |
+| Number of User Hierarchies                              | 14                                     |
+| Sequential Cell Count                                   | 2647                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 1                                      |
+| Number of Path Groups                                   | 10                                     |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 1579                                   |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with UPF Data                                    | true                                   |
+====================================================================================================
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 156 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+Warning: No operating condition has been set explicitly on the current design. A default operating condition ss0p6v125c from library saed14rvt_ss0p6v125c will be assumed. (MV-028)
+Information: Related supplies are not explicitly specified on 60 port(s) and primary supplies (VDD, VSS) of top power domain will be assumed as the related supply. (UPF-405)
+Information: Uniquified 5 instances of design 'radix2'. (OPT-1056)
+Information: Total 0 repeater cells are inserted. (UPF-464)
+Information: A total of 0 isolation cells are inserted. (UPF-214)
+  Simplifying Design 'FFT'
+Information: Performing clock-gating with positive edge logic: 'integrated' and negative edge logic: 'integrated'. (PWR-1047)
+
+Loaded alib file './alib-52/saed14rvt_ss0p6v125c.db.alib' (placeholder)
+Loaded alib file './alib-52/saed14lvt_ss0p6v125c.db.alib' (placeholder)
+Loaded alib file './alib-52/saed14hvt_ss0p6v125c.db.alib'
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'FFT'
+Information: Added key list 'DesignWare' to design 'FFT'. (DDB-72)
+Information: The register 'din_i_reg_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_i_reg_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'din_r_reg_reg[7]' is a constant and will be removed. (OPT-1206)
+ Implement Synthetic for 'FFT'.
+  Processing 'shift_16'
+ Implement Synthetic for 'shift_16'.
+Information: Added key list 'DesignWare' to design 'shift_16'. (DDB-72)
+  Processing 'shift_8'
+ Implement Synthetic for 'shift_8'.
+Information: Added key list 'DesignWare' to design 'shift_8'. (DDB-72)
+  Processing 'shift_4'
+ Implement Synthetic for 'shift_4'.
+Information: Added key list 'DesignWare' to design 'shift_4'. (DDB-72)
+  Processing 'radix2_0'
+ Implement Synthetic for 'radix2_0'.
+  Processing 'ROM_4'
+Information: Added key list 'DesignWare' to design 'ROM_4'. (DDB-72)
+ Implement Synthetic for 'ROM_4'.
+  Processing 'shift_2'
+ Implement Synthetic for 'shift_2'.
+Information: Added key list 'DesignWare' to design 'shift_2'. (DDB-72)
+  Processing 'radix2_2'
+ Implement Synthetic for 'radix2_2'.
+  Processing 'ROM_16'
+Information: Added key list 'DesignWare' to design 'ROM_16'. (DDB-72)
+ Implement Synthetic for 'ROM_16'.
+  Processing 'shift_1'
+  Processing 'SNPS_CLOCK_GATE_HIGH_shift_1'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_shift_2'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_shift_4'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_shift_8'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_shift_16'
+  Mapping integrated clock gating circuitry
+  Processing 'radix2_4'
+ Implement Synthetic for 'radix2_4'.
+  Processing 'radix2_3'
+ Implement Synthetic for 'radix2_3'.
+  Processing 'radix2_1'
+ Implement Synthetic for 'radix2_1'.
+  Processing 'ROM_8'
+Information: Added key list 'DesignWare' to design 'ROM_8'. (DDB-72)
+ Implement Synthetic for 'ROM_8'.
+  Processing 'ROM_2'
+Information: Added key list 'DesignWare' to design 'ROM_2'. (DDB-72)
+ Implement Synthetic for 'ROM_2'.
+  Processing 'SNPS_CLOCK_GATE_HIGH_FFT_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ROM_2'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ROM_4_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ROM_8_0'
+  Mapping integrated clock gating circuitry
+  Processing 'SNPS_CLOCK_GATE_HIGH_ROM_16'
+  Mapping integrated clock gating circuitry
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'from din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'group_path' constraint made a reference 'to din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_i_reg_reg[7]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[0]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[1]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[2]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[3]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[4]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[5]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[6]' which no longer exists.  (TIM-179)
+Warning: 'set_false_path' constraint made a reference 'to din_r_reg_reg[7]' which no longer exists.  (TIM-179)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'SAEDRVT14_TIE1_PV1ECO_1' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE0_PV1ECO_1' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE1_V1ECO_1' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE1_V1_2' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE1_4' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE0_V1_2' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDRVT14_TIE0_4' in the library 'saed14rvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_PV1ECO_1' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE0_PV1ECO_1' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_V1ECO_1' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_V1_2' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE1_4' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE0_V1_2' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDLVT14_TIE0_4' in the library 'saed14lvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_PV1ECO_1' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE0_PV1ECO_1' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_V1ECO_1' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_V1_2' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE1_4' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE0_V1_2' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'SAEDHVT14_TIE0_4' in the library 'saed14hvt_ss0p6v125c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Skipping clock gating on design radix2_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_FFT_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design FFT_DW01_inc_J1_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design FFT_DW01_dec_J1_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_RSOP_172, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DW01_sub_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DW01_sub_J6_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_shift_16, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_ROM_16, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design ROM_16_DW01_inc_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_RSOP_172, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DW01_sub_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DW01_sub_J6_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_shift_8, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_ROM_8_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design ROM_8_DW01_inc_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_RSOP_172, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DW01_sub_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DW01_sub_J5_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_shift_4, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_ROM_4_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design ROM_4_DW01_inc_J4_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_RSOP_173, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DW01_sub_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DW01_sub_J6_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_shift_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_ROM_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design ROM_2_DW01_inc_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_0_DW01_sub_J4_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_0_DW01_sub_J4_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_0_DW01_add_J4_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_0_DP_OP_163J4_125_6497_J4_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_0_DP_OP_164J4_126_1427_J4_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_shift_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DP_OP_187J6_126_5161_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DP_OP_186J6_125_3426_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DP_OP_185J6_124_5161_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DP_OP_184J6_123_3426_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_4_DP_OP_183J6_122_3426_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DP_OP_187J6_134_5161_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DP_OP_186J6_133_3426_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DP_OP_185J6_132_5161_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DP_OP_184J6_131_3426_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_3_DP_OP_183J6_130_3426_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DP_OP_187J5_126_5161_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DP_OP_186J5_125_3426_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DP_OP_185J5_124_5161_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DP_OP_184J5_123_3426_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_2_DP_OP_183J5_122_3426_J5_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DP_OP_188J6_142_8300_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DP_OP_187J6_141_687_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DP_OP_186J6_140_8300_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DP_OP_185J6_139_2402_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design radix2_1_DP_OP_184J6_138_4223_J6_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_FFT_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_FFT_2, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_ROM_4_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_ROM_8_1, since there are no registers. (PWR-806)
+Information: Performing clock-gating on design FFT. (PWR-730)
+Information: Performing clock-gating on design ROM_2. (PWR-730)
+Information: Performing clock-gating on design shift_16. (PWR-730)
+Information: Performing clock-gating on design shift_2. (PWR-730)
+Information: Performing clock-gating on design shift_1. (PWR-730)
+Information: Performing clock-gating on design ROM_16. (PWR-730)
+Information: Performing clock-gating on design shift_8. (PWR-730)
+Information: Performing clock-gating on design ROM_8. (PWR-730)
+Information: Performing clock-gating on design shift_4. (PWR-730)
+Information: Performing clock-gating on design ROM_4. (PWR-730)
+Information: Automatic shift-register identification is enabled for scan. Not all registers will be scan-replaced. (OPT-467)
+Information: Total 0 level shifters are removed. (MV-238)
+Information: Total 0 level shifters are inserted. (MV-239)
+Information: The register 'shift_16/shift_reg_r_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[24]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[48]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[72]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[96]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[120]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[144]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[168]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[192]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[216]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[240]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[264]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[288]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[312]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[336]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[360]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[49]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[73]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[97]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[121]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[145]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[169]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[193]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[217]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[241]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[265]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[289]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[313]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[337]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[361]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[50]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[74]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[98]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[122]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[146]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[170]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[194]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[218]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[242]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[266]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[290]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[314]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[338]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[362]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[27]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[51]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[75]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[99]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[123]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[147]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[171]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[195]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[219]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[243]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[267]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[291]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[315]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[339]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[363]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[28]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[52]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[76]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[100]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[124]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[148]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[172]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[196]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[220]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[244]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[268]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[292]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[316]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[340]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[364]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[29]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[53]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[77]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[101]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[125]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[149]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[173]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[197]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[221]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[245]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[269]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[293]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[317]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[341]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[365]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[54]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[78]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[102]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[126]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[150]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[174]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[198]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[222]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[246]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[270]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[294]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[318]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[342]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[366]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[31]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[55]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[79]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[103]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[127]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[151]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[175]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[199]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[223]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[247]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[271]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[295]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[319]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[343]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_r_reg[367]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[24]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[48]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[72]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[96]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[120]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[144]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[168]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[192]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[216]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[240]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[264]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[288]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[312]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[336]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[360]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[49]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[73]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[97]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[121]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[145]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[169]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[193]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[217]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[241]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[265]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[289]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[313]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[337]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[361]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[50]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[74]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[98]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[122]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[146]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[170]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[194]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[218]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[242]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[266]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[290]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[314]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[338]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[362]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[27]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[51]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[75]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[99]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[123]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[147]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[171]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[195]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[219]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[243]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[267]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[291]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[315]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[339]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[363]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[28]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[52]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[76]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[100]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[124]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[148]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[172]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[196]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[220]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[244]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[268]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[292]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[316]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[340]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[364]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[29]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[53]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[77]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[101]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[125]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[149]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[173]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[197]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[221]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[245]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[269]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[293]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[317]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[341]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[365]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[54]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[78]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[102]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[126]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[150]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[174]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[198]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[222]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[246]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[270]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[294]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[318]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[342]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[366]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[31]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[55]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[79]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[103]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[127]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[151]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[175]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[199]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[223]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[247]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[271]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[295]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[319]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[343]' is a constant and will be removed. (OPT-1206)
+Information: The register 'shift_16/shift_reg_i_reg[367]' is a constant and will be removed. (OPT-1206)
+Information: In design 'FFT', the register 'din_i_reg_reg[20]' is removed because it is merged to 'din_i_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_i_reg_reg[21]' is removed because it is merged to 'din_i_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_i_reg_reg[22]' is removed because it is merged to 'din_i_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_i_reg_reg[23]' is removed because it is merged to 'din_i_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_r_reg_reg[20]' is removed because it is merged to 'din_r_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_r_reg_reg[21]' is removed because it is merged to 'din_r_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_r_reg_reg[22]' is removed because it is merged to 'din_r_reg_reg[19]'. (OPT-1215)
+Information: In design 'FFT', the register 'din_r_reg_reg[23]' is removed because it is merged to 'din_r_reg_reg[19]'. (OPT-1215)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:22    9215.5      0.00      -0.0 14930903.0                           19057744.0000
+    0:01:22    9205.8      0.00       0.0 14930769.7                           19031454.0000
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:30    8491.5      0.00       0.0 9382413.7                           13509022.0000
+    0:01:32    8428.1      0.00       0.0 9381293.7                           13422578.0000
+    0:01:32    8353.6      0.00       0.0 9380371.9                           13331901.0000
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+Information: Total 0 level shifters are removed incrementally. (MV-238)
+Information: Total 0 level shifters are inserted incrementally. (MV-239)
+    0:01:46    8124.5      0.00       0.0 9378185.8                           13016849.0000
+
+  Beginning Delay Optimization HSVT Pass
+  --------------------------------------
+    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:01:53    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:00    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:10    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:10    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:10    8096.4      0.00       0.0 9377588.9                           12926649.0000
+    0:02:12    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+
+
+  Beginning Design Rule Fixing  (min_capacitance)  (max_transition)  (max_fanout)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:02:13    8057.3      0.00       0.0 9525916.8                           11902581.0000
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+    0:02:56    8861.7      0.00       0.0   74288.1 net81728                  18846686.0000
+    0:02:59    8876.8      0.00       0.0   73774.0 shift_8/net81058          19526552.0000
+    0:03:02    8885.2      0.00       0.0   73739.5 net81824                  19551460.0000
+    0:03:05    8911.9      0.00       0.0   73445.7 net81822                  19612048.0000
+    0:03:07    8913.9      0.00       0.0   73340.9 net81864                  19698086.0000
+    0:03:10    8914.2      0.00       0.0   73317.0 net82066                  19696492.0000
+    0:03:10    8914.2      0.00       0.0   73317.0                           19696492.0000
+    0:03:10    8914.2      0.00       0.0   73317.0                           19696492.0000
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:03:10    8914.2      0.00       0.0   73317.0                           19696492.0000
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+    0:03:21    8408.2      0.00       0.0   71693.9                           18635340.0000
+    0:03:21    8408.2      0.00       0.0   71693.9                           18635340.0000
+    0:03:21    8408.2      0.00       0.0   71693.9                           18635340.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+    0:03:24    8386.4      0.00       0.0   71419.4                           13146726.0000
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:03:25    8386.8      0.00       0.0   71419.4                           13157571.0000
+    0:03:28    8358.2      0.00       0.0   71314.2                           13190704.0000
+    0:03:28    8358.2      0.00       0.0   71314.2                           13190704.0000
+    0:03:28    8358.2      0.00       0.0   71314.2                           13190704.0000
+    0:03:29    8357.9      0.00       0.0   71311.9                           13135492.0000
+
+  Beginning Delay Optimization HSVT Pass
+  --------------------------------------
+    0:03:37    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:37    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:37    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:37    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:45    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:45    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:45    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:45    8357.9      0.00       0.0   71311.9                           13135492.0000
+    0:03:56    8357.8      0.00       0.0   71307.5                           13133966.0000
+    0:03:58    8489.2      0.00       0.0   71416.1 net83034                  13895526.0000
+    0:04:01    8503.1      0.00       0.0   71409.5 shift_8/net81345          13940204.0000
+    0:04:03    8512.3      0.00       0.0   71335.6 shift_16/net81410         14065085.0000
+    0:04:06    8516.5      0.00       0.0   71333.1 shift_16/net81395         14105642.0000
+    0:04:08    8518.6      0.00       0.0   71331.6 shift_16/net81162         14124485.0000
+    0:04:17    8518.9      0.00       0.0   71331.5                           14127571.0000
+    0:04:17    8518.9      0.00       0.0   71331.5                           14127571.0000
+    0:04:17    8518.9      0.00       0.0   71331.5                           14127571.0000
+    0:04:17    8518.9      0.00       0.0   71331.5                           14127571.0000
+    0:04:17    8523.1      0.00       0.0   71331.5                           14138457.0000
+    0:04:17    8523.1      0.00       0.0   71331.5                           14138457.0000
+    0:04:19    8520.2      0.00       0.0   71338.7                           14132234.0000
+Loading db file '/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db'
+Loading db file '/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db'
+Loading db file '/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'FFT' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'clk_gate_result_i_reg[0]/ENCLK': 1025 load(s), 1 driver(s)
+     Net 'clk_gate_count_y_reg/TE': 2195 load(s), 1 driver(s)
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+Current design is 'FFT'.
+dc_shell> if {$DESIGN_STYLE == "hier" && $PHYSICAL_HIERARCHY_LEVEL == "bottom"} {
+  set_app_var uniquify_naming_style "${DESIGN_NAME}_%s_%d"
+  uniquify -force
+}
+Error: can't read "DESIGN_STYLE": no such variable
+	Use error_info for more info. (CMD-013)
+dc_shell> change_names -rules verilog -hierarchy
+Warning: The specified replacement character (_) is conflicting with the specified allowed or restricted character.   (UCN-4)
+Warning: In the design shift_16, net 'dout_r[0]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_16, net 'w_r[9]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_16, net 'w_i[8]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_r[9]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_r[10]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_r[21]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_r[18]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_r[13]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_r[0]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_i[8]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_i[19]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_i[10]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_i[15]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_8, net 'w_i[14]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_r[21]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_r[19]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_r[14]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_r[2]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_i[0]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_i[23]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_i[9]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_4, net 'w_i[13]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_2, net 'w_i[15]' is connecting multiple ports. (UCN-1)
+Warning: In the design ROM_2, net 'w_i[13]' is connecting multiple ports. (UCN-1)
+Warning: In the design radix2_4_DW01_sub_J6_0, net 'DIFF[0]' is connecting multiple ports. (UCN-1)
+Warning: In the design radix2_4_DW01_sub_J6_1, net 'DIFF[0]' is connecting multiple ports. (UCN-1)
+1
+Current design is 'FFT'.
+dc_shell> write_parasitics -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.spef
+Information: Writing parasitics to file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.spef'. (WP-3)
+1
+write_link_library -out ${OUTPUTS_DIR}/${DESIGN_NAME}.link_library.tcl
+1
+dc_shell> report_timing -group reg2reg -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2reg.rpt
+dc_shell> report_timing -group in2reg -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2reg.rpt
+report_timing -group in2out -max_paths 100  > ${OUTPUTS_DIR}/${DESIGN_NAME}.in2out.rpt
+report_timing -group reg2out -max_paths 100 > ${OUTPUTS_DIR}/${DESIGN_NAME}.reg2out.rpt
+dc_shell> report_area -hierarchy > ${OUTPUTS_DIR}/${DESIGN_NAME}.area.rpt
+dc_shell> report_power > ${OUTPUTS_DIR}/${DESIGN_NAME}.power.rpt
+dc_shell> report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
+dc_shell> report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
+dc_shell> Information: script '/tmp/dc_shell.GMebQi'
+	stopped at line 1 due to EOF. (CMD-081)
+dc_shell> if {$UPF_MODE == "golden"} {
+  write_file -format verilog -hierarchy -pg -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.pg.v
+}
+Writing verilog file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.pg.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+dc_shell> write_file -format verilog -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.v
+Writing verilog file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+dc_shell> write_file -format ddc -hierarchy -output ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.ddc
+Writing ddc file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.ddc'.
+1
+dc_shell> 

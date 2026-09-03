@@ -39,9 +39,9 @@ module FFT(
 	reg next_out_valid;
 	reg [4:0]y_1_delay;
 
-	wire [23:0] out_r,out_i;
+	wire signed [23:0] out_r,out_i;
 	wire [4:0] y_1;
-	wire [23:0] din_r_wire,din_i_wire;
+	wire signed [23:0] din_r_wire,din_i_wire;
 
 	assign out_valid = assign_out;
 	assign y_1 = (count_y>5'd0)? (count_y - 5'd1) : count_y; 
@@ -49,35 +49,35 @@ module FFT(
 	assign din_i_wire = din_i_reg;
 
 	wire [1:0] rom16_state;
-	wire [23:0]rom16_w_r,rom16_w_i;
-	wire [23:0]shift_16_dout_r,shift_16_dout_i;
-	wire [23:0] radix_no1_delay_r,radix_no1_delay_i;
+	wire signed [23:0]rom16_w_r,rom16_w_i;
+	wire signed [23:0]shift_16_dout_r,shift_16_dout_i;
+	wire signed [23:0] radix_no1_delay_r,radix_no1_delay_i;
 
 	wire [1:0] rom8_state;
-	wire [23:0]rom8_w_r,rom8_w_i;
-	wire [23:0]shift_8_dout_r,shift_8_dout_i;
-	wire [23:0]radix_no2_delay_r,radix_no2_delay_i;
-	wire [23:0]radix_no1_op_r,radix_no1_op_i;
-	wire [23:0]radix_no2_op_r,radix_no2_op_i;
+	wire signed [23:0]rom8_w_r,rom8_w_i;
+	wire signed [23:0]shift_8_dout_r,shift_8_dout_i;
+	wire signed [23:0]radix_no2_delay_r,radix_no2_delay_i;
+	wire signed [23:0]radix_no1_op_r,radix_no1_op_i;
+	wire signed [23:0]radix_no2_op_r,radix_no2_op_i;
 	wire radix_no1_outvalid,radix_no2_outvalid;
 
 	wire [1:0] rom4_state;
-	wire [23:0]rom4_w_r,rom4_w_i;
-	wire [23:0]shift_4_dout_r,shift_4_dout_i;
-	wire [23:0]radix_no3_delay_r,radix_no3_delay_i;
-	wire [23:0]radix_no3_op_r,radix_no3_op_i;
+	wire signed [23:0]rom4_w_r,rom4_w_i;
+	wire signed [23:0]shift_4_dout_r,shift_4_dout_i;
+	wire signed [23:0]radix_no3_delay_r,radix_no3_delay_i;
+	wire signed [23:0]radix_no3_op_r,radix_no3_op_i;
 	wire radix_no3_outvalid;
 
 	wire [1:0] rom2_state;
-	wire [23:0]rom2_w_r,rom2_w_i;
-	wire [23:0]shift_2_dout_r,shift_2_dout_i;
-	wire [23:0]radix_no4_delay_r,radix_no4_delay_i;
-	wire [23:0]radix_no4_op_r,radix_no4_op_i;
+	wire signed [23:0]rom2_w_r,rom2_w_i;
+	wire signed [23:0]shift_2_dout_r,shift_2_dout_i;
+	wire signed [23:0]radix_no4_delay_r,radix_no4_delay_i;
+	wire signed [23:0]radix_no4_op_r,radix_no4_op_i;
 	wire radix_no4_outvalid;
 
-	wire [23:0]shift_1_dout_r,shift_1_dout_i;
-	wire [23:0]radix_no5_delay_r,radix_no5_delay_i;
-	wire [23:0]radix_no5_op_r,radix_no5_op_i;
+	wire signed [23:0]shift_1_dout_r,shift_1_dout_i;
+	wire signed [23:0]radix_no5_delay_r,radix_no5_delay_i;
+	wire signed [23:0]radix_no5_op_r,radix_no5_op_i;
 
 radix2 radix_no1(
 		.state(rom16_state),//state ctrl
@@ -445,5 +445,3 @@ shift_1 shift_1(
 	end
 
 endmodule
-
-#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

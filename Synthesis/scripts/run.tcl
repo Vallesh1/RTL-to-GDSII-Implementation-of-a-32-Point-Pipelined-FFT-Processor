@@ -57,7 +57,8 @@ if {$UPF_MODE == "golden"} {
 # ============================================================================
 # [USER: Update target library paths to your SS corner .db files]
 set TARGET_LIBRARY_FILES  "/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
-/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db"
 
 set_app_var target_library ${TARGET_LIBRARY_FILES}
 set_app_var synthetic_library dw_foundation.sldb

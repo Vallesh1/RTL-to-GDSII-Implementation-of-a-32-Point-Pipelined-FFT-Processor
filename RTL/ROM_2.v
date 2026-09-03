@@ -2,8 +2,8 @@ module ROM_2(
 		input wire clk,
 		input wire in_valid,
 		input wire reset,
-		output reg [23:0] w_r,
-		output reg [23:0] w_i,
+		output reg signed [23:0] w_r,
+		output reg signed [23:0] w_i,
 		output reg[1:0] state
 	);
 
