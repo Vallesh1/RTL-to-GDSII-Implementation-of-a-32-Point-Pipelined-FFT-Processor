@@ -17,11 +17,11 @@ set OUTPUTS_DIR "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementa
 set SCRIPTS "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts"
 
 # --- Design Flow Settings ---
-set DESIGN_STYLE flat                    # Flat synthesis for standalone module
+set DESIGN_STYLE "flat"                    # Flat synthesis for standalone module
 set PHYSICAL_HIERARCHY_LEVEL "top"
 set DC_BLOCK_ABSTRACTION_DESIGNS ""
 set DDC_HIER_DESIGNS ""
-set UPF_MODE golden
+set UPF_MODE "golden"
 set UPF_FILE ${SCRIPTS}/${DESIGN_NAME}.upf
 set DCRM_NDM_LIBRARY_NAME ${DESIGN_NAME}.ndm
 
@@ -244,9 +244,12 @@ report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_viol
 # Prevent tri-state logic and equation outputs
 set verilogout_no_tri true
 set verilogout_equation false
+set verilogout_show_unconnected_pins true
 
 # Re-apply the port net fix globally right before writing
 set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+
+compile_ultra -incremental
 
 # ============================================================================
 # 17. WRITE FINAL MAPPED NETLISTS

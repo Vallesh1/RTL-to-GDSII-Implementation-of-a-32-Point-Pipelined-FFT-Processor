@@ -1,9 +1,0 @@
-<?xml-stylesheet type="text/xsl" href=".FFT_645380.cmvd.xslt" ?>
-<!DOCTYPE treebrowser>
-<treebrowser version="2.0" title="MV Advisor" data="name:FFT;port_count:60;hier_cell_count:14;leaf_cell_count:5969;">
-<table>
-  <column id="1" text="Title" />
-  <column id="2" text="Count" />
-  <column id="3" text="Description" />
-</table>
-</treebrowser>
