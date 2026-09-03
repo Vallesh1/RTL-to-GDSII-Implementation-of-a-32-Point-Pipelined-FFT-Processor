@@ -238,6 +238,16 @@ report_qor > ${OUTPUTS_DIR}/${DESIGN_NAME}.qor.rpt
 report_constraint -all_violators > ${OUTPUTS_DIR}/${DESIGN_NAME}.constraint_violators.rpt
 
 # ============================================================================
+# 16.5 CLEANUP FOR PHYSICAL DESIGN (FIX VO-4)
+# ============================================================================
+# Prevent tri-state logic and equation outputs
+set verilogout_no_tri true
+set verilogout_equation false
+
+# Re-apply the port net fix globally right before writing
+set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+
+# ============================================================================
 # 17. WRITE FINAL MAPPED NETLISTS
 # ============================================================================
 # Power-aware netlist (with PG pins)
