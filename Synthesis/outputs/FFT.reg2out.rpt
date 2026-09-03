@@ -1,0 +1,1039 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -group reg2out
+        -max_paths 100
+Design : FFT
+Version: T-2022.03-SP4
+Date   : Thu Sep  3 21:52:28 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+Wire Load Model Mode: top
+
+  Startpoint: assign_out_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: out_valid (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  assign_out_reg/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  assign_out_reg/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.06       0.36 r    0.60
+  out_valid (out)                                         0.00       0.36 r    
+  data arrival time                                                  0.36      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.36      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.74      
+
+
+  Startpoint: dout_r_reg_15_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[15] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_15_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_r_reg_15_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_r[15] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_14_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[14] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_14_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_r_reg_14_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_r[14] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_13_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[13] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_13_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_r_reg_13_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_r[13] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_12_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[12] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_12_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_r_reg_12_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_r[12] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_11_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[11] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_11_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_r_reg_11_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_r[11] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_10_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[10] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_10_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_r_reg_10_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_r[10] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_9_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[9] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_9_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_9_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[9] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_8_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[8] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_8_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_8_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[8] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_7_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[7] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_7_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_7_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[7] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_6_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[6] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_6_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_6_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[6] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_5_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[5] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_5_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_5_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[5] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_4_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[4] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_4_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_4_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[4] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_3_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[3] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_3_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_3_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[3] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[2] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_2_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_2_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[2] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_1_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[1] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_1_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_1_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[1] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_r_reg_0_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_r[0] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_r_reg_0_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_r_reg_0_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_r[0] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_15_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[15] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_15_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_i_reg_15_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_i[15] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_14_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[14] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_14_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_i_reg_14_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_i[14] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_13_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[13] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_13_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_i_reg_13_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_i[13] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_12_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[12] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_12_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_i_reg_12_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_i[12] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_11_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[11] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_11_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_i_reg_11_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_i[11] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_10_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[10] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_10_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)            0.00       0.30 r    0.60
+  dout_i_reg_10_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)             0.05       0.35 r    0.60
+  dout_i[10] (out)                                        0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_9_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[9] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_9_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_9_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[9] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_8_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[8] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_8_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_8_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[8] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_7_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[7] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_7_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_7_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[7] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_6_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[6] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_6_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_6_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[6] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_5_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[5] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_5_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_5_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[5] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_4_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[4] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_4_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_4_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[4] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_3_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[3] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_3_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_3_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[3] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[2] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_2_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_2_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[2] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_1_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[1] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_1_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_1_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[1] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+  Startpoint: dout_i_reg_0_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dout_i[0] (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FFT                16000                 saed14rvt_ss0p6v125c
+
+  Point                                                   Incr       Path      Voltage
+  ------------------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00      
+  clock network delay (ideal)                             0.30       0.30      
+  dout_i_reg_0_/CK (SAEDHVT14_FSDPRBQ_V2LP_1)             0.00       0.30 r    0.60
+  dout_i_reg_0_/Q (SAEDHVT14_FSDPRBQ_V2LP_1)              0.05       0.35 r    0.60
+  dout_i[0] (out)                                         0.00       0.35 r    
+  data arrival time                                                  0.35      
+
+  clock clk (rise edge)                                   5.00       5.00      
+  clock network delay (ideal)                             0.30       5.30      
+  clock uncertainty                                      -0.40       4.90      
+  output external delay                                  -0.80       4.10      
+  data required time                                                 4.10      
+  ------------------------------------------------------------------------------------
+  data required time                                                 4.10      
+  data arrival time                                                 -0.35      
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                        3.75      
+
+
+1

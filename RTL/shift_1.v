@@ -8,10 +8,10 @@ module shift_1(
 		output signed [23:0] dout_i
 	);
 	integer i ;
-	reg [23:0] shift_reg_r ;
-	reg [23:0] shift_reg_i ;
-	reg [23:0] tmp_reg_r ;
-	reg [23:0] tmp_reg_i ;
+	reg signed [23:0] shift_reg_r ;
+	reg signed [23:0] shift_reg_i ;
+	reg signed [23:0] tmp_reg_r ;
+	reg signed [23:0] tmp_reg_i ;
 	reg [1:0] counter_1,next_counter_1;
 	reg valid,next_valid;
 

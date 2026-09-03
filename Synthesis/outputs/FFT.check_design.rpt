@@ -1,0 +1,228 @@
+ 
+****************************************
+check_design summary:
+Version:     T-2022.03-SP4
+Date:        Thu Sep  3 21:42:10 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     69
+    Shorted outputs (LINT-31)                                      33
+    Constant outputs (LINT-52)                                     36
+
+Cells                                                              71
+    Cells do not drive (LINT-1)                                    22
+    Connected to power or ground (LINT-32)                         48
+    Nets connected to multiple pins on same cell (LINT-33)          1
+
+Nets                                                               16
+    Unloaded nets (LINT-2)                                         16
+--------------------------------------------------------------------------------
+
+Warning: In design 'FFT', cell 'B_44' does not drive any nets. (LINT-1)
+Warning: In design 'FFT', cell 'B_46' does not drive any nets. (LINT-1)
+Warning: In design 'radix2', cell 'B_4' does not drive any nets. (LINT-1)
+Warning: In design 'radix2', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'shift_16', cell 'C3139' does not drive any nets. (LINT-1)
+Warning: In design 'shift_16', cell 'C3143' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_16', cell 'B_22' does not drive any nets. (LINT-1)
+Warning: In design 'shift_8', cell 'C1599' does not drive any nets. (LINT-1)
+Warning: In design 'shift_8', cell 'C1603' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_8', cell 'B_14' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_8', cell 'B_15' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_8', cell 'B_16' does not drive any nets. (LINT-1)
+Warning: In design 'shift_4', cell 'C827' does not drive any nets. (LINT-1)
+Warning: In design 'shift_4', cell 'C831' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_4', cell 'B_10' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_4', cell 'B_11' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_4', cell 'B_12' does not drive any nets. (LINT-1)
+Warning: In design 'shift_2', cell 'C439' does not drive any nets. (LINT-1)
+Warning: In design 'shift_2', cell 'C443' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_2', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_2', cell 'B_8' does not drive any nets. (LINT-1)
+Warning: In design 'ROM_2', cell 'B_9' does not drive any nets. (LINT-1)
+Warning: In design 'FFT', net 'out_i[0]' driven by pin 'radix_no5/op_i[0]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[1]' driven by pin 'radix_no5/op_i[1]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[2]' driven by pin 'radix_no5/op_i[2]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[3]' driven by pin 'radix_no5/op_i[3]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[4]' driven by pin 'radix_no5/op_i[4]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[5]' driven by pin 'radix_no5/op_i[5]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[6]' driven by pin 'radix_no5/op_i[6]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_i[7]' driven by pin 'radix_no5/op_i[7]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[0]' driven by pin 'radix_no5/op_r[0]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[1]' driven by pin 'radix_no5/op_r[1]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[2]' driven by pin 'radix_no5/op_r[2]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[3]' driven by pin 'radix_no5/op_r[3]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[4]' driven by pin 'radix_no5/op_r[4]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[5]' driven by pin 'radix_no5/op_r[5]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[6]' driven by pin 'radix_no5/op_r[6]' has no loads. (LINT-2)
+Warning: In design 'FFT', net 'out_r[7]' driven by pin 'radix_no5/op_r[7]' has no loads. (LINT-2)
+Warning: In design 'ROM_4', output port 'w_i[7]' is connected directly to output port 'w_i[2]'. (LINT-31)
+Warning: In design 'ROM_4', output port 'w_i[7]' is connected directly to output port 'w_i[4]'. (LINT-31)
+Warning: In design 'ROM_4', output port 'w_i[7]' is connected directly to output port 'w_i[5]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[0]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[1]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[2]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[3]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[4]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[5]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[6]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[7]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[9]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[10]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[11]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[12]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[13]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[14]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[15]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[16]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[17]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[18]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[19]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[20]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[21]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_r[22]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[0]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[1]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[2]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[3]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[4]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[5]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[6]'. (LINT-31)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to output port 'w_i[7]'. (LINT-31)
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[23]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[22]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[21]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[20]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[19]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[18]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[17]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[16]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[15]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[14]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[13]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[12]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[11]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[10]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[9]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[8]' is connected to logic 1. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[7]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[6]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[5]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[4]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[3]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[2]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[1]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_r[0]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[23]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[22]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[21]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[20]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[19]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[18]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[17]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[16]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[15]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[14]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[13]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[12]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[11]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[10]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[9]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[8]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[7]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[6]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[5]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[4]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[3]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[2]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[1]' is connected to logic 0. 
+Warning: In design 'FFT', a pin on submodule 'radix_no5' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'w_i[0]' is connected to logic 0. 
+Warning: In design 'FFT', the same net is connected to more than one pin on submodule 'radix_no5'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'w_r[23]', 'w_r[22]'', 'w_r[21]', 'w_r[20]', 'w_r[19]', 'w_r[18]', 'w_r[17]', 'w_r[16]', 'w_r[15]', 'w_r[14]', 'w_r[13]', 'w_r[12]', 'w_r[11]', 'w_r[10]', 'w_r[9]', 'w_r[7]', 'w_r[6]', 'w_r[5]', 'w_r[4]', 'w_r[3]', 'w_r[2]', 'w_r[1]', 'w_r[0]', 'w_i[23]', 'w_i[22]', 'w_i[21]', 'w_i[20]', 'w_i[19]', 'w_i[18]', 'w_i[17]', 'w_i[16]', 'w_i[15]', 'w_i[14]', 'w_i[13]', 'w_i[12]', 'w_i[11]', 'w_i[10]', 'w_i[9]', 'w_i[8]', 'w_i[7]', 'w_i[6]', 'w_i[5]', 'w_i[4]', 'w_i[3]', 'w_i[2]', 'w_i[1]', 'w_i[0]'.
+Warning: In design 'ROM_8', output port 'w_i[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_4', output port 'w_i[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_4', output port 'w_i[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_4', output port 'w_i[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_4', output port 'w_i[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[23]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[22]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[21]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[20]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[19]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[18]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[17]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[16]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[15]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[14]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[13]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[12]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[11]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[10]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[9]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_r[0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'ROM_2', output port 'w_i[0]' is connected directly to 'logic 0'. (LINT-52)
+1

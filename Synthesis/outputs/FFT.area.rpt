@@ -1,0 +1,100 @@
+ 
+****************************************
+Report : area
+Design : FFT
+Version: T-2022.03-SP4
+Date   : Thu Sep  3 21:52:31 2026
+****************************************
+
+Library(s) Used:
+
+    saed14hvt_ss0p6v125c (File: /home1/14_nmts/14_nmts/stdcell_hvt/db_ccs/saed14hvt_ss0p6v125c.db)
+    saed14rvt_ss0p6v125c (File: /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db)
+    saed14lvt_ss0p6v125c (File: /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db)
+
+Number of ports:                         4437
+Number of nets:                         19785
+Number of cells:                        13943
+Number of combinational cells:          11507
+Number of sequential cells:              2381
+Number of macros/black boxes:               0
+Number of buf/inv:                       2842
+Number of references:                      53
+
+Combinational area:               5642.707090
+Buf/Inv area:                      587.944790
+Noncombinational area:            2877.519671
+Macro/Black Box area:                0.000000
+Net Interconnect area:           12370.180970
+
+Total cell area:                  8520.226760
+Total area:                      20890.407730
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  -----------------------------------
+FFT                               8520.2268    100.0  1099.6992  1411.2096  0.0000  FFT
+clk_gate_count_y_reg                 0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_FFT_1
+clk_gate_dout_i_reg                  0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_FFT_0
+clk_gate_result_i_reg_0_             0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_FFT_2
+radix_no1                          851.4144     10.0   110.6448     0.0000  0.0000  radix2_4
+radix_no1/DP_OP_183_159_8093       228.1716      2.7   228.1716     0.0000  0.0000  radix2_4_DP_OP_183_159_8093_J55_0
+radix_no1/DP_OP_184_160_8093       209.1684      2.5   209.1684     0.0000  0.0000  radix2_4_DP_OP_184_160_8093_1
+radix_no1/DP_OP_185_161_9038        26.9952      0.3    26.9952     0.0000  0.0000  radix2_4_DP_OP_185_161_9038_1
+radix_no1/DP_OP_186_162_8093       208.3248      2.4   208.3248     0.0000  0.0000  radix2_4_DP_OP_186_162_8093_1
+radix_no1/DP_OP_187_163_9038        26.9952      0.3    26.9952     0.0000  0.0000  radix2_4_DP_OP_187_163_9038_1
+radix_no1/sub_x_1                   20.4240      0.2    20.4240     0.0000  0.0000  radix2_4_DW01_sub_J6_1
+radix_no1/sub_x_2                   20.6904      0.2    20.6904     0.0000  0.0000  radix2_4_DW01_sub_J6_0
+radix_no2                         1378.0428     16.2    63.3588     0.0000  0.0000  radix2_3
+radix_no2/DP_OP_171_179_190         28.9044      0.3    28.9044     0.0000  0.0000  radix2_3_DP_OP_171_179_190_0
+radix_no2/DP_OP_172_180_4975      1190.9412     14.0  1190.9412     0.0000  0.0000  radix2_3_DP_OP_172_180_4975_0
+radix_no2/DP_OP_173_181_190         28.5048      0.3    28.5048     0.0000  0.0000  radix2_3_DP_OP_173_181_190_0
+radix_no2/sub_x_1                   33.3444      0.4    33.3444     0.0000  0.0000  radix2_3_DW01_sub_J44_0
+radix_no2/sub_x_2                   32.9892      0.4    32.9892     0.0000  0.0000  radix2_3_DW01_sub_J43_0
+radix_no3                         1302.1632     15.3    66.1116     0.0000  0.0000  radix2_2
+radix_no3/DP_OP_171_182_791         28.9932      0.3    28.9932     0.0000  0.0000  radix2_2_DP_OP_171_182_791_0
+radix_no3/DP_OP_172_183_740       1112.5308     13.1  1112.5308     0.0000  0.0000  radix2_2_DP_OP_172_183_740_0
+radix_no3/DP_OP_173_184_791         28.3272      0.3    28.3272     0.0000  0.0000  radix2_2_DP_OP_173_184_791_0
+radix_no3/sub_x_1                   33.4332      0.4    33.4332     0.0000  0.0000  radix2_2_DW01_sub_J37_0
+radix_no3/sub_x_2                   32.7672      0.4    32.7672     0.0000  0.0000  radix2_2_DW01_sub_J36_0
+radix_no4                          569.7408      6.7    64.2912     0.0000  0.0000  radix2_1
+radix_no4/DP_OP_172_185_6550        24.2424      0.3    24.2424     0.0000  0.0000  radix2_1_DP_OP_172_185_6550_0
+radix_no4/DP_OP_173_186_4296       396.1812      4.6   396.1812     0.0000  0.0000  radix2_1_DP_OP_173_186_4296_0
+radix_no4/DP_OP_174_187_6550        24.0204      0.3    24.0204     0.0000  0.0000  radix2_1_DP_OP_174_187_6550_0
+radix_no4/sub_x_1                   30.5028      0.4    30.5028     0.0000  0.0000  radix2_1_DW01_sub_J30_0
+radix_no4/sub_x_2                   30.5028      0.4    30.5028     0.0000  0.0000  radix2_1_DW01_sub_J29_0
+radix_no5                          320.4348      3.8    54.7008     0.0000  0.0000  radix2_0
+radix_no5/DP_OP_163J4_125_6497      45.1548      0.5    45.1548     0.0000  0.0000  radix2_0_DP_OP_163J4_125_6497_J22_0
+radix_no5/DP_OP_164J4_126_1427      61.4940      0.7    61.4940     0.0000  0.0000  radix2_0_DP_OP_164J4_126_1427_J4_0
+radix_no5/add_x_1                   45.0660      0.5    45.0660     0.0000  0.0000  radix2_0_DW01_add_J24_0
+radix_no5/sub_x_2                   56.8764      0.7    56.8764     0.0000  0.0000  radix2_0_DW01_sub_J23_0
+radix_no5/sub_x_3                   57.1428      0.7    57.1428     0.0000  0.0000  radix2_0_DW01_sub_J25_0
+rom16                               43.8672      0.5    33.7884     9.2796  0.0000  ROM_16
+rom16/clk_gate_count_reg             0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_ROM_16
+rom2                                23.3100      0.3    11.8548    10.6560  0.0000  ROM_2
+rom2/clk_gate_count_reg              0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_ROM_2
+rom4                                27.3060      0.3    13.7196    11.9880  0.0000  ROM_4
+rom4/clk_gate_count_reg              0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_ROM_4_0
+rom4/clk_gate_s_count_reg            0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_ROM_4_1
+rom8                                37.9620      0.4    23.0436    13.3200  0.0000  ROM_8
+rom8/clk_gate_count_reg              0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_ROM_8_0
+rom8/clk_gate_s_count_reg            0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_ROM_8_1
+shift_1                             67.4436      0.8     1.6872    64.9572  0.0000  shift_1
+shift_1/clk_gate_shift_reg_i_reg     0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_shift_1
+shift_16                           585.9024      6.9    11.8104   573.2928  0.0000  shift_16
+shift_16/clk_gate_shift_reg_i_reg    0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_shift_16
+shift_2                            122.2332      1.4     2.9304   118.5036  0.0000  shift_2
+shift_2/clk_gate_shift_reg_i_reg     0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_shift_2
+shift_4                            235.7196      2.8    12.6984   222.2220  0.0000  shift_4
+shift_4/clk_gate_shift_reg_i_reg     0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_shift_4
+shift_8                            441.3804      5.2     9.6792   430.9020  0.0000  shift_8
+shift_8/clk_gate_shift_reg_i_reg     0.7992      0.0     0.0000     0.7992  0.0000  SNPS_CLOCK_GATE_HIGH_shift_8
+--------------------------------  ---------  -------  ---------  ---------  ------  -----------------------------------
+Total                                                 5642.7071  2877.5197  0.0000
+
+1
