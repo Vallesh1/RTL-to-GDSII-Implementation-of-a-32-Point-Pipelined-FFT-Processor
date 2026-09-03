@@ -1,6 +1,4 @@
-# ============================================================================
-# Golden UPF - 32-Point FFT (Single Power Domain, Always-On)
-# ============================================================================
+upf_version 2.0
 
 # 1. Create Top-Level Power Domain
 create_power_domain TOP -include_scope
@@ -17,14 +15,16 @@ create_supply_net VSS -domain TOP
 connect_supply_net VDD -ports VDD
 connect_supply_net VSS -ports VSS
 
-# 5. Create Supply Set (Defines handles in one step to avoid CMD-005)
-create_supply_set SS_DEFAULT -power VDD -ground VSS
+# 5. Create Supply Set (CORRECT SYNTAX: -function {type net})
+create_supply_set SS_DEFAULT \
+    -function {power VDD} \
+    -function {ground VSS}
 
 # 6. Bind Supply Nets to Domain
 set_domain_supply_net TOP -primary_power_net VDD -primary_ground_net VSS
 
-# 7. Define Unified Power State on the Supply Set
+# 7. Define Unified Power State
 add_power_state SS_DEFAULT -state ON {-supply_expr {power == {FULL_ON 0.6} && ground == {FULL_ON 0.0}}}
 
-# 8. Disable Isolation 
+# 8. Disable Isolation
 set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation
