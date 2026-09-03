@@ -1,75 +1,66 @@
 # ============================================================================
-# GOLDEN UPF - DESIGN: 32-POINT PIPELINED FFT
+# GOLDEN UPF - 32-POINT PIPELINED FFT PROCESSOR
 # ============================================================================
-# Author     : Design Engineer
-# Tool       : Synopsys DC / Cadence Genus (IEEE 1801-2013 Compliant)
-# Function   : Single-Power-Domain (Always-On) Top-Level Power Intent
-# Dependency : Loaded before physical implementation (elaboration phase)
+# Design      : FFT (5-stage R2SDF Pipeline)
+# Technology  : 14nm Standard Cell (Single Voltage Domain)
+# Tool        : Synopsys Design Compiler (IEEE 1801-2013)
 # ============================================================================
 
-# 1. SCOPE AND DOMAIN DEFINITION
-# ----------------------------------------------------------------------------
-# Define the top-level power domain.
-# -include_scope ensures this domain encompasses the entire FFT module hierarchy.
+# 1. POWER DOMAIN DEFINITION
+# ============================================================================
+# Create the top-level power domain. -include_scope ensures that all
+# submodules (radix2, shift_*, ROM_*) inherit this domain.
 create_power_domain TOP -include_scope
 
-# 2. SUPPLY PORTS (CHIP-LEVEL INTERFACE)
-# ----------------------------------------------------------------------------
-# Declare the top-level physical power ports.
+# 2. SUPPLY PORTS (CHIP BOUNDARY)
+# ============================================================================
+# Declare the physical power and ground ports of the top-level module.
 create_supply_port VDD
 create_supply_port VSS
 
-# 3. SUPPLY NETS (INTERNAL LOGICAL NETWORK)
-# ----------------------------------------------------------------------------
-# Create internal supply rails. '-reuse' allows connection to multiple ports.
-# '-domain' binds these nets explicitly to the TOP domain.
-create_supply_net VDD -domain TOP -reuse
-create_supply_net VSS -domain TOP -reuse
+# 3. SUPPLY NETS (INTERNAL LOGICAL NETS)
+# ============================================================================
+# Create the internal supply rails. No -domain or -reuse flags are needed
+# as DC creates them in the current scope (TOP) by default.
+create_supply_net VDD
+create_supply_net VSS
 
-# 4. SUPPLY NET TO PORT CONNECTION
-# ----------------------------------------------------------------------------
-# Physically connect the internal nets to the top-level ports.
+# 4. CONNECT SUPPLY NETS TO PORTS
+# ============================================================================
+# Physically connect the internal rails to the top-level ports.
 connect_supply_net VDD -ports VDD
 connect_supply_net VSS -ports VSS
 
-# 5. SUPPLY SET DEFINITION (PRIMARY POWER AND GROUND)
-# ----------------------------------------------------------------------------
-# Create a named supply set "DEFAULT_SS" which bundles the primary rails.
-# This is the standard way to associate voltages with a domain.
-create_supply_set DEFAULT_SS \
-    -power VDD \
-    -ground VSS
+# 5. ASSIGN PRIMARY POWER/GROUND TO THE DOMAIN
+# ============================================================================
+# This is the essential command that binds the supply nets to the domain
+# for all timing and power analysis during synthesis.
+set_domain_supply_net TOP -primary_power_net VDD -primary_ground_net VSS
 
-# Assign the supply set to the primary power/ground of the TOP domain.
-set_domain_supply_net TOP \
-    -primary_power_net VDD \
-    -primary_ground_net VSS
+# 6. SUPPLY SET DEFINITION (BUNDLED VOLTAGE GROUP)
+# ============================================================================
+# A supply set bundles the power and ground nets into a single named object.
+# This is a standard practice for formal verification and UPF-based flows,
+# ensuring that the tool recognizes VDD/VSS as a paired power source.
+create_supply_set SS_DEFAULT
+set_supply_set -power VDD -ground VSS SS_DEFAULT
 
-# 6. POWER MANAGEMENT STRATEGY (EXPLICIT OVERRIDE)
-# ----------------------------------------------------------------------------
-# Although this is a single-domain design, we must explicitly tell the tool
-# to NOT insert isolation cells or level shifters.
-# If omitted, the tool may incorrectly try to map these cells from the library,
-# leading to 'unmapped cells' errors during compile_ultra.
+# 7. POWER STATE TABLE (PST) FOR FORMAL VERIFICATION
+# ============================================================================
+# Defines the voltage values for the supply net. While DC ignores PST during
+# synthesis, it is required for downstream formal MV verification (MV-SIM)
+# and for complete UPF compliance.
+add_power_state VDD -state ALWAYS_ON -logic_expr 1 -voltage 0.6
+add_power_state VSS -state ALWAYS_ON -logic_expr 0 -voltage 0.0
 
-set_isolation TOP \
-    -domain TOP \
-    -applies_to outputs \
-    -no_isolation
+# 8. ISOLATION POLICY OVERRIDE
+# ============================================================================
+# Since this is a single-domain (always-on) design, no isolation cells are
+# required. This explicit override prevents the tool from attempting to
+# map isolation cells if the library contains them, which would cause
+# unnecessary area and routing overhead.
+set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation
 
-set_level_shifter TOP \
-    -domain TOP \
-    -applies_to outputs \
-    -no_shifters
-
-# 7. POWER STATE TABLE (PST) FOR VERIFICATION
-# ----------------------------------------------------------------------------
-# Defines the valid operating states of the supply net.
-# This is critical for formal verification (MV-SIM / VCLP) to understand
-# that VDD is always 0.6V and never shut off (always-on).
-add_power_state VDD \
-    -state ALWAYS_ON \
-    -logic_expr {1'b1} \
-    -voltage {0.6}
-
-# End of Golden UPF
+# ============================================================================
+# END OF GOLDEN UPF
+# ============================================================================
