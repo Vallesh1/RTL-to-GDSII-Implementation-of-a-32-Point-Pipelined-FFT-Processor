@@ -30,12 +30,20 @@ set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementatio
 set UPF_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf"
 
 set_app_var link_library "* $LINK_LIBRARY"
-set_app_var target_library "$LINK_LIBRARY"
+set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
 
 # ============================================================================
 # 2. DESIGN SETUP & INGESTION
 # ============================================================================
-create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ./work/${DESIGN_LIBRARY}
+# FILE-005 Fix: Ensure the directory actually exists before creating the library
+set WORK_DIR "./work"
+if {![file exists $WORK_DIR]} {
+    file mkdir $WORK_DIR
+}
+
+# Added -force to overwrite if you re-run the script
+create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force
+
 read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
 current_design $DESIGN_NAME
 link
