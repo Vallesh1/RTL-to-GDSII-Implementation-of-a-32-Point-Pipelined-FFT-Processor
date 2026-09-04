@@ -1,4 +1,6 @@
- 
+
+
+
                               Fusion Compiler (TM)
 
                 Version V-2023.12-SP4 for linux64 - Jun 03, 2024
@@ -19,32 +21,31 @@
  Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
-
+ 
 Information: Term was not able to be set up using xterm-256color . Using "xterm" by default instead. (CLE-10)
 fc_shell> start_gui
-fc_shell> 
-set_host_options -max_cores 4
+fc_shell> set_host_options -max_cores 4
 1
-set DESIGN_NAME "FFT"
+fc_shell> set DESIGN_NAME "FFT"
 FFT
 set LIBRARY_SUFFIX "_lib"
 _lib
 set DESIGN_LIBRARY "${DESIGN_NAME}${LIBRARY_SUFFIX}"
 FFT_lib
-set OUTPUTS_DIR "./outputs"
+fc_shell> set OUTPUTS_DIR "./outputs"
 ./outputs
 if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
-set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+fc_shell> set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
 /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
 /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
 /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
 /home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm
-set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db \
+fc_shell> set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db \
 /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db \
 /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
-set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+fc_shell> set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
 /home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
 set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v
@@ -52,16 +53,16 @@ set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementatio
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
 set UPF_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
-set_app_var link_library "* $LINK_LIBRARY"
+fc_shell> set_app_var link_library "* $LINK_LIBRARY"
 * /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
 set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
-set WORK_DIR "./work"
+fc_shell> set WORK_DIR "./work"
 ./work
 if {![file exists $WORK_DIR]} {
     file mkdir $WORK_DIR
 }
-create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
+fc_shell> create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
 Warning: Pitch 0.074000 for layer M4 is less than sum(0.100000) of minSpacing(0.040000) and minWidth(0.060000).(saed14nm_1p9m_mw.tf line:727) (TECH-223)
 Warning: Pitch 0.600000 for layer MRDL is less than sum(4.000000) of minSpacing(2.000000) and minWidth(2.000000).(saed14nm_1p9m_mw.tf line:1356) (TECH-223)
 Warning: Layer 'M2' is missing the attribute 'maskEndMaxWidthThresholdTbl'. (saed14nm_1p9m_mw.tf line 618) (TECH-026)
@@ -177,7 +178,7 @@ Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 
 Warning: Technology used to create frame-view and current technology have inconsistency: Min spacings are different for layer 'M1'. (FRAM-054)
 Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 'EXPLORE_physical_only', is inconsistent with the current technology 'saed14nm_1p9m_mw.tf' of library 'FFT_lib'. Please run derive_design_level_via_regions to generate up-do-date via region in the design library. (NDM-102)
 {FFT_lib}
-fc_shell> derive_design_level_via_regions
+fc_shell> w[Kderive_design_level_via_regions
 Information: Using technology 'saed14nm_1p9m_mw.tf' to derive design library via region in the frame-views of library 'saed14lvt_ff0p7vm40c'. (FRAM-088)
 Via regions for library saed14lvt_ff0p7vm40c created successfully
 Information: Using technology 'saed14nm_1p9m_mw.tf' to derive design library via region in the frame-views of library 'saed14rvt_ff0p7vm40c'. (FRAM-088)
@@ -190,8 +191,7 @@ Information: Using technology 'saed14nm_1p9m_mw.tf' to derive design library via
 Via regions for library EXPLORE_physical_only created successfully
 Finish deriving library override via region
 1
-fc_shell> 
-read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
+fc_shell> read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
 Information: Reading Verilog into new design 'FFT' in library 'FFT_lib'. (VR-012)
 Loading verilog file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v'
 Number of modules read: 54
@@ -201,14 +201,17 @@ Total nets in all modules: 20747
 Total instances in all modules: 14249
 Elapsed = 00:00:00.22, CPU = 00:00:00.17
 1
-fc_shell> link_block
-fc_shell> 
-current_design $DESIGN_NAME
+link_block
+fc_shell> Using libraries: FFT_lib saed14lvt_ff0p7vm40c saed14rvt_ff0p7vm40c saed14lvt_c_physical_only saed14rvt_c_physical_only EXPLORE_physical_only
+Linking block FFT_lib:FFT.design
+Information: User units loaded from library 'saed14lvt_ff0p7vm40c' (LNK-040)
+Design 'FFT' was successfully linked.
+fc_shell> current_design $DESIGN_NAME
 {FFT_lib:FFT.design}
 link
 Warning: Block 'FFT_lib:FFT.design' is already linked. (LNK-067)
 0
-if {[file exists [which $UPF_FILE]]} {
+fc_shell> if {[file exists [which $UPF_FILE]]} {
     set_app_options -name mv.upf.enable_golden_upf -value true
     load_upf $UPF_FILE
     puts "Info: Running commit_upf"
@@ -249,7 +252,7 @@ Information: Total 0 power switch cell(s) in the design. (MV-021)
 Information: Total 0 netlist change(s) and disconnections have been made to resolve conflicts between power intent and PG netlist. (UPF-073)
 Information: UPF has been successfully committed. (UPF-072)
 1
-read_sdc $SDC_FILE
+fc_shell> read_sdc $SDC_FILE
 Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
 Information: Timer using 4 threads
 Warning: The 'set_max_fanout' command is not supported in this program.  The command will be ignored. (CSTR-011)
@@ -258,3 +261,4 @@ Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_mult
 Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
 Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
 1
+fc_shell> 

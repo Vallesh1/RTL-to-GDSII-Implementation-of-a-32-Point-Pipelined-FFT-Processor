@@ -1,7 +1,7 @@
 # ============================================================================
 # FUSION COMPILER PNR SCRIPT - 32-POINT FFT
 # ============================================================================
-set_host_options -max_cores 8
+set_host_options -max_cores 4
 
 # ============================================================================
 # 1. GLOBAL VARIABLES & PATHS 
@@ -43,6 +43,8 @@ if {![file exists $WORK_DIR]} {
 
 # Added -force to overwrite if you re-run the script
 create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
+
+derive_design_level_via_regions
 
 read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
 current_design $DESIGN_NAME

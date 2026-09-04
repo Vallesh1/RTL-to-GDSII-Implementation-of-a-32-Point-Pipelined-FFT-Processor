@@ -248,4 +248,9 @@ Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_mult
 Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
 Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
 1
-fc_shell> 
+fc_shell> quit
+Maximum memory usage for this session: 839.57 MB
+Maximum memory usage for this session including child processes: 839.57 MB
+CPU usage for this session:     25 seconds (  0.01 hours)
+Elapsed time for this session:    477 seconds (  0.13 hours)
+Thank you for using Fusion Compiler.
