@@ -111,7 +111,7 @@ set_svf ${OUTPUTS_DIR}/${DESIGN_NAME}.mapped.svf
 # ============================================================================
 # Note: Order doesn't strictly matter for analyze, but top-level FFT.v is listed first for clarity.
 #analyze -f verilog [glob $opensparc/lib/m1/*]
-analyze -f verilog [list \
+#analyze -f verilog [list \
     ${RTL_SOURCE_PATH}/FFT.v \
     ${RTL_SOURCE_PATH}/radix2.v \
     ${RTL_SOURCE_PATH}/ROM_16.v \
@@ -124,6 +124,7 @@ analyze -f verilog [list \
     ${RTL_SOURCE_PATH}/shift_2.v \
     ${RTL_SOURCE_PATH}/shift_1.v ]
 
+analyze -f verilog [glob $RTL_SOURCE_PATH/*.v]
 elaborate ${DESIGN_NAME}
 current_design ${DESIGN_NAME}
 link
@@ -192,7 +193,7 @@ group_path -from [all_inputs] -to [all_outputs] -name in2out
 # ============================================================================
 # 13. ANALYZE MV FEASIBILITY (CHECK PM CELL MAPPING)
 # ============================================================================
-analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
+#analyze_mv_feasibility > ${OUTPUTS_DIR}/${DESIGN_NAME}.analyze_mv_feasibility.rpt
 
 # ============================================================================
 # 14. HIGH-CONSTRAINT SYNTHESIS COMPILE
@@ -250,6 +251,8 @@ set verilogout_show_unconnected_pins true
 set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
 
 compile_ultra -incremental
+
+change_names -rules verilog -hierarchy
 
 # ============================================================================
 # 17. WRITE FINAL MAPPED NETLISTS
