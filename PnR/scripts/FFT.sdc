@@ -29,8 +29,11 @@ group_path -name IO_REG2OUT -from [all_registers] -to [all_outputs] -weight 1.0
 
 set_false_path -from [get_ports reset] -to [all_registers]
 
-# Removed leading asterisks to prevent matching "clk_gate_" cells
-set_multicycle_path -setup 2 -from [get_cells count_y_reg*] -to [get_cells result_*_reg*]
-set_multicycle_path -hold 1 -from [get_cells count_y_reg*] -to [get_cells result_*_reg*]
+# Filter out ALL clock gating cells explicitly to prevent UIC-009
+set mcp_start [filter_collection [get_cells *count_y_reg*] "full_name !~ *clk_gate*"]
+set mcp_end   [filter_collection [get_cells *result_*_reg*] "full_name !~ *clk_gate*"]
+
+set_multicycle_path -setup 2 -from $mcp_start -to $mcp_end
+set_multicycle_path -hold 1  -from $mcp_start -to $mcp_end
 
 set_clock_gating_check -setup 0.15 -hold 0.05 [get_clocks ${CLK_NAME}]
