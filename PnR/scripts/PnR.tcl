@@ -59,7 +59,7 @@ if {[file exists [which $UPF_FILE]]} {
 read_sdc $SDC_FILE
 
 # ============================================================================
-# 3. TLU+ PARASITIC FILES (ARRAY-BASED LOADING)
+# 3. TLU+ PARASITIC FILES & TIMING CORNERS
 # ============================================================================
 set parasitic1 "tlup_max"
 set tluplus_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus"
@@ -74,6 +74,11 @@ foreach p [array name tluplus_file] {
     read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p
 }
 
+# CRITICAL FIX: Create the timing corners in the FC database before using them
+create_corner ss0p6v125c
+create_corner ff0p7vm40c
+
+# Now the tool can successfully map the parasitics to the created corners
 set_parasitics_parameters \
     -early_spec tlup_min \
     -late_spec tlup_max \
@@ -83,7 +88,9 @@ set_parasitics_parameters \
 
 set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
 set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
-set_operating_conditions -max ss0p6v125c -min ff0p7vm40c
+
+# Apply the operating conditions to the specific corners
+set_operating_conditions -max ss0p6v125c -max_corner ss0p6v125c -min ff0p7vm40c -min_corner ff0p7vm40c
 
 check_mv_design
 
