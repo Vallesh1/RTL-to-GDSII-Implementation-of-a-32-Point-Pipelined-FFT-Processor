@@ -20,7 +20,7 @@ set_load 0.05 [all_outputs]
 
 set_max_transition 0.3 [current_design]
 set_max_capacitance 0.1 [current_design]
-set_max_fanout 30 [current_design]
+#set_max_fanout 30 [current_design]
 
 group_path -name CRITICAL_R2R -from [all_registers] -to [all_registers] -weight 2.0
 group_path -name IO_IN2OUT -from [all_inputs] -to [all_outputs] -weight 1.0
@@ -29,8 +29,8 @@ group_path -name IO_REG2OUT -from [all_registers] -to [all_outputs] -weight 1.0
 
 set_false_path -from [get_ports reset] -to [all_registers]
 
-# Modified to use get_registers to avoid targeting clock gating cells
-set_multicycle_path -setup 2 -from [get_registers *count_y_reg*] -to [get_registers *result_*_reg*]
-set_multicycle_path -hold 1 -from [get_registers *count_y_reg*] -to [get_registers *result_*_reg*]
+# Removed leading asterisks to prevent matching "clk_gate_" cells
+set_multicycle_path -setup 2 -from [get_cells count_y_reg*] -to [get_cells result_*_reg*]
+set_multicycle_path -hold 1 -from [get_cells count_y_reg*] -to [get_cells result_*_reg*]
 
 set_clock_gating_check -setup 0.15 -hold 0.05 [get_clocks ${CLK_NAME}]
