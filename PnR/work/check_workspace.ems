@@ -1,0 +1,18 @@
+<Database>
+versionNumber:2
+Name/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/PnR/work/check_workspace.ems
+Creation TimeFri Sep  4 16:06:39 2026
+Modified TimeFri Sep  4 16:06:40 2026
+Design Name
+Library Name
+</Database>
+<RuleCount>
+LM-0501
+LMUI-0091
+</RuleCount>
+<UserDefinedRules>
+</UserDefinedRules>
+<Messages>
+LMUI-009Warningpara1-allow_missing10para2option10para3physical_only10
+LM-050Informationpara1210610para2s10
+</Messages>

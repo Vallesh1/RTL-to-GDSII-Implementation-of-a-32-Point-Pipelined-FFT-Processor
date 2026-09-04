@@ -1,0 +1,66 @@
+#@ # 
+#@ # Running fc_shell Version V-2023.12-SP4 for linux64 -- Jun 03, 2024
+#@ # Date:   Fri Sep  4 16:02:45 2026
+#@ # Run by: MulukuriVNath@mavenserver-RH3
+#@ 
+
+start_gui
+gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {Logical Cells}
+set_host_options -max_cores 8
+set DESIGN_NAME "FFT"
+set LIBRARY_SUFFIX "_lib"
+set DESIGN_LIBRARY "${DESIGN_NAME}${LIBRARY_SUFFIX}"
+set OUTPUTS_DIR "./outputs"
+if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
+set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
+
+set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db \
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db \
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+
+set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+
+set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
+set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc"
+set UPF_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf"
+set_app_var link_library "* $LINK_LIBRARY"
+set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
+set WORK_DIR "./work"
+if {![file exists $WORK_DIR]} {
+    file mkdir $WORK_DIR
+}
+create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force
+create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
+read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
+link_block
+current_design $DESIGN_NAME
+link
+if {[file exists [which $UPF_FILE]]} {
+    set_app_options -name mv.upf.enable_golden_upf -value true
+    load_upf $UPF_FILE
+    puts "Info: Running commit_upf"
+    commit_upf
+}
+read_sdc $SDC_FILE
+set parasitic1 "tlup_max"
+set tluplus_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus"
+set layer_map_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
+
+set parasitic2 "tlup_min"
+set tluplus_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus"
+set layer_map_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
+
+foreach p [array name tluplus_file] {
+    puts "Info: read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p"
+    read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p
+}
+set_parasitics_parameters \
+    -early_spec tlup_min \
+    -late_spec tlup_max \
+    -early_temperature 40 \
+    -late_temperature 125 \
+    -corners {ss0p6v125c ff0p7vm40c}

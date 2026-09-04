@@ -1,0 +1,30 @@
+upf_version 2.0
+
+# 1. Create Top-Level Power Domain
+create_power_domain TOP -include_scope
+
+# 2. Create Supply Ports
+create_supply_port VDD
+create_supply_port VSS
+
+# 3. Create Supply Nets (REMOVED '-domain TOP' to make them domain-independent)
+create_supply_net VDD
+create_supply_net VSS
+
+# 4. Connect Ports to Nets
+connect_supply_net VDD -ports VDD
+connect_supply_net VSS -ports VSS
+
+# 5. Create Supply Set (Will now succeed without UPF-180)
+create_supply_set SS_DEFAULT \
+    -function {power VDD} \
+    -function {ground VSS}
+
+# 6. Bind Supply Nets to Domain
+set_domain_supply_net TOP -primary_power_net VDD -primary_ground_net VSS
+
+# 7. Define Unified Power State
+add_power_state SS_DEFAULT -state ON {-supply_expr {power == {FULL_ON 0.6} && ground == {FULL_ON 0.0}}}
+
+# 8. Disable Isolation
+set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation

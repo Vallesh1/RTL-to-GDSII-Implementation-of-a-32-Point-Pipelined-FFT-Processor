@@ -1,0 +1,344 @@
+
+
+
+                              Fusion Compiler (TM)
+
+                Version V-2023.12-SP4 for linux64 - Jun 03, 2024
+                           Base build date 2024/05/13
+
+                    Copyright (c) 1988 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+ 
+Information: Term was not able to be set up using xterm-256color . Using "xterm" by default instead. (CLE-10)
+fc_shell> start_gui
+fc_shell> set_host_options -max_cores 8
+1
+fc_shell> set DESIGN_NAME "FFT"
+FFT
+set LIBRARY_SUFFIX "_lib"
+_lib
+set DESIGN_LIBRARY "${DESIGN_NAME}${LIBRARY_SUFFIX}"
+FFT_lib
+fc_shell> set OUTPUTS_DIR "./outputs"
+./outputs
+if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
+fc_shell> set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
+/home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
+/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm
+set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db \
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db \
+/home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+fc_shell> set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
+set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v
+set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
+set UPF_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf"
+/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
+fc_shell> set_app_var link_library "* $LINK_LIBRARY"
+* /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+fc_shell> set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
+/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
+fc_shell> set WORK_DIR "./work"
+./work
+fc_shell> if {![file exists $WORK_DIR]} {
+    file mkdir $WORK_DIR
+}
+fc_shell> create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force
+Error: unknown option '-force' (CMD-010)
+Information: script '/tmp/fc_shell-2.wzOcBE'
+            	stopped at line 1 due to error. (CMD-081)
+Extended error info:
+
+    while executing
+"create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force"
+    (file "/tmp/fc_shell-2.wzOcBE" line 1)
+ -- End Extended Error Info
+fc_shell> create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
+Warning: Pitch 0.074000 for layer M4 is less than sum(0.100000) of minSpacing(0.040000) and minWidth(0.060000).(saed14nm_1p9m_mw.tf line:727) (TECH-223)
+Warning: Pitch 0.600000 for layer MRDL is less than sum(4.000000) of minSpacing(2.000000) and minWidth(2.000000).(saed14nm_1p9m_mw.tf line:1356) (TECH-223)
+Warning: Layer 'M2' is missing the attribute 'maskEndMaxWidthThresholdTbl'. (saed14nm_1p9m_mw.tf line 618) (TECH-026)
+Warning: Layer 'M2' is missing the attribute 'maskEndToEndKeepoutLengthTbl'. (saed14nm_1p9m_mw.tf line 618) (TECH-026)
+Warning: Layer 'M2' is missing the attribute 'maskEndToSideKeepoutLengthTbl'. (saed14nm_1p9m_mw.tf line 618) (TECH-026)
+Warning: Layer 'M2' is missing the attribute 'maskEndToEndMinSpacingTbl'. (saed14nm_1p9m_mw.tf line 618) (TECH-026)
+Warning: Layer 'M2' is missing the attribute 'maskEndToSideMinSpacingTbl'. (saed14nm_1p9m_mw.tf line 618) (TECH-026)
+Warning: The value of the pitch attribute of layer M4 is invalid. Attribute pitch should not be less than sum of attribute minWidth and minSpacing. (saed14nm_1p9m_mw.tf line 727) (TECH-050)
+Warning: The value of the pitch attribute of layer MRDL is invalid. Attribute pitch should not be less than sum of attribute minWidth and minSpacing. (saed14nm_1p9m_mw.tf line 1356) (TECH-050)
+Information: ContactCode 'VIA12SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1667) (TECH-084)
+Information: ContactCode 'VIA12BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1685) (TECH-084)
+Information: ContactCode 'VIA12BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1704) (TECH-084)
+Information: ContactCode 'VIA12LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1723) (TECH-084)
+Information: ContactCode 'VIA12SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1742) (TECH-084)
+Information: ContactCode 'VIA12BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1761) (TECH-084)
+Information: ContactCode 'VIA12BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1780) (TECH-084)
+Information: ContactCode 'VIA12LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1799) (TECH-084)
+Information: ContactCode 'VIA1_32SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1818) (TECH-084)
+Information: ContactCode 'VIA1_32BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1837) (TECH-084)
+Information: ContactCode 'VIA1_32BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1856) (TECH-084)
+Information: ContactCode 'VIA1_32LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1875) (TECH-084)
+Information: ContactCode 'VIA1_32SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1894) (TECH-084)
+Information: ContactCode 'VIA1_32BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1913) (TECH-084)
+Information: ContactCode 'VIA1_32BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1932) (TECH-084)
+Information: ContactCode 'VIA1_32LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1951) (TECH-084)
+Information: ContactCode 'VIA12_3SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1970) (TECH-084)
+Information: ContactCode 'VIA12_3BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 1989) (TECH-084)
+Information: ContactCode 'VIA12_3BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2008) (TECH-084)
+Information: ContactCode 'VIA12_3LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2027) (TECH-084)
+Information: ContactCode 'VIA12_3SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2046) (TECH-084)
+Information: ContactCode 'VIA12_3BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2065) (TECH-084)
+Information: ContactCode 'VIA12_3BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2084) (TECH-084)
+Information: ContactCode 'VIA12_3LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2103) (TECH-084)
+Information: ContactCode 'VIA1_32_3SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2122) (TECH-084)
+Information: ContactCode 'VIA1_32_3BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2141) (TECH-084)
+Information: ContactCode 'VIA1_32_3BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2160) (TECH-084)
+Information: ContactCode 'VIA1_32_3LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2179) (TECH-084)
+Information: ContactCode 'VIA1_32_3SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2198) (TECH-084)
+Information: ContactCode 'VIA1_32_3BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2217) (TECH-084)
+Information: ContactCode 'VIA1_32_3BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2236) (TECH-084)
+Information: ContactCode 'VIA1_32_3LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.04. (line 2255) (TECH-084)
+Information: ContactCode 'VIA23SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2275) (TECH-084)
+Information: ContactCode 'VIA23BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2295) (TECH-084)
+Information: ContactCode 'VIA23BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2314) (TECH-084)
+Information: ContactCode 'VIA23LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2333) (TECH-084)
+Information: ContactCode 'VIA23SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2352) (TECH-084)
+Information: ContactCode 'VIA23BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2371) (TECH-084)
+Information: ContactCode 'VIA23BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2390) (TECH-084)
+Information: ContactCode 'VIA23LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2409) (TECH-084)
+Information: ContactCode 'VIA2_33SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2428) (TECH-084)
+Information: ContactCode 'VIA2_33BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2447) (TECH-084)
+Information: ContactCode 'VIA2_33BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2466) (TECH-084)
+Information: ContactCode 'VIA2_33LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2485) (TECH-084)
+Information: ContactCode 'VIA2_33SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2504) (TECH-084)
+Information: ContactCode 'VIA2_33BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2523) (TECH-084)
+Information: ContactCode 'VIA2_33BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2542) (TECH-084)
+Information: ContactCode 'VIA2_33LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2561) (TECH-084)
+Information: ContactCode 'VIA23_3SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2580) (TECH-084)
+Information: ContactCode 'VIA23_3BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2599) (TECH-084)
+Information: ContactCode 'VIA23_3BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2618) (TECH-084)
+Information: ContactCode 'VIA23_3LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2637) (TECH-084)
+Information: ContactCode 'VIA23_3SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2656) (TECH-084)
+Information: ContactCode 'VIA23_3BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2675) (TECH-084)
+Information: ContactCode 'VIA23_3BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2694) (TECH-084)
+Information: ContactCode 'VIA23_3LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2712) (TECH-084)
+Information: ContactCode 'VIA2_33_3SQ_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2731) (TECH-084)
+Information: ContactCode 'VIA2_33_3BAR1_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2750) (TECH-084)
+Information: ContactCode 'VIA2_33_3BAR2_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2769) (TECH-084)
+Information: ContactCode 'VIA2_33_3LG_C' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2788) (TECH-084)
+Information: ContactCode 'VIA2_33_3SQ' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2807) (TECH-084)
+Information: ContactCode 'VIA2_33_3BAR1' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2826) (TECH-084)
+Information: ContactCode 'VIA2_33_3BAR2' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2845) (TECH-084)
+Information: ContactCode 'VIA2_33_3LG' has a minimum cut spacing 0.026 that is less than the cut layer minimum spacing 0.05. (line 2864) (TECH-084)
+Information: Loading technology file '/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf' (FILE-007)
+...Created 5 lib groups
+
+... 5 cell libraries to build.
+
+
+... checking whether need to build cell library: saed14lvt_c.ndm (1/5)
+... checking whether can reuse library under output directory
+cannot reuse CLIBs/saed14lvt_c.ndm under output directory: library not exists
+
+... checking whether need to build cell library: saed14rvt_c.ndm (2/5)
+... checking whether can reuse library under output directory
+cannot reuse CLIBs/saed14rvt_c.ndm under output directory: library not exists
+
+... checking whether need to build cell library: saed14lvt_c_physical_only.ndm (3/5)
+... checking whether can reuse library under output directory
+cannot reuse CLIBs/saed14lvt_c_physical_only.ndm under output directory: library not exists
+
+... checking whether need to build cell library: saed14rvt_c_physical_only.ndm (4/5)
+... checking whether can reuse library under output directory
+cannot reuse CLIBs/saed14rvt_c_physical_only.ndm under output directory: library not exists
+
+... checking whether need to build cell library: EXPLORE_physical_only.ndm (5/5)
+... checking whether can reuse library under output directory
+cannot reuse CLIBs/EXPLORE_physical_only.ndm under output directory: library not exists
+
+... processing cell library: saed14lvt_c.ndm (1/5)
+... run lm_shell to build the cell library
+...............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+............................................................................
+created new cell library under output directory: CLIBs/saed14lvt_c.ndm
+
+... processing cell library: saed14rvt_c.ndm (2/5)
+... run lm_shell to build the cell library
+...............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+............................................................................
+created new cell library under output directory: CLIBs/saed14rvt_c.ndm
+
+... processing cell library: saed14lvt_c_physical_only.ndm (3/5)
+... run lm_shell to build the cell library
+.....................
+created new cell library under output directory: CLIBs/saed14lvt_c_physical_only.ndm
+
+... processing cell library: saed14rvt_c_physical_only.ndm (4/5)
+... run lm_shell to build the cell library
+.....................
+created new cell library under output directory: CLIBs/saed14rvt_c_physical_only.ndm
+
+... processing cell library: EXPLORE_physical_only.ndm (5/5)
+... run lm_shell to build the cell library
+...............................................................................
+..............................................................................
+................................................................
+created new cell library under output directory: CLIBs/EXPLORE_physical_only.ndm
+
+
+Information: Successfully built 5 reference libraries: saed14lvt_c.ndm saed14rvt_c.ndm saed14lvt_c_physical_only.ndm saed14rvt_c_physical_only.ndm EXPLORE_physical_only.ndm. (LIB-093)
+Warning: Technology used to create frame-view and current technology have inconsistency: Min spacings are different for layer 'M1'. (FRAM-054)
+Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 'saed14lvt_ff0p7vm40c', is inconsistent with the current technology 'saed14nm_1p9m_mw.tf' of library 'FFT_lib'. Please run derive_design_level_via_regions to generate up-do-date via region in the design library. (NDM-102)
+Warning: Technology used to create frame-view and current technology have inconsistency: Min spacings are different for layer 'M1'. (FRAM-054)
+Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 'saed14rvt_ff0p7vm40c', is inconsistent with the current technology 'saed14nm_1p9m_mw.tf' of library 'FFT_lib'. Please run derive_design_level_via_regions to generate up-do-date via region in the design library. (NDM-102)
+Warning: Technology used to create frame-view and current technology have inconsistency: Min spacings are different for layer 'M1'. (FRAM-054)
+Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 'saed14lvt_c_physical_only', is inconsistent with the current technology 'saed14nm_1p9m_mw.tf' of library 'FFT_lib'. Please run derive_design_level_via_regions to generate up-do-date via region in the design library. (NDM-102)
+Warning: Technology used to create frame-view and current technology have inconsistency: Min spacings are different for layer 'M1'. (FRAM-054)
+Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 'saed14rvt_c_physical_only', is inconsistent with the current technology 'saed14nm_1p9m_mw.tf' of library 'FFT_lib'. Please run derive_design_level_via_regions to generate up-do-date via region in the design library. (NDM-102)
+Warning: Technology used to create frame-view and current technology have inconsistency: Min spacings are different for layer 'M1'. (FRAM-054)
+Warning: Technology 'saed14rvt_1p9m.tf' used for frame-view creation in library 'EXPLORE_physical_only', is inconsistent with the current technology 'saed14nm_1p9m_mw.tf' of library 'FFT_lib'. Please run derive_design_level_via_regions to generate up-do-date via region in the design library. (NDM-102)
+{FFT_lib}
+fc_shell> read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
+Information: Reading Verilog into new design 'FFT' in library 'FFT_lib'. (VR-012)
+Loading verilog file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v'
+Number of modules read: 54
+Top level ports: 60
+Total ports in all modules: 4289
+Total nets in all modules: 20747
+Total instances in all modules: 14249
+Elapsed = 00:00:00.51, CPU = 00:00:00.17
+1
+link_block
+fc_shell> Using libraries: FFT_lib saed14lvt_ff0p7vm40c saed14rvt_ff0p7vm40c saed14lvt_c_physical_only saed14rvt_c_physical_only EXPLORE_physical_only
+Linking block FFT_lib:FFT.design
+Information: User units loaded from library 'saed14lvt_ff0p7vm40c' (LNK-040)
+Design 'FFT' was successfully linked.
+fc_shell> current_design $DESIGN_NAME
+{FFT_lib:FFT.design}
+fc_shell> link
+Warning: Block 'FFT_lib:FFT.design' is already linked. (LNK-067)
+0
+fc_shell> if {[file exists [which $UPF_FILE]]} {
+    set_app_options -name mv.upf.enable_golden_upf -value true
+    load_upf $UPF_FILE
+    puts "Info: Running commit_upf"
+    commit_upf
+}
+Information: Loading UPF file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf' (FILE-007)
+upf_version 2.0
+# 1. Create Top-Level Power Domain
+create_power_domain TOP -include_scope
+# 2. Create Supply Ports
+create_supply_port VDD
+create_supply_port VSS
+# 3. Create Supply Nets (REMOVED '-domain TOP' to make them domain-independent)
+create_supply_net VDD
+create_supply_net VSS
+# 4. Connect Ports to Nets
+connect_supply_net VDD -ports VDD
+connect_supply_net VSS -ports VSS
+# 5. Create Supply Set (Will now succeed without UPF-180)
+create_supply_set SS_DEFAULT \
+    -function {power VDD} \
+    -function {ground VSS}
+# 6. Bind Supply Nets to Domain
+set_domain_supply_net TOP -primary_power_net VDD -primary_ground_net VSS
+# 7. Define Unified Power State
+add_power_state SS_DEFAULT -state ON {-supply_expr {power == {FULL_ON 0.6} && ground == {FULL_ON 0.0}}}
+# 8. Disable Isolation
+set_isolation ISO_DISABLE -domain TOP -applies_to outputs -no_isolation
+Information: Isolation strategy 'ISO_DISABLE' specifies no elements with the -no_isolation option. (UPF-098)
+Info: Running commit_upf
+Information: Related supplies are not explicitly specified on 60 port(s) and primary supplies (VDD, VSS) of top power domain will be assumed as the related supply. (UPF-467)
+Information: Total 0 isolation cell(s) in the design. (MV-021)
+Information: Total 0 level shifter cell(s) in the design. (MV-021)
+Information: Total 0 enable level shifter cell(s) in the design. (MV-021)
+Information: Total 0 repeater cell(s) in the design. (MV-021)
+Information: Total 0 retention cell(s) in the design. (MV-021)
+Information: Total 0 power switch cell(s) in the design. (MV-021)
+Information: Total 0 netlist change(s) and disconnections have been made to resolve conflicts between power intent and PG netlist. (UPF-073)
+Information: UPF has been successfully committed. (UPF-072)
+1
+fc_shell> read_sdc $SDC_FILE
+Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
+Information: Timer using 8 threads
+Warning: The 'set_max_fanout' command is not supported in this program.  The command will be ignored. (CSTR-011)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+1
+fc_shell> set parasitic1 "tlup_max"
+tlup_max
+set tluplus_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus"
+/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus
+set layer_map_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
+/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map
+set parasitic2 "tlup_min"
+tlup_min
+set tluplus_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus"
+/home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus
+set layer_map_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
+/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map
+fc_shell> foreach p [array name tluplus_file] {
+    puts "Info: read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p"
+    read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p
+}
+Info: read_parasitic_tech -tlup /home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus -layermap /home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map -name tlup_min
+WARNING: Layer mapping file warning. Tech layer 'M1_3' mapped in layer mapping file cannot be found in technology section.
+WARNING: Layer mapping file warning. Tech layer 'M2_3' mapped in layer mapping file cannot be found in technology section.
+WARNING: Layer mapping file warning. Tech layer 'M3_3' mapped in layer mapping file cannot be found in technology section.
+Info: read_parasitic_tech -tlup /home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus -layermap /home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map -name tlup_max
+WARNING: Layer mapping file warning. Tech layer 'M1_3' mapped in layer mapping file cannot be found in technology section.
+WARNING: Layer mapping file warning. Tech layer 'M2_3' mapped in layer mapping file cannot be found in technology section.
+WARNING: Layer mapping file warning. Tech layer 'M3_3' mapped in layer mapping file cannot be found in technology section.
+fc_shell> set_parasitics_parameters \
+    -early_spec tlup_min \
+    -late_spec tlup_max \
+    -early_temperature 40 \
+    -late_temperature 125 \
+    -corners {ss0p6v125c ff0p7vm40c}
+Warning: Nothing implicitly matched 'ss0p6v125c' (SEL-003)
+Warning: Nothing implicitly matched 'ff0p7vm40c' (SEL-003)
+Error: Nothing matched for -corners (SEL-005)
+Error: empty corner list!
+Error: 0
+      	Use error_info for more info. (CMD-013)
+Information: script '/tmp/fc_shell-be-2.zLOtcM'
+            	stopped at line 1 due to error. (CMD-081)
+Extended error info:
+0
+    while executing
+"set_parasitics_parameters \
+    -early_spec tlup_min \
+    -late_spec tlup_max \
+    -early_temperature 40 \
+    -late_temperature 125 \
+    -corners ..."
+    (file "/tmp/fc_shell-be-2.zLOtcM" line 1)
+ -- End Extended Error Info
+fc_shell> 

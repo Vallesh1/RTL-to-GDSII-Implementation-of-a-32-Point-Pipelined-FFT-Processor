@@ -42,7 +42,7 @@ if {![file exists $WORK_DIR]} {
 }
 
 # Added -force to overwrite if you re-run the script
-create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force
+create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
 
 read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
 current_design $DESIGN_NAME
