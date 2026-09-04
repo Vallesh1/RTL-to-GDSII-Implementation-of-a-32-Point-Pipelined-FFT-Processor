@@ -47,7 +47,7 @@ set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
 fc_shell> set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
 /home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
-set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
+fc_shell> set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v
 set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
@@ -55,23 +55,13 @@ set UPF_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementatio
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
 fc_shell> set_app_var link_library "* $LINK_LIBRARY"
 * /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
-fc_shell> set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
+set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
 fc_shell> set WORK_DIR "./work"
 ./work
-fc_shell> if {![file exists $WORK_DIR]} {
+if {![file exists $WORK_DIR]} {
     file mkdir $WORK_DIR
 }
-fc_shell> create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force
-Error: unknown option '-force' (CMD-010)
-Information: script '/tmp/fc_shell-2.wzOcBE'
-            	stopped at line 1 due to error. (CMD-081)
-Extended error info:
-
-    while executing
-"create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY} -force"
-    (file "/tmp/fc_shell-2.wzOcBE" line 1)
- -- End Extended Error Info
 fc_shell> create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
 Warning: Pitch 0.074000 for layer M4 is less than sum(0.100000) of minSpacing(0.040000) and minWidth(0.060000).(saed14nm_1p9m_mw.tf line:727) (TECH-223)
 Warning: Pitch 0.600000 for layer MRDL is less than sum(4.000000) of minSpacing(2.000000) and minWidth(2.000000).(saed14nm_1p9m_mw.tf line:1356) (TECH-223)
@@ -154,60 +144,26 @@ Information: Loading technology file '/home1/14_nmts/14_nmts/tech/milkyway/saed1
 
 ... checking whether need to build cell library: saed14lvt_c.ndm (1/5)
 ... checking whether can reuse library under output directory
-cannot reuse CLIBs/saed14lvt_c.ndm under output directory: library not exists
+reuse existing cell library under output directory: CLIBs/saed14lvt_c.ndm
 
 ... checking whether need to build cell library: saed14rvt_c.ndm (2/5)
 ... checking whether can reuse library under output directory
-cannot reuse CLIBs/saed14rvt_c.ndm under output directory: library not exists
+reuse existing cell library under output directory: CLIBs/saed14rvt_c.ndm
 
 ... checking whether need to build cell library: saed14lvt_c_physical_only.ndm (3/5)
 ... checking whether can reuse library under output directory
-cannot reuse CLIBs/saed14lvt_c_physical_only.ndm under output directory: library not exists
+reuse existing cell library under output directory: CLIBs/saed14lvt_c_physical_only.ndm
 
 ... checking whether need to build cell library: saed14rvt_c_physical_only.ndm (4/5)
 ... checking whether can reuse library under output directory
-cannot reuse CLIBs/saed14rvt_c_physical_only.ndm under output directory: library not exists
+reuse existing cell library under output directory: CLIBs/saed14rvt_c_physical_only.ndm
 
 ... checking whether need to build cell library: EXPLORE_physical_only.ndm (5/5)
 ... checking whether can reuse library under output directory
-cannot reuse CLIBs/EXPLORE_physical_only.ndm under output directory: library not exists
+reuse existing cell library under output directory: CLIBs/EXPLORE_physical_only.ndm
 
-... processing cell library: saed14lvt_c.ndm (1/5)
-... run lm_shell to build the cell library
-...............................................................................
-..............................................................................
-..............................................................................
-..............................................................................
-..............................................................................
-............................................................................
-created new cell library under output directory: CLIBs/saed14lvt_c.ndm
+... 5 cell libraries can be reused.
 
-... processing cell library: saed14rvt_c.ndm (2/5)
-... run lm_shell to build the cell library
-...............................................................................
-..............................................................................
-..............................................................................
-..............................................................................
-..............................................................................
-............................................................................
-created new cell library under output directory: CLIBs/saed14rvt_c.ndm
-
-... processing cell library: saed14lvt_c_physical_only.ndm (3/5)
-... run lm_shell to build the cell library
-.....................
-created new cell library under output directory: CLIBs/saed14lvt_c_physical_only.ndm
-
-... processing cell library: saed14rvt_c_physical_only.ndm (4/5)
-... run lm_shell to build the cell library
-.....................
-created new cell library under output directory: CLIBs/saed14rvt_c_physical_only.ndm
-
-... processing cell library: EXPLORE_physical_only.ndm (5/5)
-... run lm_shell to build the cell library
-...............................................................................
-..............................................................................
-................................................................
-created new cell library under output directory: CLIBs/EXPLORE_physical_only.ndm
 
 
 Information: Successfully built 5 reference libraries: saed14lvt_c.ndm saed14rvt_c.ndm saed14lvt_c_physical_only.ndm saed14rvt_c_physical_only.ndm EXPLORE_physical_only.ndm. (LIB-093)
@@ -230,7 +186,7 @@ Top level ports: 60
 Total ports in all modules: 4289
 Total nets in all modules: 20747
 Total instances in all modules: 14249
-Elapsed = 00:00:00.51, CPU = 00:00:00.17
+Elapsed = 00:00:00.21, CPU = 00:00:00.17
 1
 link_block
 fc_shell> Using libraries: FFT_lib saed14lvt_ff0p7vm40c saed14rvt_ff0p7vm40c saed14lvt_c_physical_only saed14rvt_c_physical_only EXPLORE_physical_only
@@ -292,58 +248,4 @@ Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_mult
 Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
 Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
 1
-fc_shell> set parasitic1 "tlup_max"
-tlup_max
-set tluplus_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus"
-/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus
-set layer_map_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
-/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map
-set parasitic2 "tlup_min"
-tlup_min
-set tluplus_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus"
-/home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus
-set layer_map_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
-/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map
-fc_shell> foreach p [array name tluplus_file] {
-    puts "Info: read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p"
-    read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p
-}
-Info: read_parasitic_tech -tlup /home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus -layermap /home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map -name tlup_min
-WARNING: Layer mapping file warning. Tech layer 'M1_3' mapped in layer mapping file cannot be found in technology section.
-WARNING: Layer mapping file warning. Tech layer 'M2_3' mapped in layer mapping file cannot be found in technology section.
-WARNING: Layer mapping file warning. Tech layer 'M3_3' mapped in layer mapping file cannot be found in technology section.
-Info: read_parasitic_tech -tlup /home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus -layermap /home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map -name tlup_max
-WARNING: Layer mapping file warning. Tech layer 'M1_3' mapped in layer mapping file cannot be found in technology section.
-WARNING: Layer mapping file warning. Tech layer 'M2_3' mapped in layer mapping file cannot be found in technology section.
-WARNING: Layer mapping file warning. Tech layer 'M3_3' mapped in layer mapping file cannot be found in technology section.
-fc_shell> set_parasitics_parameters \
-    -early_spec tlup_min \
-    -late_spec tlup_max \
-    -early_temperature 40 \
-    -late_temperature 125 \
-    -corners {ss0p6v125c ff0p7vm40c}
-Warning: Nothing implicitly matched 'ss0p6v125c' (SEL-003)
-Warning: Nothing implicitly matched 'ff0p7vm40c' (SEL-003)
-Error: Nothing matched for -corners (SEL-005)
-Error: empty corner list!
-Error: 0
-      	Use error_info for more info. (CMD-013)
-Information: script '/tmp/fc_shell-be-2.zLOtcM'
-            	stopped at line 1 due to error. (CMD-081)
-Extended error info:
-0
-    while executing
-"set_parasitics_parameters \
-    -early_spec tlup_min \
-    -late_spec tlup_max \
-    -early_temperature 40 \
-    -late_temperature 125 \
-    -corners ..."
-    (file "/tmp/fc_shell-be-2.zLOtcM" line 1)
- -- End Extended Error Info
-fc_shell> quit
-Maximum memory usage for this session: 839.61 MB
-Maximum memory usage for this session including child processes: 3460.18 MB
-CPU usage for this session:     30 seconds (  0.01 hours)
-Elapsed time for this session:   1446 seconds (  0.40 hours)
-Thank you for using Fusion Compiler.
+fc_shell> 
