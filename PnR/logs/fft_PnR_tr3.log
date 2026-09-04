@@ -261,4 +261,62 @@ Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_mult
 Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
 Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
 1
+fc_shell> $[11G
+Error: unknown command '$' (CMD-005)
+fc_shell> quitfc_shell> qui[K[K[K$read_sdc $SDC_FILE[11Gif {[file exists [which $UPF_FILE]]} {[127G      set_app_options -name mv.upf.enable_golden_upf -value true[127G      load_upf $UPF_FILE[127G      puts "Info: Running commit_upf"[127G      commit_upf[127G  }[5A[11Gread_sdc $SDC_FILE[K[127G  [K
+[K
+[K
+[K
+[K[5A[29G
+Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
+Warning: Redefining clock 'clk'.  
+        Previously defined at: /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc, line 4; /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc, line 6; /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc, line 7 (UIC-034)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+1
+fc_shell> read_sdc $SDC_FILE
+Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
+Warning: Redefining clock 'clk'.  
+        Previously defined at: /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc, line 4; /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc, line 6; /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc, line 7 (UIC-034)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+1
+fc_shell> remove_sd[10@fc_shell> [20Gc -all
+Error: unknown option '-all' (CMD-010)
+fc_shell> remove_sdc -all[K[K[K[K
+Removing all constraints...
+Removing any SDC constraints from scenario default
+Removing any SDC constraints from mode default
+Removing any SDC constraints from corner default
+Removing any SDC constraints from design
+1
+fc_shell> remove_sdc -all[13Gad_sdc $SDC_FILE
+Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+1
+fc_shell> git pull
+Error: unknown command 'git' (CMD-005)
+fc_shell> remove_sdc
+Removing all constraints...
+Removing any SDC constraints from scenario default
+Removing any SDC constraints from mode default
+Removing any SDC constraints from corner default
+Removing any SDC constraints from design
+1
+fc_shell> remove_sdc[11Ggit pull[K[11Gread_sdc $SDC_FILE
+Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
+Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
+1
+fc_shell> git status
+Error: unknown command 'git' (CMD-005)
 fc_shell> 

@@ -45,3 +45,13 @@ if {[file exists [which $UPF_FILE]]} {
     commit_upf
 }
 read_sdc $SDC_FILE
+$
+read_sdc $SDC_FILE
+read_sdc $SDC_FILE
+remove_sdc -all
+remove_sdc
+read_sdc $SDC_FILE
+git pull
+remove_sdc
+read_sdc $SDC_FILE
+git status
