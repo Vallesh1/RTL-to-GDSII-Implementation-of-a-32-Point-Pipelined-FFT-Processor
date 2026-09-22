@@ -92,7 +92,21 @@ set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
 set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
 
 # Apply the operating conditions to the specific corners
-set_operating_conditions -max ss0p6v125c -max_corner ss0p6v125c -min ff0p7vm40c -min_corner ff0p7vm40c
+#set_operating_conditions -max ss0p6v125c -max_corner ss0p6v125c -min ff0p7vm40c -min_corner ff0p7vm40c
+
+set_temperature 125 -corners ss0p6v125c
+
+set_voltage 0.6 -object_list {VDD SS_DEFAULT.power} -corners ss0p6v125c
+
+set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground} -corners ss0p6v125c
+
+set_temperature -40 -corners ff0p7vm40c
+
+set_voltage 0.7 -object_list {VDD SS_DEFAULT.power} -corners ff0p7vm40c
+
+set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground} -corners ff0p7vm40c
+
+connect_pg_net -automatic
 
 check_mv_design
 

@@ -1,4 +1,6 @@
- 
+
+
+
                               Fusion Compiler (TM)
 
                 Version V-2023.12-SP4 for linux64 - Jun 03, 2024
@@ -19,84 +21,84 @@
  Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
-
+ 
 Loading user preference file /home1/IITR_PD3/MulukuriVNath/.synopsys_fc_gui/preferences.tcl
 Information: Term was not able to be set up using xterm-256color . Using "xterm" by default instead. (CLE-10)
-set_host_options -max_cores 4
+fc_shell> set_host_options -max_cores 4
 1
-set DESIGN_NAME "FFT"
+fc_shell> set DESIGN_NAME "FFT"
 FFT
 set LIBRARY_SUFFIX "_lib"
 _lib
 set DESIGN_LIBRARY "${DESIGN_NAME}${LIBRARY_SUFFIX}"
 FFT_lib
-set OUTPUTS_DIR "./outputs"
+fc_shell> set OUTPUTS_DIR "./outputs"
 ./outputs
-if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
-set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
+fc_shell> if {![file exists $OUTPUTS_DIR]} {file mkdir $OUTPUTS_DIR}
+fc_shell> set REFERENCE_LIBRARY "/home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm \
 /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm \
 /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm \
 /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm"
 /home1/14_nmts/14_nmts/stdcell_hvt/ndm/saed14hvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_slvt/ndm/saed14slvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_rvt/ndm/saed14rvt_frame_only.ndm  /home1/14_nmts/14_nmts/stdcell_lvt/ndm/saed14lvt_frame_only.ndm
-set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db \
+fc_shell> set LINK_LIBRARY "/home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db \
 /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db \
 /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db \
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db"
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
-set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
+fc_shell> set TECH_FILE "/home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf"
 /home1/14_nmts/14_nmts/tech/milkyway/saed14nm_1p9m_mw.tf
-set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
+fc_shell> set VERILOG_NETLIST "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v
-set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc"
+fc_shell> set SDC_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc
 set UPF_FILE "/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf"
 /home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.upf
-set_app_var link_library "* $LINK_LIBRARY"
+fc_shell> set_app_var link_library "* $LINK_LIBRARY"
 * /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
-set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
+fc_shell> set target_library "$LINK_LIBRARY" ;# CMD-104 Fix: Used 'set' instead of 'set_app_var'
 /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ff0p7vm40c.db  /home1/14_nmts/14_nmts/stdcell_rvt/db_ccs/saed14rvt_ss0p6v125c.db  /home1/14_nmts/14_nmts/stdcell_lvt/db_ccs/saed14lvt_ss0p6v125c.db
-set WORK_DIR "./work"
+fc_shell> set WORK_DIR "./work"
 ./work
-if {![file exists $WORK_DIR]} {
+fc_shell> if {![file exists $WORK_DIR]} {
     file mkdir $WORK_DIR
 }
-create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
+fc_shell> create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}
 Error: Library directory '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/PnR/work/work/FFT_lib' already exists (LIB-009)
 Error: problem in create_lib
-        Use error_info for more info. (CMD-013)
+      	Use error_info for more info. (CMD-013)
 Information: script '/tmp/fc_shell-2.xYBOXC'
-                stopped at line 1 due to error. (CMD-081)
+            	stopped at line 1 due to error. (CMD-081)
 Extended error info:
 problem in create_lib
     while executing
 "create_lib -ref_libs $REFERENCE_LIBRARY -technology $TECH_FILE ${WORK_DIR}/${DESIGN_LIBRARY}"
     (file "/tmp/fc_shell-2.xYBOXC" line 1)
  -- End Extended Error Info
-derive_design_level_via_regions
+fc_shell> derive_design_level_via_regions
 Error: Current library is not defined. (LIB-001)
 Error: 0
-        Use error_info for more info. (CMD-013)
+      	Use error_info for more info. (CMD-013)
 Information: script '/tmp/fc_shell-2.PUIFoD'
-                stopped at line 1 due to error. (CMD-081)
+            	stopped at line 1 due to error. (CMD-081)
 Extended error info:
 0
     while executing
 "derive_design_level_via_regions"
     (file "/tmp/fc_shell-2.PUIFoD" line 1)
  -- End Extended Error Info
-derive_design_level_via_regions
+fc_shell> derive_design_level_via_regions
 Error: Current library is not defined. (LIB-001)
 Error: 0
-        Use error_info for more info. (CMD-013)
+      	Use error_info for more info. (CMD-013)
 Information: script '/tmp/fc_shell-2.AthrDP'
-                stopped at line 1 due to error. (CMD-081)
+            	stopped at line 1 due to error. (CMD-081)
 Extended error info:
 0
     while executing
 "derive_design_level_via_regions"
     (file "/tmp/fc_shell-2.AthrDP" line 1)
  -- End Extended Error Info
-read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
+fc_shell> read_verilog -top $DESIGN_NAME $VERILOG_NETLIST
 Warning: Library 'FFT.mapped' has no reference Libraries. (LIB-075)
 Information: Reading Verilog into new design 'FFT' in library 'FFT.mapped'. (VR-012)
 Loading verilog file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/outputs/FFT.mapped.v'
@@ -107,14 +109,33 @@ Total nets in all modules: 20747
 Total instances in all modules: 14249
 Elapsed = 00:00:00.19, CPU = 00:00:00.16
 1
-fc_shell> link_block
-fc_shell> 
-current_design $DESIGN_NAME
+link_block
+fc_shell> Warning: Library FFT.mapped has no reference libraries. (LNK-063)
+Using libraries: FFT.mapped
+Linking block FFT.mapped:FFT.design
+Warning: Unable to resolve reference to 'SAEDHVT14_FSDPRBQ_V2LP_1' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_INV_0P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_BUF_PS_1P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_AN2_MM_1' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_INV_0P75' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_OA22_U_0P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_AN2_0P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_BUF_U_0P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_OR2_MM_1' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_OR2_0P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_ND2_MM_0P5' first referenced from module 'FFT'. (LNK-005)
+Warning: Unable to resolve reference to 'SAEDHVT14_ND2_CDC_1' first referenced from module 'FFT'. (LNK-005)
+Information: Message limit (link.reference_limit 12) reached for this block, remaining reference messages will be suppressed. (LNK-043)
+Information: Block 'FFT.mapped:FFT.design' has 14196 unbound instances. (LNK-073)
+Information: Block 'FFT.mapped:FFT.design' has 69 unresolved references. (LNK-074)
+Information: Total 69 mismatches are found on block 'FFT.mapped:FFT.design'. (DMM-116)
+Design 'FFT' was successfully linked.
+fc_shell> current_design $DESIGN_NAME
 {FFT.mapped:FFT.design}
-link
+fc_shell> link
 Warning: Block 'FFT.mapped:FFT.design' is already linked. (LNK-067)
 0
-if {[file exists [which $UPF_FILE]]} {
+fc_shell> if {[file exists [which $UPF_FILE]]} {
     set_app_options -name mv.upf.enable_golden_upf -value true
     load_upf $UPF_FILE
     puts "Info: Running commit_upf"
@@ -155,7 +176,7 @@ Information: Total 0 power switch cell(s) in the design. (MV-021)
 Information: Total 0 netlist change(s) and disconnections have been made to resolve conflicts between power intent and PG netlist. (UPF-073)
 Information: UPF has been successfully committed. (UPF-072)
 1
-read_sdc $SDC_FILE
+fc_shell> read_sdc $SDC_FILE
 Information: Loading SDC version 2.1 file '/home1/IITR_PD3/MulukuriVNath/Documents/RTL-to-GDSII-Implementation-of-a-32-Point-Pipelined-FFT-Processor/Synthesis/scripts/FFT.sdc' (FILE-007)
 Information: Timer using 4 threads
 Warning: The 'set_max_fanout' command is not supported in this program.  The command will be ignored. (CSTR-011)
@@ -164,7 +185,7 @@ Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_mult
 Warning: Object 'clk_gate_count_y_reg' is not a valid startpoint. The set_multicycle_path command will not match this object. (UIC-009)
 Warning: Object 'clk_gate_result_i_reg_0_' is not a valid endpoint. The set_multicycle_path command will not match this object. (UIC-009)
 1
-set parasitic1 "tlup_max"
+fc_shell> set parasitic1 "tlup_max"
 tlup_max
 set tluplus_file($parasitic1) "/home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus"
 /home1/14_nmts/14_nmts/tech/star_rc/max/saed14nm_1p9m_Cmax.tluplus
@@ -176,14 +197,14 @@ set tluplus_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_
 /home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus
 set layer_map_file($parasitic2) "/home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map"
 /home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map
-foreach p [array name tluplus_file] {
+fc_shell> foreach p [array name tluplus_file] {
     puts "Info: read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p"
     read_parasitic_tech -tlup $tluplus_file($p) -layermap $layer_map_file($p) -name $p
 }
 Info: read_parasitic_tech -tlup /home1/14_nmts/14_nmts/tech/star_rc/min/saed14nm_1p9m_Cmin.tluplus -layermap /home1/14_nmts/14_nmts/tech/star_rc/saed14nm_tf_itf_tluplus.map -name tlup_min
 Error: Library 'FFT.mapped' is missing technology information. (UIED-380)
 Information: script '/tmp/fc_shell-fe-2.rxiqem'
-                stopped at line 1 due to error. (CMD-081)
+            	stopped at line 1 due to error. (CMD-081)
 Extended error info:
 
     while executing

@@ -1,0 +1,63 @@
+# 1. Erase the invalid parallel wires
+remove_routes -net_types {power ground} -stripe -ring
+remove_pg_strategies -all
+remove_pg_patterns -all
+
+# 2. Define an Orthogonal Mesh (M8 is Horizontal, M9 is Vertical)
+create_pg_mesh_pattern fft_power_mesh -layers { \
+    {horizontal_layer: M8 width: 0.6 pitch: 10 offset: 2} \
+    {vertical_layer: M9 width: 1.2 pitch: 20 offset: 4} \
+}
+
+# 3. Apply the Strategy to the core
+set_pg_strategy core_mesh \
+    -pattern { {name: fft_power_mesh} {nets: {VDD VSS}} } \
+    -core
+
+# 4. Compile the Grid (This will automatically generate the M8-to-M9 vias)
+compile_pg -strategies core_mesh
+
+# ============================================================================
+# 5. M1 POWER RAILS & VIA STACKS
+# ============================================================================
+# 1. Define the pattern for standard cell M1 power rails
+create_pg_std_cell_conn_pattern m1_rails -layers {M1}
+
+# 2. Apply the rail strategy to the core area
+set_pg_strategy rail_strategy \
+    -pattern { {name: m1_rails} {nets: {VDD VSS}} } \
+    -core
+
+# 3. Compile the M1 rails (draws the physical metal over the cell rows)
+compile_pg -strategies rail_strategy
+
+# 4. Connect the top mesh (M8) down to the standard cell rails (M1)
+create_pg_vias -nets {VDD VSS} -from_layers M1 -to_layers M8
+# 1. Erase all existing broken power shapes and strategies
+remove_routes -net_types {power ground} -stripe -ring
+remove_pg_strategies -all
+remove_pg_patterns -all
+
+# 2. Level 1: Standard Cell Rails (M1)
+create_pg_std_cell_conn_pattern m1_rails -layers M1
+
+# 3. Level 2: Intermediate Vertical Bridge (M5)
+create_pg_mesh_pattern m5_straps -layers { \
+    {vertical_layer: M5 width: 0.2 pitch: 5 offset: 1} \
+}
+
+# 4. Level 3: Top Global Mesh (M8 / M9)
+create_pg_mesh_pattern top_mesh -layers { \
+    {horizontal_layer: M8 width: 0.6 pitch: 10 offset: 2} \
+    {vertical_layer: M9 width: 1.2 pitch: 20 offset: 4} \
+}
+
+# 5. Assign all patterns to the core region
+set_pg_strategy strat_rails -core -pattern { {name: m1_rails} {nets: {VDD VSS}} }
+set_pg_strategy strat_m5 -core -pattern { {name: m5_straps} {nets: {VDD VSS}} }
+set_pg_strategy strat_top -core -pattern { {name: top_mesh} {nets: {VDD VSS}} }
+
+# 6. CRITICAL: Compile all 3 tiers simultaneously! 
+# The tool will automatically generate all M9->M8, M8->M5, and M5->M1 vias.
+compile_pg -strategies {strat_top strat_m5 strat_rails}
+
