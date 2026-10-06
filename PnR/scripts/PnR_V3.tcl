@@ -1,4 +1,4 @@
-#Working Final Draft Script
+# Working Final Draft Script
 # ============================================================================
 # FUSION COMPILER: RTL-TO-GDSII FULL BACKEND SCRIPT (SAED 14nm)
 # Design: 32-Point Pipelined FFT Processor
@@ -87,31 +87,48 @@ set_parasitics_parameters \
   -late_temperature 125 \
   -corners {ss0p6v125c ff0p7vm40c}
 
-set_voltage 0.6 -object_list {VDD SS_DEFAULT.power}
-set_voltage 0.0 -object_list {VSS SS_DEFAULT.ground}
-set_operating_conditions -max ss0p6v125c -min ff0p7vm40c
+##########################################################################################
+## MCMM ENVIRONMENT SETUP: Modes, Corners, Voltages, Temperatures, and Loads
+##########################################################################################
 
-#Before Directly Running the SDC File I have Tried Creating the Mode and a Specific Corner for a Smooth SDC Read
-#create_mode func
-#create_scenario -mode func -corner ss0p6v125c -name func_ss
-
-# 4. Create Scenarios and apply physical timing constraints
+# 1. Create the Functional Mode and Physical Corners FIRST
 create_mode func
+create_corner ss0p6v125c
+create_corner ff0p7vm40c
+
+# 2. Bind Mode and Corners to Create Scenarios
 create_scenario -mode func -corner ss0p6v125c -name func_ss
 create_scenario -mode func -corner ff0p7vm40c -name func_ff
 
+# 3. Define Voltages for each Timing Corner
+set_voltage 0.6 -object_list VDD -corner ss0p6v125c
+set_voltage 0.0 -object_list VSS -corner ss0p6v125c
+
+set_voltage 0.7 -object_list VDD -corner ff0p7vm40c
+set_voltage 0.0 -object_list VSS -corner ff0p7vm40c
+
+# 4. Define Explicit Temperatures for each Corner
+set_temperature 125 -corner ss0p6v125c
+set_temperature -40 -corner ff0p7vm40c
+
+# 5. Configure the Slow (Setup/Max) Scenario
 current_scenario func_ss
+set_operating_conditions ss0p6v125c
 read_sdc $SDC_FILE
+set_load 0.05 [all_outputs] ;# Maximum capacitance load for worst-case Setup analysis
 
+# 6. Configure the Fast (Hold/Min) Scenario
 current_scenario func_ff
+set_operating_conditions ff0p7vm40c
 read_sdc $SDC_FILE
+set_load 0.01 [all_outputs] ;# Minimum capacitance load for best-case Hold analysis
 
-# 5. Define Scenario Optimization Roles (Fixes the place_opt FLW-8004 crash)
+# 7. Define Scenario Optimization Roles for place_opt Engine
+# func_ss prioritizes Setup and Power recovery
 set_scenario_status func_ss -active true -setup true -hold false -leakage_power true -dynamic_power true
-set_scenario_status func_ff -active true -setup false -hold true -leakage_power false -dynamic_power false
 
-# Load physical timing constraints from external SDC
-read_sdc $SDC_FILE
+# func_ff strictly handles Hold fixing
+set_scenario_status func_ff -active true -setup false -hold true -leakage_power false -dynamic_power false
 
 ########################################################################
 ##  Metal Layer Directions & Attributes
@@ -224,7 +241,7 @@ set_multi_vth_constraint -low_vt_percentage 8 -cost cell_count
 place_opt -to final_opto
 connect_pg_net
 
-save_block -as fft_pd
+save_block -as fft_final_opt
 
 ################################################################
 ## CTS (Clock Tree Synthesis)
